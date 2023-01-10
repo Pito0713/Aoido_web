@@ -1,23 +1,21 @@
 const routes = [
   {
     path: "/",
-    redirect: { name: "welcome" },
-    component: () => import("@/page"),
-    children: [
-      // == 首頁 ==
-      {
-        path: "/",
-        component: () => import("@/page/templates/welcome"),
-        name: "welcome",
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "/",
-        component: () => import("@/page/templates/product"),
-        name: "product",
-        meta: { requiresAuth: true },
-      },
-    ],
+    component: () => import("../pages/index.vue"),
+    name: "/",
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/product",
+    component: () => import("../pages/product/productPage.vue"),
+    name: "product",
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/setting",
+    component: () => import("../pages/setting/settingPage.vue"),
+    name: "setting",
+    meta: { requiresAuth: true },
   },
 ];
 

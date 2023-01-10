@@ -1,0 +1,25 @@
+.nav-burger {
+  position: relative;
+  padding: 1rem;
+  cursor: pointer;
+}
+.burger-line {
+  position: relative;
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin: 5px;
+  background-color: black;
+  transition: all 0.5s ease;
+}
+.lineOne{
+  transform: rotate(45deg) translate(5px, 4px);
+  width: 2rem;
+}
+.linetwo{
+  opacity: 0;
+}
+.linethree{
+  transform: rotate(-45deg) translate(5px, -4.5px);
+  width: 2rem;
+}

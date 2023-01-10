@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <a >123456</a>
+    <a> Copyright © 2023</a>
   </div>
 </template>
 

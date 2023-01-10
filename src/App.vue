@@ -1,14 +1,8 @@
-
-
 <script setup>
-import welcome from './page/templates/welcome/index.vue'
-import { useStore } from './store/main';
-import { storeToRefs } from 'pinia';
-const store = useStore();
-const { APILoading } = storeToRefs(store);
+  import App from './pages/index.vue'
 </script>
 
 <template>
-  <welcome />
+  <App class="container"/>
 </template>
 
