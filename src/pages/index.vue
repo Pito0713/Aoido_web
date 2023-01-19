@@ -13,16 +13,16 @@ const handViewChange = () =>{
 </script>
 
 <template>
-  <div>
-    <div >
-      <headerbar class="head"/>
-      <navBugerPage class="buger" @click="handViewChange()"/>
-      <div class="view">
-        <asideMenuPage v-if="isView"/>
-        <router-view/>
-      </div>
-      <footerSide class="footer" />
+  <div class="container">
+    <headerbar class="head"/>
+    <navBugerPage class="buger" @click="handViewChange()"/>
+    <div class="container">
+      <transition :class="{ asideMenuPageTransform: isView }" >
+        <asideMenuPage class="asideMenuPage"/>
+      </transition>
+      <router-view/>
     </div>
+    <footerSide class="footer" />
   </div>
 </template>
 

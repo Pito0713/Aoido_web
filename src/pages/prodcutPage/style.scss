@@ -1,0 +1,13 @@
+.prodcutPage_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+
+.prodcutPage_Item_container{
+  border: 1px gray solid;
+  width: 20%;
+  margin: 2.5%;
+  height: 100px;
+}

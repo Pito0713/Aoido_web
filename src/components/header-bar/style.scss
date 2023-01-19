@@ -20,5 +20,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0.5rem 1rem;
+  width: 120px
 }
+
+// @media (min-width: 768px){
+//   .nav-items{
+//     width:100px
+//   }
+// }
+
+// @media (max-width:576px){
+//   .nav-items{
+//     width: 20%;
+//   }
+// }
+
+// @media (max-width:481px){
+//   .nav-items{
+//     width: 10%;
+//   }
+// }

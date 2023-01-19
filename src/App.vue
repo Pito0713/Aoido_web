@@ -3,6 +3,6 @@
 </script>
 
 <template>
-  <App class="container"/>
+  <App />
 </template>
 

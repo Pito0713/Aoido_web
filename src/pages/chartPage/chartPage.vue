@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <a>12345</a>
+  <a>chartPage</a>
 </template>

@@ -6,15 +6,27 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/product",
-    component: () => import("../pages/product/productPage.vue"),
-    name: "product",
+    path: "/homePage",
+    component: () => import("../pages/homePage/homePage.vue"),
+    name: "homePage",
     meta: { requiresAuth: true },
   },
   {
-    path: "/setting",
-    component: () => import("../pages/setting/settingPage.vue"),
-    name: "setting",
+    path: "/prodcutPage",
+    component: () => import("../pages/prodcutPage/prodcutPage.vue"),
+    name: "prodcutPage",
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/promotionPage",
+    component: () => import("../pages/promotionPage/promotionPage.vue"),
+    name: "promotionPage",
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/chartPage",
+    component: () => import("../pages/chartPage/chartPage.vue"),
+    name: "chartPage",
     meta: { requiresAuth: true },
   },
 ];
