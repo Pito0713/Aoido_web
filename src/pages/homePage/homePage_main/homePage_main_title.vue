@@ -1,15 +1,15 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
 const props = defineProps({
-  foo: String | Number
+  msg: String | Number
 })
-const screenWidth = document.documentElement.clientWidth
 </script>
 
 <template>
-  <div class="prodcutPage_Item_container">
-    <div class="prodcutPage_Item_img">123</div>
-    <a>{{ screenWidth }}</a>
+  <div>
+    <div class="TitleDot"></div>
+    <h1> {{ msg }} </h1>
+    <div class="TitleDot"></div>
   </div>
 </template>
 

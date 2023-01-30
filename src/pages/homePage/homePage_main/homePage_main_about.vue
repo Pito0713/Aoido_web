@@ -1,13 +1,10 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
-const props = defineProps({
-  foo: String | Number
-})
 </script>
 
 <template>
-  <div class="promotionPage_Item">
-    {{ foo }}
+  <div class="homePage_main_about_content">
+    <a href="">123</a>
   </div>
 </template>
 

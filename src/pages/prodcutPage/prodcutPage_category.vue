@@ -3,13 +3,11 @@ import { ref, reactive, onMounted, onUnmounted } from 'vue'
 const props = defineProps({
   foo: String | Number
 })
-const screenWidth = document.documentElement.clientWidth
 </script>
 
 <template>
-  <div class="prodcutPage_Item_container">
-    <div class="prodcutPage_Item_img">123</div>
-    <a>{{ screenWidth }}</a>
+  <div class="prodcutPage_category_item">
+    {{ foo }}
   </div>
 </template>
 

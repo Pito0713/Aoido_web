@@ -1,8 +1,10 @@
 <script setup>
-  import App from './pages/index.vue'
+import App from './pages/index.vue'
 </script>
 
 <template>
-  <App />
+  <div class="app">
+    <App />
+  </div>
 </template>
 

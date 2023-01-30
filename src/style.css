@@ -42,38 +42,10 @@ ul {
   padding-inline-start: 0px;
 }
 
-/* @media(min-width:1440px){
-  .container{
-    width: 1440px;
+@media (min-width:576px){
+  .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
-@media (max-width:1441px){
-  .container{
-    width: 1024px;
-  }
-}
-@media  (max-width:1025px){
-  .container{
-    width: 768px;
-  }
-}
-@media (max-width:769px){
-  .container{
-    width: 576px;
-  }
-}
-@media (max-width:577px){
-  .container{
-    width: 480px;
-  }
-}
-@media (max-width:481px){
-  .container{
-    width: 320px;
-  }
-}
-@media (max-width:321px){
-  .container{
-    width: 240px;
-  }
-} */

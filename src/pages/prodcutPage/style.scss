@@ -1,13 +1,89 @@
-.prodcutPage_container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+
+@media screen and (min-width:1441px){
+  .prodcutPage_container {
+    display: flex;
+  }
+  .prodcutPage_category{
+    display: block;
+    width: 240px;
+    border: 1px gray solid;
+    margin: 15px 15px;
+    .prodcutPage_category_item{
+      margin: 5px;
+    }
+  }
+}
+@media screen and (max-width:1440px){
+  .prodcutPage_container {
+    display: block;
+  }
+  .prodcutPage_category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px gray solid;
+    margin: 0px 15px;
+    .prodcutPage_category_item{
+      margin: 5px 10px;
+    }
+  }
 }
 
 
-.prodcutPage_Item_container{
-  border: 1px gray solid;
-  width: 20%;
-  margin: 2.5%;
-  height: 100px;
+
+
+.prodcutPage_Item{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  .prodcutPage_Item_container {
+    border: 1px gray solid;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+  @media screen and (min-width:1441px){
+    .prodcutPage_Item_container {
+      width: calc((1440px - 240px - (15px*4) - 15px - (2px*5))/4);
+      height: calc((1440px - 240px - (15px*4) - 15px - (2px*5))/4);
+    }
+  }
+
+  @media screen and (max-width:1440px){
+    .prodcutPage_Item_container {
+      width: calc((1024px - (15px*4) - 15px - (2px*4))/4);
+      height: calc((1024px - (15px*4) - 15px - (2px*4))/4);
+    }
+  }
+  @media screen and  (max-width:1024px){
+    .prodcutPage_Item_container {
+      width: calc((768px - (15px*3) - 15px - (2px*3))/3);
+      height: calc((768px - (15px*3) - 15px - (2px*3))/3);
+    }
+  }
+  @media screen and  (max-width:769px){
+    .prodcutPage_Item_container {
+      width: calc((576px - (15px*3) - 15px - (2px*3))/3);
+      height: calc((576px - (15px*3) - 15px - (2px*3))/3);
+    }
+  }
+  @media screen and  (max-width:576px){
+    .prodcutPage_Item_container {
+      width: calc(33.333% - 15px - 2px);
+      height: calc(33.333vw - 15px - 2px);
+    }
+  }
+
+  @media screen and  (max-width:481px){
+    .prodcutPage_Item_container {
+      width: calc(50% - 15px - 2px);
+      height: calc(50vw - 15px - 2px);
+    }
+  }
+
+  .prodcutPage_Item_img {
+    border: 1px gray solid;
+    height: 75%;
+  }
 }
