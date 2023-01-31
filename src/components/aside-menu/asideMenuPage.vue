@@ -1,15 +1,18 @@
 <script setup>
 import { MENU_LIST } from '../../configs/site'
+const props = defineProps({
+  isView: Boolean
+})
 </script>
 
 <template>
-    <ul>
-      <li v-for="(item, index) in MENU_LIST" class="item">
-        <router-link :to="item.route" :key="index" >
-          {{ item.name }}
-        </router-link>
-      </li>
-    </ul>
+  <ul class="asideMenuPage">
+    <li v-for="(item, index) in MENU_LIST" class="asideMenuPage_item" @click="$emit('handViewChange', !props.isView)">
+      <router-link :to="item.route" :key="index">
+        {{ item.name }}
+      </router-link>
+    </li>
+  </ul>
 </template>
 
 

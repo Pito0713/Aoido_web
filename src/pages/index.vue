@@ -10,16 +10,21 @@ const isView = ref(false)
 const handViewChange = () => {
   isView.value = !isView.value
 }
+
 </script>
 
 <template>
-  <div class="container">
-    <headerbar class="head" />
-    <navBugerPage class="buger" @click="handViewChange()" />
-    <transition :class="{ asideMenuPageTransform: isView }">
-      <asideMenuPage class="asideMenuPage" />
-    </transition>
-    <router-view />
+  <div class="sss">
+    <div class="container">
+      <headerbar class="head" />
+      <navBugerPage :isView="isView" @handViewChange="handViewChange()" />
+      <transition :class="{ asideMenuPageTransform: isView }">
+        <asideMenuPage class="asideMenuPage" :isView="isView" @handViewChange="handViewChange" />
+      </transition>
+      <div class="view">
+        <router-view />
+      </div>
+    </div>
     <footerSide class="footer" />
   </div>
 </template>

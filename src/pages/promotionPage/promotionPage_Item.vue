@@ -6,8 +6,9 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="promotionPage_Item">
-    {{ foo }}
+  <div class="promotionPage_Item_container">
+    <div class="promotionPage_Item_title">{{ foo }}</div>
+    <div class="promotionPage_Item_content">{{ foo }}</div>
   </div>
 </template>
 
