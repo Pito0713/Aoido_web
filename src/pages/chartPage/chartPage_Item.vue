@@ -7,7 +7,7 @@ const props = defineProps({
 
 <template>
   <div class="chartPage_Item_content">
-    <div class="chartPage_Item_name">
+    <div class="chartPage_Item_text">
       <a>
         {{ foo }}
       </a>
@@ -16,9 +16,11 @@ const props = defineProps({
       <button>
         <img class="chartPage_Item_img" src="../../assets/filter.png" />
       </button>
-      <a>
-        {{ 1 }}
-      </a>
+      <div class="chartPage_Item_text">
+        <a>
+          {{ 1 }}
+        </a>
+      </div>
       <button>
         <img class="chartPage_Item_img" src="../../assets/plus.png">
       </button>

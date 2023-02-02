@@ -1,6 +1,8 @@
 <script setup>
+import { ref } from 'vue'
 import prodcutPage_Item from './prodcutPage_Item.vue';
 import prodcutPage_category from './prodcutPage_category.vue';
+import pagination from '../../components/pagination/pagination.vue';
 const List = [
   { item: 123 },
   { item: 456 },
@@ -16,6 +18,11 @@ const categoryList = [
   { item: 'template' },
 ]
 
+const page = ref(1)
+const onPageChange = (val) => {
+  page.value = val
+}
+
 </script>
 
 <template>
@@ -30,6 +37,7 @@ const categoryList = [
         <prodcutPage_Item :foo=item.item />
       </template>
     </div>
+    <pagination :page="page" @onPageChange="onPageChange" />
   </div>
 </template>
 

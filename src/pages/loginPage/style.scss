@@ -1,0 +1,40 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  cursor: pointer;
+
+  .loginPage_content {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+  }
+
+  .loginPage_text {
+    flex: 3;
+    text-align: center;
+  }
+  .loginPage_input {
+    flex: 7;
+  }
+
+  .loginPage_button_group {
+    margin: 10px;
+  }
+
+  .loginPage_button {
+    position: relative;
+    display: block;
+    transition: all 1s ease;
+  }
+
+  .loginButton {
+    animation: loginButton 0.5s;
+    transform: translate(100px);
+    backface-visibility: hidden;
+  }
+}

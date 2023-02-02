@@ -3,6 +3,12 @@
   border: 1px gray solid;
 }
 
+@media (max-width:576px){
+  .chartPage {
+    display: block;
+  }
+}
+
 .chartPage_Item {
   display: block;
   flex: 5;
@@ -12,6 +18,7 @@
     margin: 10px 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   .chartPage_Item_store {
     display: flex;
@@ -19,6 +26,10 @@
   .chartPage_Item_img {
     width: 15px;
     height: 15px;
+    margin: 10px
+  }
+  .chartPage_Item_text {
+    margin: 10px
   }
 }
 

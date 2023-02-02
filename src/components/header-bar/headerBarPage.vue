@@ -1,11 +1,11 @@
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 import { MENU_LIST } from '../../configs/site'
 const LIST = ref(MENU_LIST.length)
 
 const listPart1 = () => {
   let target = []
-  for(let i = 0; i < LIST.value/2; i++) {
+  for (let i = 0; i < LIST.value / 2; i++) {
     target.push(MENU_LIST[i])
   }
   return target
@@ -13,7 +13,7 @@ const listPart1 = () => {
 
 const listPart2 = () => {
   let target = []
-  for(let i =  LIST.value/2; i < LIST.value; i++) {
+  for (let i = LIST.value / 2; i < LIST.value; i++) {
     target.push(MENU_LIST[i])
   }
   return target
