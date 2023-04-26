@@ -6,6 +6,7 @@ export const useStore = defineStore('Main', {
     APILoading: false,
     isAlertBox: false,
     isCheckLogin: false,
+    AlertMessage: '123',
     // counter: Cookies.get('counter') ? Cookies.get('counter') : 1,
   }),
   getters: {},
@@ -14,10 +15,15 @@ export const useStore = defineStore('Main', {
       this.isAlertBox = e;
       console.log(e);
     },
+    AlertMessageChange(e) {
+      this.AlertMessage = e;
+      console.log(e);
+    },
     isCheckLoginChange(e) {
       this.isCheckLogin = e;
       console.log(e, 'isCheckLoginChange');
     },
+
     // increment() {
     //   this.counter++;
     //   Cookies.set('counter', this.counter);

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .loginPage {
   display: flex;
   flex-direction: column;
@@ -8,33 +10,36 @@
 
   .loginPage_content {
     display: flex;
-    margin: 10px;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
+    height: 50px;
   }
 
   .loginPage_text {
-    flex: 3;
-    text-align: center;
+    width: 75px;
   }
+
   .loginPage_input {
-    flex: 7;
+    width: 150px;
   }
 
   .loginPage_button_group {
-    margin: 10px;
   }
 
   .loginPage_button {
     position: relative;
     display: block;
-    transition: all 1s ease;
+    transition: all 0.1s ease;
+    background-color: var(--bottom-color);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 2px;
   }
 
   .loginButton {
-    animation: loginButton 0.5s;
+    animation: loginButton 0.1s;
     transform: translate(100px);
     backface-visibility: hidden;
   }
+
 }
+
+

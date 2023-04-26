@@ -22,7 +22,7 @@ const List = [
         <template v-for="(item, index) in List">
           <div class="homePage_main_prouduct_describe_container_item">
             <div>123</div>
-            <a>{{ item.item}}</a>
+            <a>{{ item.item }}</a>
           </div>
         </template>
       </div>

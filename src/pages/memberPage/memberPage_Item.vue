@@ -26,31 +26,36 @@ const { isAlertBox } = storeToRefs(store);
 </script>
 
 <template>
-  <div class="memberPage_Item_container">
-    <div class="memberPage_Item_title">{{ foo }}</div>
-    <template v-if="foo === 'birth'">
-      <div class="memberPage_Item_content">
-        <select v-model="ListData.num" class="memberPage_Item_select">
-          <option value="0" disabled selected>請選擇</option>
-          <option :value="ListData.num" v-for="(item) in 10" :key="ListData.num">{{ item }}</option>
-        </select><a class="memberPage_Item_text">年</a>
-        <select v-model="ListData.num" class="memberPage_Item_select">
-          <option value="0" disabled selected>請選擇</option>
-          <option :value="ListData.num" v-for="(item) in 10" :key="ListData.num">{{ item }}</option>
-        </select><a class="memberPage_Item_text">月</a>
-        <select v-model="ListData.num" class="memberPage_Item_select">
-          <option value="0" disabled selected>請選擇</option>
-          <option :value="ListData.num" v-for="(item) in 10" :key="ListData.num">{{ item }}</option>
-        </select><a class="memberPage_Item_text">日</a>
-      </div>
-    </template>
-    <template v-else>
-      <input class="memberPage_Item_content" v-model="ListData.name" placeholder='${foo}' />
-    </template>
+  <form @submit.prevent="submitForm" class="memberPage_Item_container">
+    <label v-if="foo === 'name'" class="memberPage_Item_content">
+      <a class="memberPage_Item_title">Name:</a>
+      <input class="memberPage_Item_input" v-model="ListData.name" type="text" placeholder='foo' required
+        :disabled="!isRevise" />
+    </label>
+    <label v-if="foo === 'birth'" class="memberPage_Item_content">
+      <a class="memberPage_Item_title">birth:</a>
+      <input class="memberPage_Item_input" v-model="ListData.birth" type="text" placeholder='foo' required
+        :disabled="!isRevise" />
+    </label>
+    <label v-if="foo === 'phone'" class="memberPage_Item_content">
+      <a class="memberPage_Item_title">phone:</a>
+      <input class="memberPage_Item_input" v-model="ListData.phone" type="text" placeholder='foo' required
+        :disabled="!isRevise" />
+    </label>
+    <label v-if="foo === 'address'" class="memberPage_Item_content">
+      <a class="memberPage_Item_title">address:</a>
+      <input class="memberPage_Item_input" v-model="ListData.address" type="text" placeholder='foo' required
+        :disabled="!isRevise" />
+    </label>
+    <label v-if="foo === 'mail'" class="memberPage_Item_content">
+      <a class="memberPage_Item_title">mail:</a>
+      <input class="memberPage_Item_input" v-model="ListData.password" type="text" placeholder='foo' required
+        :disabled="!isRevise" />
+    </label>
     <button v-if='!isRevise' class="memberPage_Item_button" type="button" @click="onReviseChange()">Revise</button>
     <button v-else='isRevise' class="memberPage_Item_button" type="button"
-      @click="onReviseChange(); store.isAlertBoxChange(true)">save</button>
-  </div>
+      @click="onReviseChange(); store.isAlertBoxChange(true); store.AlertMessageChange(`${foo} 測試`)">save</button>
+  </form>
 </template>
 
 <style lang="scss" scoped>

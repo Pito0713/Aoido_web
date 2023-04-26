@@ -18,6 +18,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: '/prodcutPage_Detail/:id',
+    component: () => import('../pages/prodcutPage/prodcutPage_Detail.vue'),
+    name: 'prodcutPage_Detail',
+    props: true, // 啟用 props
+  },
+  {
     path: '/memberPage',
     component: () => import('../pages/memberPage/memberPage.vue'),
     name: 'memberPage',

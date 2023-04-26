@@ -5,7 +5,8 @@ import { useStore } from './store/main';
 import { storeToRefs } from 'pinia';
 import loginPage from './pages/loginPage/loginPage.vue';
 const store = useStore();
-const { isAlertBox, isCheckLoginChange } = storeToRefs(store);
+const { isAlertBox, isCheckLogin } = storeToRefs(store);
+console.log(isCheckLogin)
 </script>
 
 <template>
@@ -13,13 +14,12 @@ const { isAlertBox, isCheckLoginChange } = storeToRefs(store);
     <template v-if="isAlertBox">
       <alertBoxPage></alertBoxPage>
     </template>
-    <template v-if="!isCheckLoginChange">
+    <template v-if="!isCheckLogin">
       <loginPage />
     </template>
     <template v-else>
       <App />
     </template>
-
   </div>
 </template>
 

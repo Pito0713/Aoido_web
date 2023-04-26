@@ -14,8 +14,8 @@ const handViewChange = () => {
 </script>
 
 <template>
-  <div class="sss">
-    <div class="container">
+  <div class="container">
+    <div class="content">
       <headerbar class="head" />
       <navBugerPage :isView="isView" @handViewChange="handViewChange()" />
       <transition :class="{ asideMenuPageTransform: isView }">

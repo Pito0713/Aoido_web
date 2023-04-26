@@ -1,35 +1,57 @@
 .chartPage {
   display: flex;
-  border: 1px gray solid;
-}
-
-@media (max-width:576px){
-  .chartPage {
-    display: block;
+  justify-content: center;
+  position: relative;
+  .container{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+  }
+  @media (max-width:576px){
+    .container {
+      display: block;
+    }
   }
 }
 
 .chartPage_Item {
-  display: block;
-  flex: 5;
-  position: relative;
+  display: flex;
+  flex-direction: column;
   border: 1px gray solid;
+  flex: 5;
+  .chartPage_Item_contaner {
+    margin: 10px 15px 0px 15px;
+  }
   .chartPage_Item_content {
-    margin: 10px 20px;
+    display: block;
+    border: 1px gray solid;
+  }
+  .chartPage_Item_text {
+    padding-bottom: 10px;
+    margin: 5px;
+  }
+  .chartPage_Item_describe {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    margin: 5px;
   }
   .chartPage_Item_store {
     display: flex;
   }
   .chartPage_Item_img {
-    width: 15px;
-    height: 15px;
-    margin: 10px
+    width: 12.5px;
+    height: 12.5px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
-  .chartPage_Item_text {
-    margin: 10px
+  .chartPage_Item_Data {
+    width: 25px;
+    border: 1px gray solid;
+    text-align: center;
+  }
+  .chartPage_Item_pagination {
+    margin: 5px 15px;
   }
 }
 
@@ -38,14 +60,25 @@
   flex: 5;
   flex-direction: column;
   border: 1px gray solid;
-  .chartPage_subInfo_contaner {
+  justify-content: center;
+  align-items: center;
+  .chartPage_subInfo_container {
+    width: 100%;
     display: flex;
-    margin: 10px 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
   }
   .chartPage_subInfo_title {
-    flex: 3;
+    width: 70px;
   }
-  .chartPage_subInfo_content {
-    flex: 7;
+  .chartPage_subInfo_input {
+    height: 2rem;
+  }
+  .chartPage_subInfo_button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: .5rem 1rem;
+    border: 1px gray solid;
   }
 }

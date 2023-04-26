@@ -4,10 +4,6 @@ import homePage_main from './homePage_main/homePage_main.vue';
 </script>
 
 <template>
-  <homePage_carousel/>
-  <homePage_main/>
+  <homePage_carousel />
+  <homePage_main />
 </template>
-
-<style lang="scss" scoped>
-@import "./style";
-</style>

@@ -3,8 +3,10 @@
 </script>
 
 <template>
-  <div>
-    <a> Copyright © 2023</a>
+  <div class="footerSidePage">
+    <div class="rightContent">
+      <a> Copyright © 2023</a>
+    </div>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import prodcutPage_Item from './prodcutPage_Item.vue';
+import prodcutPage_coupon from './prodcutPage_coupon.vue';
 import prodcutPage_category from './prodcutPage_category.vue';
 import pagination from '../../components/pagination/pagination.vue';
 const List = [
@@ -9,13 +9,9 @@ const List = [
   { item: 789 },
   { item: 101112 },
   { item: 131415 },
-]
-
-const categoryList = [
-  { item: 'template' },
-  { item: 'template' },
-  { item: 'template' },
-  { item: 'template' },
+  { item: 789 },
+  { item: 101112 },
+  { item: 131415 },
 ]
 
 const page = ref(1)
@@ -28,13 +24,11 @@ const onPageChange = (val) => {
 <template>
   <div class="prodcutPage_container">
     <div class="prodcutPage_category">
-      <template v-for="(item, index) in categoryList">
-        <prodcutPage_category :foo=item.item />
-      </template>
+      <prodcutPage_category />
     </div>
     <div class="prodcutPage_Item">
       <template v-for="(item, index) in List">
-        <prodcutPage_Item :foo=item.item />
+        <prodcutPage_coupon :msg=item.item />
       </template>
     </div>
     <pagination :page="page" @onPageChange="onPageChange" />
