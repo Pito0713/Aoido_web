@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import headerbar from '../components/header-bar/headerBarPage.vue';
 import footerSide from '../components/footerSide/footerSidePage.vue';
@@ -11,13 +12,16 @@ const handViewChange = () => {
   isView.value = !isView.value
 }
 
+const router = useRouter()
+
 </script>
 
 <template>
   <div class="container">
     <div class="content">
-      <headerbar class="head" />
-      <navBugerPage :isView="isView" @handViewChange="handViewChange()" />
+      <headerbar v-if="router.currentRoute.value.path !== ('/loginPage')" class="head" />
+      <navBugerPage v-if="router.currentRoute.value.path !== ('/loginPage')" :isView="isView"
+        @handViewChange="handViewChange()" />
       <transition :class="{ asideMenuPageTransform: isView }">
         <asideMenuPage class="asideMenuPage" :isView="isView" @handViewChange="handViewChange" />
       </transition>
@@ -25,7 +29,7 @@ const handViewChange = () => {
         <router-view />
       </div>
     </div>
-    <footerSide class="footer" />
+    <footerSide v-if="router.currentRoute.value.path !== ('/loginPage')" class="footer" />
   </div>
 </template>
 

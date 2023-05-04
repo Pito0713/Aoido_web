@@ -1,9 +1,13 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, onMounted } from 'vue'
 import chartPage_Item from './chartPage_Item.vue'
 import chartPage_subInfo from './chartPage_subInfo.vue'
-import service from '../../service/service'
+import Service from "../../service/service";
 import pagination from '../../components/pagination/pagination.vue';
+import Cookies from 'js-cookie';
+import { useStore } from '../../store/main';
+
+const store = useStore();
 
 const List = [
   { item: 123 },
@@ -16,6 +20,18 @@ const page = ref(1)
 const onPageChange = (val) => {
   page.value = val
 }
+
+const postChartData = async (submitData) => {
+  store.isloadingChange(true)
+  let token = Cookies.get('token')
+  let response = await Service.postChartData({ token: token });
+  if (response) List.data = response.data
+  store.isloadingChange(false)
+};
+
+onMounted(() => {
+  postChartData()
+});
 
 </script>
 

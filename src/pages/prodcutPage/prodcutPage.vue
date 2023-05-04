@@ -1,37 +1,82 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import prodcutPage_coupon from './prodcutPage_coupon.vue';
 import prodcutPage_category from './prodcutPage_category.vue';
 import pagination from '../../components/pagination/pagination.vue';
-const List = [
-  { item: 123 },
-  { item: 456 },
-  { item: 789 },
-  { item: 101112 },
-  { item: 131415 },
-  { item: 789 },
-  { item: 101112 },
-  { item: 131415 },
-]
+import Service from "../../service/service";
+import { useStore } from '../../store/main';
 
+const store = useStore();
 const page = ref(1)
+const paginationValue = ref(50)
+const category = ref([])
+const List = reactive({
+  data: {},
+});
+
+const categoryList = reactive({
+  data: {},
+});
+
+const postProductDatabase = async (submitData) => {
+  store.isloadingChange(true)
+  let response = await Service.postProductDatabase(submitData);
+  if (response) List.data = response.data
+  store.isloadingChange(false)
+};
+
+const postProductFilter = async () => {
+  let response = await Service.postProductFilter();
+  if (response) categoryList.data = response.data
+};
+
 const onPageChange = (val) => {
   page.value = val
+  let submitData = {
+    searchText: '',
+    category: category.value,
+    page: val,
+    pagination: paginationValue.value,
+  };
+  postProductDatabase(submitData)
 }
 
+const callFilter = (value) => {
+  category.value = [value]
+  page.value = 1
+  let submitData = {
+    searchText: '',
+    category: [value],
+    page: page.value,
+    pagination: paginationValue.value,
+  };
+  postProductDatabase(submitData)
+};
+
+onMounted(() => {
+  postProductDatabase({
+    searchText: '',
+    category: [],
+    page: page.value,
+    pagination: paginationValue.value,
+  })
+  postProductFilter()
+});
 </script>
 
 <template>
   <div class="prodcutPage_container">
-    <div class="prodcutPage_category">
-      <prodcutPage_category />
+    <div>
+      <div class="prodcutPage_category">
+        <prodcutPage_category :data="categoryList" :callFilter="callFilter" />
+      </div>
+      <div class="prodcutPage_Item">
+        <template v-for="(item, index) in List.data">
+          <prodcutPage_coupon :data=item />
+        </template>
+      </div>
     </div>
-    <div class="prodcutPage_Item">
-      <template v-for="(item, index) in List">
-        <prodcutPage_coupon :msg=item.item />
-      </template>
-    </div>
-    <pagination :page="page" @onPageChange="onPageChange" />
+    <pagination class="prodcutPage_pagination" :page="page" @onPageChange="onPageChange" />
   </div>
 </template>
 

@@ -5,9 +5,13 @@ import { required } from '@vuelidate/validators'
 
 import formerrors from '../../components/form-errors/index.vue'
 import { useStore } from '../../store/main';
+import Service from "../../service/service";
 import { storeToRefs } from 'pinia';
+import Cookies from 'js-cookie';
+import { useRouter } from 'vue-router'
 
 const store = useStore();
+const router = useRouter()
 
 const isCheck = ref(false)
 const ListData = reactive({
@@ -37,7 +41,8 @@ const keyframe = (e) => {
   });
 }
 
-const onLogInCheck = () => {
+const onLogInCheck = async () => {
+
   v$.value.$touch();
 
   if (v$.value.$error) {
@@ -52,8 +57,26 @@ const onLogInCheck = () => {
     if (v$.value.name.$error) keyframe('loginPage_name1')
     if (v$.value.password.$error) keyframe('loginPage_password')
   } else {
-    store.isCheckLoginChange(true)
-    isCheck.value = !isCheck.value
+    let submitData = {
+      account: ListData.name,
+      password: ListData.password,
+    };
+    const response = await Service.postLogin(submitData);
+
+    if (response?.status === 'success' && response?.data) {
+      Cookies.set('account', response.data.user.account);
+      Cookies.set('password', response.data.user.password);
+      Cookies.set('token', response.data.user.token);
+      router.push('/homePage');
+
+      // store.isCheckLoginChange(true)
+      // isCheck.value = !isCheck.value
+    } else {
+      // store.isAlertBoxChange(true);
+      // store.AlertMessageChange(response.message)
+      store.isNotificationChange(true);
+      store.NotificationMessageChange(response.message)
+    }
   }
 }
 </script>
@@ -78,6 +101,9 @@ const onLogInCheck = () => {
     </div>
     <div class="loginPage_button_group">
       <transition>
+        <!-- <button class="chartPage_subInfo_button" type="button"
+          @click="handChange(); ">save</button> -->
+
         <button class="loginPage_button" :class="{ loginButton: isCheck }" type="button" id="LogInCheck"
           @click="onLogInCheck()">Revise</button>
 

@@ -7,7 +7,7 @@ const props = defineProps({
 
 <template>
   <div class="pagination_container">
-    <button @click="$emit('onPageChange', props.page - 1 > 0 ? props.page - 1 : 1)">
+    <button @click="$emit('onPageChange', props.page - 1 > 0 ? props.page - 1 : 1)" :disabled='props.page == 1'>
       <img class="pagination_Arrow" src="../../assets/leftArrow.png" />
     </button>
     <div>

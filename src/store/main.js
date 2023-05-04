@@ -6,7 +6,10 @@ export const useStore = defineStore('Main', {
     APILoading: false,
     isAlertBox: false,
     isCheckLogin: false,
+    isloading: false,
+    isNotification: false,
     AlertMessage: '123',
+    NotificationMessage: '123',
     // counter: Cookies.get('counter') ? Cookies.get('counter') : 1,
   }),
   getters: {},
@@ -15,13 +18,28 @@ export const useStore = defineStore('Main', {
       this.isAlertBox = e;
       console.log(e);
     },
+    isNotificationChange(e) {
+      this.isNotification = e;
+      console.log(e);
+      setTimeout(() => {
+        this.isNotification = !e;
+      }, 2000);
+    },
     AlertMessageChange(e) {
       this.AlertMessage = e;
+      console.log(e);
+    },
+    NotificationMessageChange(e) {
+      this.NotificationMessage = e;
       console.log(e);
     },
     isCheckLoginChange(e) {
       this.isCheckLogin = e;
       console.log(e, 'isCheckLoginChange');
+    },
+    isloadingChange(e) {
+      this.isloading = e;
+      console.log(e, 'isloadingChange');
     },
 
     // increment() {

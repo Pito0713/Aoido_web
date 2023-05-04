@@ -1,21 +1,15 @@
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
 const props = defineProps({
-  foo: String | Number
+  data: String | Number,
+  callFilter: Function
 })
-const categoryList = [
-  { item: 'template' },
-  { item: 'template' },
-  { item: 'template' },
-  { item: 'template' },
-]
 
 </script>
 
 <template>
-  <template v-for="(item, index) in categoryList">
-    <div class="prodcutPage_category_item">
-      {{ item.item }}
+  <template v-for="(item, index) in props.data.data">
+    <div class="prodcutPage_category_item" @click="props.callFilter(item.category)">
+      {{ item.category }}
     </div>
   </template>
 </template>

@@ -2,6 +2,7 @@
 import memberPage_Item from './memberPage_Item.vue';
 import memberPage_title from './memberPage_title.vue';
 import memberPage_coupon from './memberPage_coupon.vue';
+import Cookies from 'js-cookie';
 import { ref } from 'vue';
 
 const List = [
@@ -30,6 +31,11 @@ function uploadFile() {
   console.log('Uploading file...', formData.get('file'));
 }
 
+const logOut = () => {
+  Cookies.remove('password');
+  Cookies.remove('token');
+}
+
 
 </script>
 
@@ -49,6 +55,7 @@ function uploadFile() {
         <template v-for="(item, index) in List">
           <memberPage_Item :foo=item.item />
         </template>
+        <button class="memberPage_logout_button" type="button" @click="logOut()">logout</button>
       </div>
     </div>
   </div>

@@ -3,19 +3,19 @@ const routes = [
     path: '/',
     component: () => import('../pages/homePage/homePage.vue'),
     name: '/',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: '/homePage',
     component: () => import('../pages/homePage/homePage.vue'),
     name: 'homePage',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: '/prodcutPage',
     component: () => import('../pages/prodcutPage/prodcutPage.vue'),
     name: 'prodcutPage',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: '/prodcutPage_Detail/:id',
@@ -39,7 +39,7 @@ const routes = [
     path: '/loginPage',
     component: () => import('../pages/loginPage/loginPage.vue'),
     name: 'loginPage',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
 ];
 

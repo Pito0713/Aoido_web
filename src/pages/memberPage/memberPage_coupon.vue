@@ -8,9 +8,7 @@ const expanded = ref(false);
 const toggle = () => {
   expanded.value = !expanded.value
 }
-const handPicker = () => {
-  console.log(4)
-}
+
 </script>
 
 <template>
