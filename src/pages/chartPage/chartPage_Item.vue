@@ -1,20 +1,57 @@
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
-import pagination from '../../components/pagination/pagination.vue';
+import { ref, reactive, onMounted, computed } from 'vue'
+import Service from "@SERVICE/service";
+
+import { useStore } from '@STORE/main';
+import { storeToRefs } from 'pinia';
+
+const store = useStore();
+const { isAlertBoxComfirm, isAlertBoxChancel } = storeToRefs(store);
+
 const props = defineProps({
-  foo: String | Number
+  data: {},
+  refresh: Function
 })
 
 const state = reactive({
-  count: Number(0)
+  count: props.data.count
 });
 
-function increment() {
+const increment = async () => {
   state.count++;
+  let submitData = {
+    id: props.data._id,
+    token: props.data.token,
+    count: state.count
+  }
+  let response = await Service.postUploadChart(submitData);
 }
 
-function decrement() {
-  state.count--;
+const decrement = async () => {
+  if ((state.count) <= 1) {
+    store.isAlertBoxComfirmChange(true);
+    store.AlertMessageChange('last One')
+  } else {
+    state.count--;
+    let submitData = {
+      id: props.data._id,
+      token: props.data.token,
+      count: state.count
+    }
+    let response = await Service.postUploadChart(submitData);
+  }
+}
+
+const deleteChart = async () => {
+  let submitData = {
+    id: props.data._id,
+    token: props.data.token,
+  }
+  let response = await Service.postDeleteChart(submitData);
+
+  if (response.status === 'success') {
+    props.refresh()
+  }
 }
 
 </script>
@@ -22,15 +59,21 @@ function decrement() {
 <template>
   <div class="chartPage_Item_contaner">
     <div class="chartPage_Item_content">
-      <div class="chartPage_Item_text">
-        <a>
-          {{ foo }}
-        </a>
-      </div>
       <div class="chartPage_Item_describe">
-        <div class="chartPage_Item_info">
+        <div class="chartPage_Item_text">
           <a>
-            {{ foo }}{{ foo }}
+            {{ data.describe }}
+          </a>
+        </div>
+        <button @click="deleteChart">
+          <img class="chartPage_Item_img" src="../../assets/plus.png" />
+        </button>
+      </div>
+
+      <div class="chartPage_Item_describe">
+        <div class="chartPage_Item_text">
+          <a>
+            {{ data.price }}
           </a>
         </div>
         <div class="chartPage_Item_store">
@@ -47,6 +90,7 @@ function decrement() {
           </button>
         </div>
       </div>
+
     </div>
   </div>
 </template>

@@ -2,9 +2,9 @@
 import { ref, onMounted, reactive } from 'vue'
 import prodcutPage_coupon from './prodcutPage_coupon.vue';
 import prodcutPage_category from './prodcutPage_category.vue';
-import pagination from '../../components/pagination/pagination.vue';
-import Service from "../../service/service";
-import { useStore } from '../../store/main';
+import pagination from '@COM/pagination/pagination.vue';
+import Service from "@SERVICE/service";
+import { useStore } from '@STORE/main';
 
 const store = useStore();
 const page = ref(1)

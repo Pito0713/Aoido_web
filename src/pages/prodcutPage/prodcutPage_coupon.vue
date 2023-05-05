@@ -1,5 +1,10 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import Service from "@SERVICE/service";
+import { useStore } from '@STORE/main';
+import Cookies from 'js-cookie';
+
+const store = useStore();
 
 import { useRouter } from 'vue-router'
 const props = defineProps({
@@ -9,8 +14,16 @@ const props = defineProps({
 
 const expanded = ref(false);
 const router = useRouter()
-const toggle = () => {
-  expanded.value = !expanded.value
+const toggle = async (_value) => {
+  let token = Cookies.get('token')
+  store.isloadingChange(true)
+  let submitData = {
+    id: _value._id,
+    token: token,
+    count: 1
+  }
+  let response = await Service.postCreateChart(submitData);
+  store.isloadingChange(false)
 }
 const handleClick = () => {
   router.push({ name: 'prodcutPage_Detail', params: { id: props.data._id }, query: props.data });
@@ -33,7 +46,7 @@ const handleClick = () => {
           </div>
         </div>
       </div>
-      <button class="prodcutPage_coupon_button" @click="toggle()">add</button>
+      <button class="prodcutPage_coupon_button" @click="toggle(data)">add</button>
     </div>
     <div class="accordion-content">
       <div class="accordion-content_img"></div>

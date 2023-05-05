@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia';
 import loginPage from './pages/loginPage/loginPage.vue';
 import footerSide from './components/footerSide/footerSidePage.vue';
 const store = useStore();
-const { isAlertBox, isloading, isNotification } = storeToRefs(store);
+const { isAlertBoxComfirm, isAlertBoxChancel, isloading, isNotification } = storeToRefs(store);
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const { isAlertBox, isloading, isNotification } = storeToRefs(store);
     <template v-if="isloading">
       <loadingPage />
     </template>
-    <template v-if="isAlertBox">
+    <template v-if="isAlertBoxComfirm">
       <alertBoxPage></alertBoxPage>
     </template>
     <template v-if="isNotification">

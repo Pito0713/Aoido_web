@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
 
-import { useStore } from '../../store/main';
+import { useStore } from '@STORE/main';
 import { storeToRefs } from 'pinia';
 const props = defineProps({
   foo: String | Number
@@ -21,7 +21,6 @@ const onReviseChange = (val) => {
 }
 
 const store = useStore();
-const { isAlertBox } = storeToRefs(store);
 
 </script>
 
@@ -54,7 +53,7 @@ const { isAlertBox } = storeToRefs(store);
     </label>
     <button v-if='!isRevise' class="memberPage_Item_button" type="button" @click="onReviseChange()">Revise</button>
     <button v-else='isRevise' class="memberPage_Item_button" type="button"
-      @click="onReviseChange(); store.isAlertBoxChange(true); store.AlertMessageChange(`${foo} 測試`)">save</button>
+      @click="onReviseChange(); store.isAlertBoxComfirmChange(true); store.AlertMessageChange(`${foo} 測試`)">save</button>
   </form>
 </template>
 

@@ -3,9 +3,9 @@ import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
-import formerrors from '../../components/form-errors/index.vue'
-import { useStore } from '../../store/main';
-import Service from "../../service/service";
+import formerrors from '@COM/form-errors/index.vue'
+import { useStore } from '@STORE/main';
+import Service from "@SERVICE/service";
 import { storeToRefs } from 'pinia';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router'

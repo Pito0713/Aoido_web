@@ -41,7 +41,7 @@ class Service {
   postRegister= async (submitData: register) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.149:8082/register`,
+      `http://192.168.23.208:8082/register`,
       '',
       submitData
     );
@@ -51,7 +51,7 @@ class Service {
   postLogin = async (submitData: register) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.149:8082/login`,
+      `http://192.168.23.208:8082/login`,
       '',
       submitData
     );
@@ -61,7 +61,7 @@ class Service {
   postProductDatabase= async (submitData: Product) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.149:8082/productDatabase`,
+      `http://192.168.23.208:8082/productDatabase`,
       '',
       submitData
     );
@@ -71,7 +71,7 @@ class Service {
   postProductFilter= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.149:8082/productFilter`,
+      `http://192.168.23.208:8082/productFilter`,
       '',
       submitData
     );
@@ -81,7 +81,37 @@ class Service {
   postChartData= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.149:8082/chartData`,
+      `http://192.168.23.208:8082/chartData`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  postCreateChart= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://192.168.23.208:8082/createChart`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  postUploadChart= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://192.168.23.208:8082/uploadChart`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  postDeleteChart= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'Delete',
+      `http://192.168.23.208:8082/deleteChart`,
       '',
       submitData
     );

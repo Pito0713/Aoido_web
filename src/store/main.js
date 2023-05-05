@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 export const useStore = defineStore('Main', {
   state: () => ({
     APILoading: false,
-    isAlertBox: false,
+    isAlertBoxComfirm: false,
     isCheckLogin: false,
     isloading: false,
     isNotification: false,
@@ -14,8 +14,8 @@ export const useStore = defineStore('Main', {
   }),
   getters: {},
   actions: {
-    isAlertBoxChange(e) {
-      this.isAlertBox = e;
+    isAlertBoxComfirmChange(e) {
+      this.isAlertBoxComfirm = e;
       console.log(e);
     },
     isNotificationChange(e) {

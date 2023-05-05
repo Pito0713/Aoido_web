@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
-import { useStore } from '../../store/main';
+import { useStore } from '@STORE/main';
 
 const store = useStore();
 const ListData = reactive({
@@ -33,10 +33,10 @@ const handChange = () => {
     </div>
     <template v-if="!isView">
       <button class="chartPage_subInfo_button" type="button"
-        @click="handChange(); store.isAlertBoxChange(true); store.AlertMessageChange(`confrim Change`)">save</button>
+        @click="handChange(); store.isAlertBoxComfirmChange(true); store.AlertMessageChange(`confrim Change`)">save</button>
     </template>
     <template v-else>
-      <button class="chartPage_subInfo_button" @click=" handChange() ">revise</button>
+      <button class="chartPage_subInfo_button" @click=" handChange()">revise</button>
     </template>
   </div>
 </template>

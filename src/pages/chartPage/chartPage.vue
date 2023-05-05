@@ -1,33 +1,38 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
+import Cookies from 'js-cookie';
 import chartPage_Item from './chartPage_Item.vue'
 import chartPage_subInfo from './chartPage_subInfo.vue'
-import Service from "../../service/service";
-import pagination from '../../components/pagination/pagination.vue';
-import Cookies from 'js-cookie';
-import { useStore } from '../../store/main';
+
+import { useStore } from '@STORE/main';
+import Service from "@SERVICE/service";
+import pagination from '@COM/pagination/pagination.vue';
+
 
 const store = useStore();
 
-const List = [
-  { item: 123 },
-  { item: 4565 },
-  { item: 78459 },
-  { item: 101112 },
-]
-
+const List = reactive({
+  data: {},
+});
 const page = ref(1)
-const onPageChange = (val) => {
-  page.value = val
-}
 
-const postChartData = async (submitData) => {
+const postChartData = async () => {
   store.isloadingChange(true)
   let token = Cookies.get('token')
-  let response = await Service.postChartData({ token: token });
+  let submitData = {
+    token: token,
+    page: page.value,
+    pagination: 4
+  }
+  let response = await Service.postChartData(submitData);
   if (response) List.data = response.data
   store.isloadingChange(false)
 };
+
+const onPageChange = (val) => {
+  page.value = val
+  postChartData()
+}
 
 onMounted(() => {
   postChartData()
@@ -40,10 +45,12 @@ onMounted(() => {
     <div class="container">
       <chartPage_subInfo class="chartPage_subInfo" />
       <div class="chartPage_Item">
-        <template v-for="(item, index) in List">
-          <chartPage_Item :foo=item.item />
-        </template>
-        <pagination class="chartPage_Item_pagination" :page="page" @onPageChange="onPageChange" />
+        <div style="height: 330px">
+          <template v-for="(item, index) in List.data">
+            <chartPage_Item :data=item :refresh="() => postChartData()" />
+          </template>
+        </div>
+        <pagination style="height: 30px" class="chartPage_Item_pagination" :page="page" @onPageChange="onPageChange" />
       </div>
     </div>
   </div>

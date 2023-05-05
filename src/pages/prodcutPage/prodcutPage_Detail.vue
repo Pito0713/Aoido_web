@@ -1,6 +1,5 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
-import prodcutPage_category from './prodcutPage_category.vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

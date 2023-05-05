@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-import headerbar from '../components/header-bar/headerBarPage.vue';
-import footerSide from '../components/footerSide/footerSidePage.vue';
-import navBugerPage from '../components/nav-buger/navBugerPage.vue';
-import asideMenuPage from '../components/aside-menu/asideMenuPage.vue';
+import headerbar from '@COM/header-bar/headerBarPage.vue';
+import footerSide from '@COM/footerSide/footerSidePage.vue';
+import navBugerPage from '@COM/nav-buger/navBugerPage.vue';
+import asideMenuPage from '@COM/aside-menu/asideMenuPage.vue';
 
 const isView = ref(false)
 const handViewChange = () => {

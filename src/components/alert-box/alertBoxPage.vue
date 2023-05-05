@@ -3,7 +3,7 @@ import { useStore } from '../../store/main';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
-const { isAlertBox, AlertMessage } = storeToRefs(store);
+const { isAlertBoxComfirm, isAlertBoxChancel, AlertMessage } = storeToRefs(store);
 
 </script>
 
@@ -14,8 +14,8 @@ const { isAlertBox, AlertMessage } = storeToRefs(store);
         <a>{{ AlertMessage }}</a>
       </div>
       <div class="alertBoxPage_button_group">
-        <button class="alertBoxPage_button" type="button" @click="store.isAlertBoxChange(!isAlertBox)">comfirm</button>
-        <button class="alertBoxPage_button" type="button" @click="store.isAlertBoxChange(!isAlertBox)">chancel</button>
+        <button v-if="isAlertBoxComfirm" class="alertBoxPage_button" type="button"
+          @click="store.isAlertBoxComfirmChange(!isAlertBoxComfirm)">comfirm</button>
       </div>
     </div>
   </div>
