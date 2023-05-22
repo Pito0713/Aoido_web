@@ -7,17 +7,19 @@ const props = defineProps({
 </script>
 
 <template>
-  <button class="nav-burger" @click="$emit('handViewChange', !props.isView)">
-    <transition>
-      <span class="burger-line" id='lineOne' :class="{ route: isView }"></span>
-    </transition>
-    <transition>
-      <span class="burger-line" id='linethree' :class="{ route2: isView }"></span>
-    </transition>
-    <transition>
-      <span class="burger-line" id='linetwo' :class="{ route3: isView }"></span>
-    </transition>
-  </button>
+  <div class="nav_burger">
+    <button class="nav_burger_button" @click="$emit('handViewChange', !props.isView)">
+      <transition>
+        <span class="burger_line" id='lineOne' :class="{ route: isView }"></span>
+      </transition>
+      <transition>
+        <span class="burger_line" id='linethree' :class="{ route2: isView }"></span>
+      </transition>
+      <transition>
+        <span class="burger_line" id='linetwo' :class="{ route3: isView }"></span>
+      </transition>
+    </button>
+  </div>
 </template>
 
 

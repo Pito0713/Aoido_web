@@ -1,12 +1,10 @@
 <script setup>
-import { ref, reactive, onMounted, computed } from 'vue'
+import { reactive } from 'vue'
 import Service from "@SERVICE/service";
-
 import { useStore } from '@STORE/main';
-import { storeToRefs } from 'pinia';
-
 const store = useStore();
-const { isAlertBoxComfirm, isAlertBoxChancel } = storeToRefs(store);
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const props = defineProps({
   data: {},
@@ -22,23 +20,31 @@ const increment = async () => {
   let submitData = {
     id: props.data._id,
     token: props.data.token,
-    count: state.count
+    count: 1
   }
   let response = await Service.postUploadChart(submitData);
+
+  if (response.status === 'success') {
+    props.refresh()
+  }
 }
 
 const decrement = async () => {
   if ((state.count) <= 1) {
     store.isAlertBoxComfirmChange(true);
-    store.AlertMessageChange('last One')
+    store.AlertMessageChange('少なくとも1つの商品')
   } else {
     state.count--;
     let submitData = {
       id: props.data._id,
       token: props.data.token,
-      count: state.count
+      count: -1
     }
     let response = await Service.postUploadChart(submitData);
+
+    if (response.status === 'success') {
+      props.refresh()
+    }
   }
 }
 
@@ -54,10 +60,14 @@ const deleteChart = async () => {
   }
 }
 
+const handleClick = () => {
+  router.push({ name: 'prodcutPage_Detail', params: { id: props.data._id }, query: props.data });
+}
+
 </script>
 
 <template>
-  <div class="chartPage_Item_contaner">
+  <div class="chartPage_Item_contaner" @click="handleClick(data)">
     <div class="chartPage_Item_content">
       <div class="chartPage_Item_describe">
         <div class="chartPage_Item_text">
@@ -65,19 +75,20 @@ const deleteChart = async () => {
             {{ data.describe }}
           </a>
         </div>
-        <button @click="deleteChart">
+        <button @click.stop="deleteChart">
           <img class="chartPage_Item_img" src="../../assets/plus.png" />
         </button>
       </div>
 
       <div class="chartPage_Item_describe">
         <div class="chartPage_Item_text">
+          <a> ¥ </a>
           <a>
             {{ data.price }}
           </a>
         </div>
         <div class="chartPage_Item_store">
-          <button @click="increment">
+          <button @click.stop="increment">
             <img class="chartPage_Item_img" src="../../assets/plus.png" />
           </button>
           <div class="chartPage_Item_Data">
@@ -85,7 +96,7 @@ const deleteChart = async () => {
               {{ state.count }}
             </a>
           </div>
-          <button @click="decrement">
+          <button @click.stop="decrement">
             <img class="chartPage_Item_img" src="../../assets/plus.png">
           </button>
         </div>

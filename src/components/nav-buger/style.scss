@@ -1,5 +1,12 @@
-.nav-burger {
+.nav_burger {
   position: fixed;
+  width: 100%;
+  border: 1px black solid;
+  background-color: transparent; 
+  z-index: 201;
+  background-color: white;
+}
+.nav_burger_button {
   padding: 1rem;
   cursor: pointer;
   text-decoration: none;
@@ -9,7 +16,7 @@
   z-index: 201;
   background-color: white;
 }
-.burger-line {
+.burger_line {
   position: relative;
   display: block;
   width: 25px;
@@ -50,7 +57,7 @@
 }
 
 @media (min-width:576px){
-  .nav-burger {
+  .nav_burger {
     display: none;
   }
 }

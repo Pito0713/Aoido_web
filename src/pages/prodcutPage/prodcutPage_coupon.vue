@@ -11,7 +11,6 @@ const props = defineProps({
   data: {}
 })
 
-
 const expanded = ref(false);
 const router = useRouter()
 const toggle = async (_value) => {
@@ -38,19 +37,22 @@ const handleClick = () => {
           <img class="pagination_Arrow" :src="data.imageUrl" />
         </div>
         <div class="prodcutPage_coupon_describe">
-          <div>
-            <a class="prodcutPage_coupon_text"> {{ data.describe }} </a>
+          <div class="prodcutPage_coupon_text">
+            <a> {{ data.describe }} </a>
           </div>
-          <div>
-            <a class="prodcutPage_coupon_text"> $ {{ data.price }} </a>
+          <div class="prodcutPage_coupon_text">
+            <a> $ {{ data.price }} </a>
           </div>
         </div>
       </div>
-      <button class="prodcutPage_coupon_button" @click="toggle(data)">add</button>
+      <button class="prodcutPage_coupon_button" @click="toggle(data)">ついか</button>
     </div>
-    <div class="accordion-content">
-      <div class="accordion-content_img"></div>
-      <button class="accordion-content_button" @click="handleClick()">Detail</button>
+    <div class="accordion_content">
+      <div>
+        <div class="accordion_content_info">ぶんるい: {{ data.category }}</div>
+        <div class="accordion_content_info"><a>びこう: {{ data.remark }}</a></div>
+      </div>
+      <button class="accordion_content_button" @click="handleClick()">しょうさい</button>
     </div>
   </div>
 </template>

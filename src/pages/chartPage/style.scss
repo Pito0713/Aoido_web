@@ -1,5 +1,6 @@
 .chartPage {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   position: relative;
   .container{
@@ -20,8 +21,22 @@
   border: 1px gray solid;
   flex: 5;
   height: 360px;
+  text-align: center;
   .chartPage_Item_contaner {
-    margin: 10px 15px 0px 15px;
+    width:100%
+  }
+  .chartPage_Item_title {
+    margin: 10px;
+  }
+  .chartPage_Item_ul {
+    overflow: scroll;
+    height: 300px;
+  }
+  .chartPage_Item_li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px;
   }
   .chartPage_Item_content {
     display: block;
@@ -69,16 +84,58 @@
     justify-content: center;
     margin: 5px;
   }
+  .chartPage_subInfo_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+  }
   .chartPage_subInfo_title {
+    margin: 10px;
+  }
+  .chartPage_subInfo_label {
     width: 70px;
   }
   .chartPage_subInfo_input {
     height: 2rem;
+    width: 150px;
+  }
+  .chartPage_subInfo_select {
+    width: 150px;
+    justify-content: center;
+    align-items: center;
   }
   .chartPage_subInfo_button {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: .5rem 1rem;
     border: 1px gray solid;
+  }
+  .chartPage_subInfo_checkbox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+  }
+}
+
+.chartPage_total {
+  display: flex;
+  border: 1px gray solid;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  .chartPage_total_titel {
+    margin: 10px;
+  }
+  .chartPage_total_button {
+    border: 1px gray solid;
+    width: 75px;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

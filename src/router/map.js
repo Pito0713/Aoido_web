@@ -30,6 +30,13 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: '/memberPage_handPassWord',
+    component: () => import('../pages/memberPage/memberPage_handPassWord.vue'),
+    name: 'memberPage_handPassWord',
+    meta: { requiresAuth: true },
+    props: true, // 啟用 props
+  },
+  {
     path: '/chartPage',
     component: () => import('../pages/chartPage/chartPage.vue'),
     name: 'chartPage',

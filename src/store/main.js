@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
 import Cookies from 'js-cookie';
 
+import Service from '@SERVICE/service';
+
 export const useStore = defineStore('Main', {
   state: () => ({
     APILoading: false,
@@ -16,38 +18,24 @@ export const useStore = defineStore('Main', {
   actions: {
     isAlertBoxComfirmChange(e) {
       this.isAlertBoxComfirm = e;
-      console.log(e);
     },
     isNotificationChange(e) {
       this.isNotification = e;
-      console.log(e);
       setTimeout(() => {
         this.isNotification = !e;
       }, 2000);
     },
     AlertMessageChange(e) {
       this.AlertMessage = e;
-      console.log(e);
     },
     NotificationMessageChange(e) {
       this.NotificationMessage = e;
-      console.log(e);
     },
     isCheckLoginChange(e) {
       this.isCheckLogin = e;
-      console.log(e, 'isCheckLoginChange');
     },
     isloadingChange(e) {
       this.isloading = e;
-      console.log(e, 'isloadingChange');
     },
-
-    // increment() {
-    //   this.counter++;
-    //   Cookies.set('counter', this.counter);
-    // },
-    // randomizeCounter() {
-    //   this.counter = Math.round(100 * Math.random());
-    // },
   },
 });

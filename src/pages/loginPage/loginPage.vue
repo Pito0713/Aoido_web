@@ -67,6 +67,7 @@ const onLogInCheck = async () => {
       Cookies.set('account', response.data.user.account);
       Cookies.set('password', response.data.user.password);
       Cookies.set('token', response.data.user.token);
+      Cookies.set('id', response.data.user.id);
       router.push('/homePage');
 
       // store.isCheckLoginChange(true)

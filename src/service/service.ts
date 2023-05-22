@@ -1,19 +1,53 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+// 请求拦截器
+const requestInterceptor = (config:any) => {
+  config.timeout = 5000
+  return config;
+};
+
+// 响应拦截器
+const responseInterceptor = response => {
+  // 对响应数据进行处理
+  // console.log(response)
+  return response;
+};
+
+// 请求拦截器错误处理
+const requestInterceptorError = error => {
+  // 错误处理
+  return Promise.reject(error);
+};
+
+// 响应拦截器错误处理
+const responseInterceptorError = error => {
+  // 接口错误处理
+  return Promise.reject(error);
+};
+
+axios.interceptors.request.use(requestInterceptor, requestInterceptorError);
+axios.interceptors.response.use(responseInterceptor, responseInterceptorError);
+
 
 const fetchApi_AuthData = async (method: string, url: string, params: string | undefined, body: any) => {
   try {
     const response = await axios({
-      method: method,
+      method,
       url: url + params,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
+        // "Access-Control-Allow-Origin": '*',
       },
       data: body,
     });
     return response.data;
   } catch (error: any) {
-    console.log(error,'error')
-};
+    console.log(error);
+    return error;
+  };
 }
 interface register {
   account?: string,
@@ -41,7 +75,7 @@ class Service {
   postRegister= async (submitData: register) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.208:8082/register`,
+      `http://192.168.23.140:8082/register`,
       '',
       submitData
     );
@@ -51,7 +85,37 @@ class Service {
   postLogin = async (submitData: register) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.208:8082/login`,
+      `http://192.168.23.140:8082/login`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  postUserinfo = async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://192.168.23.140:8082/userinfo`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  postUploadUser= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://192.168.23.140:8082/uploadUser`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  postUploadUserImage= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://192.168.23.140:8082/uploadUserImage`,
       '',
       submitData
     );
@@ -61,7 +125,7 @@ class Service {
   postProductDatabase= async (submitData: Product) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.208:8082/productDatabase`,
+      `http://192.168.23.140:8082/productDatabase`,
       '',
       submitData
     );
@@ -71,7 +135,7 @@ class Service {
   postProductFilter= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.208:8082/productFilter`,
+      `http://192.168.23.140:8082/productFilter`,
       '',
       submitData
     );
@@ -81,7 +145,7 @@ class Service {
   postChartData= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.208:8082/chartData`,
+      `http://192.168.23.140:8082/chartData`,
       '',
       submitData
     );
@@ -91,7 +155,7 @@ class Service {
   postCreateChart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.208:8082/createChart`,
+      `http://192.168.23.140:8082/createChart`,
       '',
       submitData
     );
@@ -101,7 +165,7 @@ class Service {
   postUploadChart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.208:8082/uploadChart`,
+      `http://192.168.23.140:8082/uploadChart`,
       '',
       submitData
     );
@@ -111,12 +175,43 @@ class Service {
   postDeleteChart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'Delete',
-      `http://192.168.23.208:8082/deleteChart`,
+      `http://192.168.23.140:8082/deleteChart`,
       '',
       submitData
     );
     return data;
   }
+
+  postFindAllCoupon= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://192.168.23.140:8082/findAllCoupon`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  getCountyItems= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'get',
+      `http://192.168.23.140:8082/allCountry`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  patchUpdateCouponUser= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'PATCH',
+      `http://192.168.23.140:8082/updateCouponUser/`,
+      submitData.id,
+      submitData
+    );
+    return data;
+  }
+
 }
 
 export default new Service()

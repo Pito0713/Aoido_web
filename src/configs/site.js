@@ -2,25 +2,25 @@ export const MENU_LIST = [
   {
     code: 1,
     name: 'homePage',
-    text: '首頁',
+    text: 'しゅかい',
     route: '/homePage',
   },
   {
     code: 2,
     name: 'prodcutPage',
-    text: '商品',
+    text: 'しょうひん',
     route: '/prodcutPage',
   },
   {
     code: 3,
     name: 'memberPage',
-    text: '會員商品',
+    text: 'かいいんしりょう',
     route: '/memberPage',
   },
   {
     code: 4,
     name: 'chartPage',
-    text: '購物車',
+    text: 'こうものかる',
     route: '/chartPage',
   },
 ];

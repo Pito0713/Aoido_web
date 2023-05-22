@@ -7,7 +7,7 @@ import { MENU_LIST } from '../../configs/site'
   <div>
     <ul class="nav-branch">
       <li class="nav-items" v-for="(item, index) in MENU_LIST">
-        <router-link :to="item.route" :key="index">{{ item.name }}</router-link>
+        <router-link :to="item.route" :key="index">{{ item.text }}</router-link>
       </li>
     </ul>
   </div>
