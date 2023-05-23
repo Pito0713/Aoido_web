@@ -1,18 +1,15 @@
 import { defineStore } from 'pinia';
-import Cookies from 'js-cookie';
-
-import Service from '@SERVICE/service';
 
 export const useStore = defineStore('Main', {
   state: () => ({
-    APILoading: false,
     isAlertBoxComfirm: false,
+    AlertMessage: '',
+
     isCheckLogin: false,
     isloading: false,
+
     isNotification: false,
-    AlertMessage: '123',
-    NotificationMessage: '123',
-    // counter: Cookies.get('counter') ? Cookies.get('counter') : 1,
+    NotificationMessage: '',
   }),
   getters: {},
   actions: {

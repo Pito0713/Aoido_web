@@ -3,16 +3,14 @@ import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
 import Cookies from 'js-cookie';
+import { useRouter } from 'vue-router'
 
 const store = useStore();
-
-import { useRouter } from 'vue-router'
+const router = useRouter()
 const props = defineProps({
   data: {}
 })
 
-const expanded = ref(false);
-const router = useRouter()
 const toggle = async (_value) => {
   let token = Cookies.get('token')
   store.isloadingChange(true)
@@ -24,6 +22,7 @@ const toggle = async (_value) => {
   let response = await Service.postCreateChart(submitData);
   store.isloadingChange(false)
 }
+
 const handleClick = () => {
   router.push({ name: 'prodcutPage_Detail', params: { id: props.data._id }, query: props.data });
 }

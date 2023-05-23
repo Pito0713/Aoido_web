@@ -16,9 +16,7 @@ const router = useRouter()
 const { handleSubmit, form, errors } = useForm()
 const onSubmit = handleSubmit((e) => {
 });
-const toggle = () => {
-  router.back()
-}
+
 </script>
 
 <template>

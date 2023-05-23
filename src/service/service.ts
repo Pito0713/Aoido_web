@@ -1,36 +1,24 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { useRouter } from 'vue-router'
-const router = useRouter()
+import axios from 'axios'
 
-// 请求拦截器
 const requestInterceptor = (config:any) => {
   config.timeout = 5000
   return config;
 };
 
-// 响应拦截器
 const responseInterceptor = response => {
-  // 对响应数据进行处理
-  // console.log(response)
   return response;
 };
 
-// 请求拦截器错误处理
 const requestInterceptorError = error => {
-  // 错误处理
   return Promise.reject(error);
 };
 
-// 响应拦截器错误处理
 const responseInterceptorError = error => {
-  // 接口错误处理
   return Promise.reject(error);
 };
 
 axios.interceptors.request.use(requestInterceptor, requestInterceptorError);
 axios.interceptors.response.use(responseInterceptor, responseInterceptorError);
-
 
 const fetchApi_AuthData = async (method: string, url: string, params: string | undefined, body: any) => {
   try {

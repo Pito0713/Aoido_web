@@ -6,7 +6,6 @@ import { required } from '@vuelidate/validators'
 import formerrors from '@COM/form-errors/index.vue'
 import { useStore } from '@STORE/main';
 import Service from "@SERVICE/service";
-import { storeToRefs } from 'pinia';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router'
 
@@ -69,12 +68,7 @@ const onLogInCheck = async () => {
       Cookies.set('token', response.data.user.token);
       Cookies.set('id', response.data.user.id);
       router.push('/homePage');
-
-      // store.isCheckLoginChange(true)
-      // isCheck.value = !isCheck.value
     } else {
-      // store.isAlertBoxChange(true);
-      // store.AlertMessageChange(response.message)
       store.isNotificationChange(true);
       store.NotificationMessageChange(response.message)
     }

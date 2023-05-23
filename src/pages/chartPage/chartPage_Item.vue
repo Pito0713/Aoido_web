@@ -2,8 +2,8 @@
 import { reactive } from 'vue'
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
-const store = useStore();
 import { useRouter } from 'vue-router'
+const store = useStore();
 const router = useRouter()
 
 const props = defineProps({

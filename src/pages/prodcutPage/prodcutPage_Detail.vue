@@ -1,12 +1,14 @@
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import goBackPage from '@COM/go-back/goBackPage.vue'
 import Service from "@SERVICE/service";
 import Cookies from 'js-cookie';
 import { useStore } from '@STORE/main';
 
+const store = useStore();
 const router = useRouter()
+
 const expanded = ref(router?.currentRoute?.value?.query);
 const count = ref(1)
 
@@ -17,8 +19,6 @@ const increment = () => {
 const decrement = () => {
   if (count.value > 1) count.value--
 }
-
-const store = useStore();
 
 const addChart = async () => {
   let token = Cookies.get('token')
@@ -31,7 +31,7 @@ const addChart = async () => {
 
   let response = await Service.postUploadChart(submitData);
 
-  if (response.status === 'success') {
+  if (response?.status === 'success' && response?.data) {
   }
   store.isloadingChange(false)
 }

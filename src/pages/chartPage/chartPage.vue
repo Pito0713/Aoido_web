@@ -5,6 +5,11 @@ import Service from "@SERVICE/service";
 import chartPage_Item from './chartPage_Item.vue'
 import chartPage_subInfo from './chartPage_subInfo.vue'
 
+import moment from 'moment';
+
+const currentTime = moment();
+
+
 import { useStore } from '@STORE/main';
 const store = useStore();
 
@@ -12,7 +17,10 @@ const selectedCityOption = ref('臺北市')
 const selectedTownOption = ref('中正區')
 const page = ref(1)
 const selectedPriec = ref('');
+const originalselectedPriec = ref('');
+const selectedOption = ref('');
 const isChecked = ref(false)
+const id = ref(Cookies.get('id'))
 
 const cartList = reactive({
   data: {},
@@ -32,6 +40,11 @@ const CityTownData = reactive({
   City: '',
   Town: '',
 });
+
+const couponList = reactive({
+  data: {},
+});
+
 
 const postChartData = async () => {
   store.isloadingChange(true)
@@ -99,6 +112,33 @@ const postUserinfo = async () => {
   }
 }
 
+const postFindAllCoupon = async () => {
+  let token = Cookies.get('token')
+  let submitData = {
+    token: token,
+  };
+
+
+  store.isloadingChange(true)
+  const response = await Service.postFindAllCoupon(submitData);
+  if (response?.status === 'success' && response?.data) {
+    let filterData = response.data.map(item => {
+      let target = item.user.filter((_value) => {
+        return (_value === id.value && currentTime.isBetween(item.startDate, item.endDate))
+      })
+      if (target.length > 0) return item
+      else return null
+    })
+    couponList.data = filterData.filter((item) => item);
+  }
+
+  store.isloadingChange(false)
+}
+
+const isNegative = (number) => {
+  return number < 0;
+}
+
 watch(selectedCityOption, (newVal, oldVal) => {
   CityTownData.Town = CountyData.data[selectedCityOption.value]
 });
@@ -108,15 +148,21 @@ watch(cartList, (newVal, oldVal) => {
     return accumulator + Number(currentValue.count) * Number(currentValue.price); //前值與當下值相加
   }, 0) //傳入起始值為 0
   selectedPriec.value = target || 0
+  originalselectedPriec.value = target || 0
 });
 
 watch(isChecked, (newVal, oldVal) => {
   if (newVal) postUserinfo()
 });
 
+watch(selectedOption, (newVal, oldVal) => {
+  selectedPriec.value = !isNegative(Number(originalselectedPriec.value) - Number(newVal.discount)) ? Number(originalselectedPriec.value) - Number(newVal.discount) : 0
+});
+
 onMounted(() => {
   postChartData()
   getCountyItems()
+  postFindAllCoupon()
 });
 
 provide('orderListData', orderListData);
@@ -126,6 +172,8 @@ provide('CityTownData', CityTownData);
 provide('isChecked', isChecked);
 
 </script>
+
+
 
 <template>
   <div class="chartPage">
@@ -153,10 +201,41 @@ provide('isChecked', isChecked);
         </ul>
       </div>
     </div>
+    <div class="chartPageCoupon">
+      <a>クーポン</a>
+      <template v-if='Object.keys(couponList.data).length > 0'>
+        <template v-for="(item, index) in couponList.data" :key="item.id">
+          <div class="chartPageCheckOut">
+            <input type="radio" :value="item" v-model="selectedOption" />
+            <div>
+              <a>{{ item.describe }}</a>
+              <a style="margin-left: 5px;">¥ {{ item.discount }}</a>
+              <a style="color: gray; font-size: 0.8rem; margin-left: 5px;">{{ moment(item.startDate).format('L') }} - {{
+                moment(item.endDate).format('L')
+              }}</a>
+            </div>
+          </div>
+        </template>
+      </template>
+      <template v-else>
+        <div>
+          <a>
+            クーポンはありません。
+          </a>
+        </div>
+      </template>
+
+    </div>
     <div class="chartPage_total">
       <div>
-        <a class="chartPage_total_titel">選択した商品</a>
-        <a class="chartPage_total_titel">{{ cartList.data.length }}</a>
+        <div>
+          <a class="chartPage_total_titel">選択した商品</a>
+          <a class="chartPage_total_titel">{{ cartList.data.length }}</a>
+        </div>
+        <div>
+          <a class="chartPage_total_titel">クーポンを使用する</a>
+          <a class="chartPage_total_titel">{{ selectedOption.describe ? selectedOption.describe : '未使用のクーポン' }}</a>
+        </div>
       </div>
       <div style="display: flex; justify-content: center; align-items: center;">
         <a class="chartPage_total_titel">ごうけい</a>

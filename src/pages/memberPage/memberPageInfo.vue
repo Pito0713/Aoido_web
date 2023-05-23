@@ -5,9 +5,10 @@ import Cookies from 'js-cookie';
 import DatePicker from 'vue3-datepicker';
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
-const store = useStore();
 import { useForm } from 'vee-validate';
+
 const { handleSubmit, form, errors } = useForm()
+const store = useStore();
 const router = useRouter()
 
 const userList = reactive({
@@ -37,7 +38,19 @@ const selectedCityOption = ref('')
 const selectedTownOption = ref('')
 
 const onSubmit = handleSubmit((e) => {
-  postUploadUser()
+  let token = Cookies.get('token')
+  let submitData = {
+    uesrName: userList.uesrName,
+    birth: userList.birth,
+    phone: userList.phone,
+    city: selectedCityOption.value,
+    town: selectedTownOption.value,
+    addres: userList.addres,
+    mail: userList.mail,
+    photo: userList.photo,
+    token: token,
+  };
+  postUploadUser(submitData)
 });
 
 const onFileInputChange = (event) => {
@@ -71,20 +84,7 @@ const uploadFile = async () => {
 
 };
 
-const postUploadUser = async () => {
-  let token = Cookies.get('token')
-  let submitData = {
-    uesrName: userList.uesrName,
-    birth: userList.birth,
-    phone: userList.phone,
-    city: selectedCityOption.value,
-    town: selectedTownOption.value,
-    addres: userList.addres,
-    mail: userList.mail,
-    photo: userList.photo,
-    token: token,
-  };
-
+const postUploadUser = async (submitData) => {
   store.isloadingChange(true)
 
   const response = await Service.postUploadUser(submitData);
@@ -129,12 +129,10 @@ const handleClick = () => {
 }
 
 
-watch(selectedCityOption, (newVal, oldVal) => {
+watch(selectedCityOption, () => {
   CityTownData.Town = CountyData.data[selectedCityOption.value]
 });
 
-watch(userList, (newVal, oldVal) => {
-});
 
 onMounted(() => {
   postUserinfo()

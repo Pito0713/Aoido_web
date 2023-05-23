@@ -5,10 +5,9 @@ import notificationPage from './components/notification/notificationPage.vue';
 import loadingPage from './components/loading/loadingPage.vue';
 import { useStore } from './store/main';
 import { storeToRefs } from 'pinia';
-import loginPage from './pages/loginPage/loginPage.vue';
-import footerSide from './components/footerSide/footerSidePage.vue';
+
 const store = useStore();
-const { isAlertBoxComfirm, isAlertBoxChancel, isloading, isNotification } = storeToRefs(store);
+const { isAlertBoxComfirm, isloading, isNotification } = storeToRefs(store);
 </script>
 
 <template>

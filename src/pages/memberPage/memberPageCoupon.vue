@@ -4,9 +4,10 @@ import moment from 'moment';
 import Service from "@SERVICE/service";
 import Cookies from 'js-cookie';
 import { useStore } from '@STORE/main';
-const store = useStore();
 import { useRouter } from 'vue-router'
+
 const router = useRouter()
+const store = useStore();
 
 const currentTime = moment();
 
@@ -54,7 +55,6 @@ const patchUpdateCouponUser = async (_value) => {
 
 const isFilterId = (value) => {
   let target = value.filter((item) => { return item === id.value })
-  const currentTime = moment();
 
   if (target.length > 0) return true
   else return false

@@ -21,13 +21,13 @@ const categoryList = reactive({
 const postProductDatabase = async (submitData) => {
   store.isloadingChange(true)
   let response = await Service.postProductDatabase(submitData);
-  if (response) List.data = response.data
+  if (response?.status === 'success' && response?.data) List.data = response.data
   store.isloadingChange(false)
 };
 
 const postProductFilter = async () => {
   let response = await Service.postProductFilter();
-  if (response) categoryList.data = response.data
+  if (response?.status === 'success' && response?.data) categoryList.data = response.data
 };
 
 const onPageChange = (val) => {
