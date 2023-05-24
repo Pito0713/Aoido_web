@@ -11,7 +11,7 @@ const props = defineProps({
   data: {}
 })
 
-const toggle = async (_value) => {
+const addcart = async (_value) => {
   let token = Cookies.get('token')
   store.isloadingChange(true)
   let submitData = {
@@ -20,6 +20,10 @@ const toggle = async (_value) => {
     count: 1
   }
   let response = await Service.postCreateChart(submitData);
+  if (response?.status === 'success' && response?.data) {
+    store.isNotificationChange(true);
+    store.NotificationMessageChange('成功しました')
+  }
   store.isloadingChange(false)
 }
 
@@ -33,23 +37,24 @@ const handleClick = () => {
     <div class="prodcutPage_coupon_container">
       <div class="prodcutPage_coupon_info">
         <div class="prodcutPage_coupon_img">
-          <img class="pagination_Arrow" :src="data.imageUrl" />
+          <img :src="data.imageUrl" />
         </div>
         <div class="prodcutPage_coupon_describe">
           <div class="prodcutPage_coupon_text">
             <a> {{ data.describe }} </a>
           </div>
-          <div class="prodcutPage_coupon_text">
+          <div class="prodcutPage_coupon_text" style="text-align: end;">
             <a> $ {{ data.price }} </a>
           </div>
         </div>
       </div>
-      <button class="prodcutPage_coupon_button" @click="toggle(data)">ついか</button>
+      <button class="prodcutPage_coupon_button" @click="addcart(data)">ついか</button>
     </div>
     <div class="accordion_content">
       <div>
         <div class="accordion_content_info">ぶんるい: {{ data.category }}</div>
         <div class="accordion_content_info"><a>びこう: {{ data.remark }}</a></div>
+        <div class="accordion_content_info"><a>名前: {{ data.describe }}</a></div>
       </div>
       <button class="accordion_content_button" @click="handleClick()">しょうさい</button>
     </div>
