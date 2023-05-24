@@ -20,7 +20,7 @@ const decrement = () => {
   if (count.value > 1) count.value--
 }
 
-const addChart = async () => {
+const addCart = async () => {
   let token = Cookies.get('token')
   store.isloadingChange(true)
   let submitData = {
@@ -29,7 +29,7 @@ const addChart = async () => {
     count: count.value
   }
 
-  let response = await Service.postUploadChart(submitData);
+  let response = await Service.postUploadCart(submitData);
 
   if (response?.status === 'success' && response?.data) {
   }
@@ -71,8 +71,8 @@ const addChart = async () => {
               <button @click="decrement">
                 <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.png">
               </button>
-              <button class="prodcutPage_Detail_button" @click="addChart()">
-                <a>add chart</a>
+              <button class="prodcutPage_Detail_button" @click="addCart()">
+                <a>add cart</a>
               </button>
             </div>
           </div>

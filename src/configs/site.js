@@ -19,8 +19,8 @@ export const MENU_LIST = [
   },
   {
     code: 4,
-    name: 'chartPage',
+    name: 'cartPage',
     text: 'こうものかる',
-    route: '/chartPage',
+    route: '/cartPage',
   },
 ];

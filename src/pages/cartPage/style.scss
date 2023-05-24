@@ -1,4 +1,4 @@
-.chartPage {
+.cartPage {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,104 +15,104 @@
   }
 }
 
-.chartPage_Item {
+.cartPage_Item {
   display: flex;
   flex-direction: column;
   border: 1px gray solid;
   flex: 5;
   height: 360px;
   text-align: center;
-  .chartPage_Item_contaner {
+  .cartPage_Item_contaner {
     width:100%
   }
-  .chartPage_Item_title {
+  .cartPage_Item_title {
     margin: 10px;
   }
-  .chartPage_Item_ul {
+  .cartPage_Item_ul {
     overflow: scroll;
     height: 300px;
   }
-  .chartPage_Item_li {
+  .cartPage_Item_li {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0px 15px;
   }
-  .chartPage_Item_content {
+  .cartPage_Item_content {
     display: block;
     border: 1px gray solid;
   }
-  .chartPage_Item_text {
+  .cartPage_Item_text {
     margin: 3.5px;
   }
-  .chartPage_Item_describe {
+  .cartPage_Item_describe {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 3.5px;
   }
-  .chartPage_Item_store {
+  .cartPage_Item_store {
     display: flex;
   }
-  .chartPage_Item_img {
+  .cartPage_Item_img {
     width: 12.5px;
     height: 12.5px;
     margin-left: 5px;
     margin-right: 5px;
   }
-  .chartPage_Item_Data {
+  .cartPage_Item_Data {
     width: 25px;
     border: 1px gray solid;
     text-align: center;
   }
-  .chartPage_Item_pagination {
+  .cartPage_Item_pagination {
     margin: 5px 15px;
   }
 }
 
-.chartPage_subInfo {
+.cartPage_subInfo {
   display: flex;
   flex: 5;
   flex-direction: column;
   border: 1px gray solid;
   justify-content: center;
   align-items: center;
-  .chartPage_subInfo_container {
+  .cartPage_subInfo_container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 5px;
   }
-  .chartPage_subInfo_container {
+  .cartPage_subInfo_container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 5px;
   }
-  .chartPage_subInfo_title {
+  .cartPage_subInfo_title {
     margin: 10px;
   }
-  .chartPage_subInfo_label {
+  .cartPage_subInfo_label {
     width: 70px;
   }
-  .chartPage_subInfo_input {
+  .cartPage_subInfo_input {
     height: 2rem;
     width: 150px;
   }
-  .chartPage_subInfo_select {
+  .cartPage_subInfo_select {
     width: 150px;
     justify-content: center;
     align-items: center;
   }
-  .chartPage_subInfo_button {
+  .cartPage_subInfo_button {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: .5rem 1rem;
     border: 1px gray solid;
   }
-  .chartPage_subInfo_checkbox {
+  .cartPage_subInfo_checkbox {
     width: 100%;
     display: flex;
     align-items: center;
@@ -121,29 +121,29 @@
   }
 }
 
-.chartPage_total {
+.cartPage_total {
   display: flex;
   border: 1px gray solid;
   justify-content: space-between;
   align-items: center;
-  height: 3rem;
-  .chartPage_total_titel {
+  .cartPage_total_titel {
     margin: 10px;
   }
-  .chartPage_total_button {
+  .cartPage_total_button {
     border: 1px gray solid;
-    width: 75px;
-    height: 3rem;
-    display: flex;
+    width: 75px;    display: flex;
     justify-content: center;
     align-items: center;
   }
+  .cartPage_total_group {
+    margin: 10px 2px;
+  }
 }
-.chartPageCoupon {
+.cartPageCoupon {
   border: 1px gray solid;
 
 }
-.chartPageCheckOut {
+.cartPageCheckOut {
   display: flex;
   border: 1px gray solid;
   padding: 10px;

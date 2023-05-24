@@ -19,7 +19,7 @@ const toggle = async (_value) => {
     token: token,
     count: 1
   }
-  let response = await Service.postCreateChart(submitData);
+  let response = await Service.postCreateCart(submitData);
   store.isloadingChange(false)
 }
 

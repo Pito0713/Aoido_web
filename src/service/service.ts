@@ -130,40 +130,40 @@ class Service {
     return data;
   }
 
-  postChartData= async (submitData: Cargo) => {
+  postCartData= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.140:8082/chartData`,
+      `http://192.168.23.140:8082/cartData`,
       '',
       submitData
     );
     return data;
   }
 
-  postCreateChart= async (submitData: Cargo) => {
+  postCreateCart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.140:8082/createChart`,
+      `http://192.168.23.140:8082/createCart`,
       '',
       submitData
     );
     return data;
   }
 
-  postUploadChart= async (submitData: Cargo) => {
+  postUploadCart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.140:8082/uploadChart`,
+      `http://192.168.23.140:8082/uploadCart`,
       '',
       submitData
     );
     return data;
   }
 
-  postDeleteChart= async (submitData: Cargo) => {
+  postDeleteCart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'Delete',
-      `http://192.168.23.140:8082/deleteChart`,
+      `http://192.168.23.140:8082/deleteCart`,
       '',
       submitData
     );

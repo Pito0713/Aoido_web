@@ -2,8 +2,9 @@
 import { ref, onMounted, reactive, watch, provide } from 'vue'
 import Cookies from 'js-cookie';
 import Service from "@SERVICE/service";
-import chartPage_Item from './chartPage_Item.vue'
-import chartPage_subInfo from './chartPage_subInfo.vue'
+import cartPage_Item from './cartPage_Item.vue'
+import cartPage_subInfo from './cartPage_subInfo.vue'
+import titleDot from '../../components/title-dot/title-dot.vue';
 
 import moment from 'moment';
 
@@ -46,7 +47,7 @@ const couponList = reactive({
 });
 
 
-const postChartData = async () => {
+const postCartData = async () => {
   store.isloadingChange(true)
   let token = Cookies.get('token')
   let submitData = {
@@ -54,7 +55,7 @@ const postChartData = async () => {
     page: page.value,
     pagination: 9999
   }
-  let response = await Service.postChartData(submitData);
+  let response = await Service.postCartData(submitData);
   if (response) cartList.data = response.data
   store.isloadingChange(false)
 };
@@ -118,7 +119,6 @@ const postFindAllCoupon = async () => {
     token: token,
   };
 
-
   store.isloadingChange(true)
   const response = await Service.postFindAllCoupon(submitData);
   if (response?.status === 'success' && response?.data) {
@@ -160,7 +160,7 @@ watch(selectedOption, (newVal, oldVal) => {
 });
 
 onMounted(() => {
-  postChartData()
+  postCartData()
   getCountyItems()
   postFindAllCoupon()
 });
@@ -176,36 +176,33 @@ provide('isChecked', isChecked);
 
 
 <template>
-  <div class="chartPage">
+  <div class="cartPage">
     <div class="container">
-      <div class="chartPage_subInfo">
-        <div class="chartPage_subInfo_title">
-          <a>注文情報</a>
-        </div>
-        <div class="chartPage_subInfo_checkbox">
+      <div class="cartPage_subInfo">
+        <titleDot msg="注文情報" />
+        <div class="cartPage_subInfo_checkbox">
           <input type="checkbox" id="checkbox" v-model="isChecked">
           <label for="checkbox">同じ会員情報</label>
         </div>
-        <chartPage_subInfo />
+        <cartPage_subInfo />
       </div>
-
-      <div class="chartPage_Item">
-        <div class="chartPage_Item_title">
-          <a>ショッピングカート</a>
-        </div>
-
-        <ul class="chartPage_Item_ul">
-          <li class="chartPage_Item_li" v-for=" (item, index) in cartList.data" :key="item._id">
-            <chartPage_Item :data=item :refresh="() => postChartData()" />
+      <div class="cartPage_Item">
+        <titleDot msg="ショッピングカート" />
+        <ul class="cartPage_Item_ul">
+          <li class="cartPage_Item_li" v-for=" (item, index) in cartList.data" :key="item._id">
+            <cartPage_Item :data=item :refresh="() => postCartData()" />
           </li>
         </ul>
       </div>
     </div>
-    <div class="chartPageCoupon">
-      <a>クーポン</a>
+    <div class="cartPageCoupon">
+      <div style="margin: 10px 2px;">
+        <a style="margin: 10px">クーポン</a>
+      </div>
+
       <template v-if='Object.keys(couponList.data).length > 0'>
         <template v-for="(item, index) in couponList.data" :key="item.id">
-          <div class="chartPageCheckOut">
+          <div class="cartPageCheckOut">
             <input type="radio" :value="item" v-model="selectedOption" />
             <div>
               <a>{{ item.describe }}</a>
@@ -218,30 +215,30 @@ provide('isChecked', isChecked);
         </template>
       </template>
       <template v-else>
-        <div>
-          <a>
+        <div style="margin: 10px 2px;">
+          <a style="margin: 10px">
             クーポンはありません。
           </a>
         </div>
       </template>
 
     </div>
-    <div class="chartPage_total">
+    <div class="cartPage_total">
       <div>
-        <div>
-          <a class="chartPage_total_titel">選択した商品</a>
-          <a class="chartPage_total_titel">{{ cartList.data.length }}</a>
+        <div class="cartPage_total_group">
+          <a class="cartPage_total_titel">選択した商品</a>
+          <a class="cartPage_total_titel">{{ cartList.data.length }}</a>
         </div>
-        <div>
-          <a class="chartPage_total_titel">クーポンを使用する</a>
-          <a class="chartPage_total_titel">{{ selectedOption.describe ? selectedOption.describe : '未使用のクーポン' }}</a>
+        <div class="cartPage_total_group">
+          <a v-if="selectedOption.describe" class="cartPage_total_titel">クーポンを使用する</a>
+          <a class="cartPage_total_titel">{{ selectedOption.describe ? selectedOption.describe : '未使用のクーポン' }}</a>
         </div>
       </div>
       <div style="display: flex; justify-content: center; align-items: center;">
-        <a class="chartPage_total_titel">ごうけい</a>
+        <a class="cartPage_total_titel">ごうけい</a>
         <a> ¥ </a>
-        <a class="chartPage_total_titel">{{ selectedPriec }}</a>
-        <button class="chartPage_total_button" @click="handleCheckOut()"> お会計</button>
+        <a class="cartPage_total_titel">{{ selectedPriec }}</a>
+        <button class="cartPage_total_button" @click="handleCheckOut()"> お会計</button>
       </div>
 
     </div>

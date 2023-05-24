@@ -22,7 +22,7 @@ const increment = async () => {
     token: props.data.token,
     count: 1
   }
-  let response = await Service.postUploadChart(submitData);
+  let response = await Service.postUploadCart(submitData);
 
   if (response.status === 'success') {
     props.refresh()
@@ -40,7 +40,7 @@ const decrement = async () => {
       token: props.data.token,
       count: -1
     }
-    let response = await Service.postUploadChart(submitData);
+    let response = await Service.postUploadCart(submitData);
 
     if (response.status === 'success') {
       props.refresh()
@@ -48,12 +48,12 @@ const decrement = async () => {
   }
 }
 
-const deleteChart = async () => {
+const deleteCart = async () => {
   let submitData = {
     id: props.data._id,
     token: props.data.token,
   }
-  let response = await Service.postDeleteChart(submitData);
+  let response = await Service.postDeleteCart(submitData);
 
   if (response.status === 'success') {
     props.refresh()
@@ -67,41 +67,39 @@ const handleClick = () => {
 </script>
 
 <template>
-  <div class="chartPage_Item_contaner" @click="handleClick(data)">
-    <div class="chartPage_Item_content">
-      <div class="chartPage_Item_describe">
-        <div class="chartPage_Item_text">
+  <div class="cartPage_Item_contaner" @click="handleClick(data)">
+    <div class="cartPage_Item_content">
+      <div class="cartPage_Item_describe">
+        <div class="cartPage_Item_text">
           <a>
             {{ data.describe }}
           </a>
         </div>
-        <button @click.stop="deleteChart">
-          <img class="chartPage_Item_img" src="../../assets/plus.png" />
+        <button @click.stop="deleteCart">
+          <img class="cartPage_Item_img" src="../../assets/plus.png" />
         </button>
       </div>
-
-      <div class="chartPage_Item_describe">
-        <div class="chartPage_Item_text">
+      <div class="cartPage_Item_describe">
+        <div class="cartPage_Item_text">
           <a> ¥ </a>
           <a>
             {{ data.price }}
           </a>
         </div>
-        <div class="chartPage_Item_store">
+        <div class="cartPage_Item_store">
           <button @click.stop="increment">
-            <img class="chartPage_Item_img" src="../../assets/plus.png" />
+            <img class="cartPage_Item_img" src="../../assets/plus.png" />
           </button>
-          <div class="chartPage_Item_Data">
+          <div class="cartPage_Item_Data">
             <a>
               {{ state.count }}
             </a>
           </div>
           <button @click.stop="decrement">
-            <img class="chartPage_Item_img" src="../../assets/plus.png">
+            <img class="cartPage_Item_img" src="../../assets/plus.png">
           </button>
         </div>
       </div>
-
     </div>
   </div>
 </template>
