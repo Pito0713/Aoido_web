@@ -6,11 +6,25 @@
 
 .prodcutPage_category{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border: 1px gray solid;
+  margin: 5px;
+
+  .prodcutPage_category_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px gray solid;
+  }
   .prodcutPage_category_item{
     margin: 5px 10px;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  input {
+    width: 100%;
   }
 }
 
