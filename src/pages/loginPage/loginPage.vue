@@ -74,12 +74,16 @@ const onLogInCheck = async () => {
     }
   }
 }
+
+const aaa = async () => {
+  router.push('/createMember');
+}
 </script>
 
 <template>
   <div class="loginPage">
     <div class="loginPage_content" id="loginPage_name1">
-      <a class="loginPage_text">name</a>
+      <a class="loginPage_text">アカウント</a>
       <div class="loginPage_name">
         <input class="loginPage_input" v-model="v$.name.$model" placeholder='name' />
         <formerrors :errors="v$.name" />
@@ -87,7 +91,7 @@ const onLogInCheck = async () => {
     </div>
     <div>
       <div class="loginPage_content" id="loginPage_password">
-        <a class="loginPage_text">password</a>
+        <a class="loginPage_text">パスワード</a>
         <div>
           <input class="loginPage_input" v-model="v$.password.$model" placeholder='password' />
           <formerrors :errors="v$.password" />
@@ -95,13 +99,14 @@ const onLogInCheck = async () => {
       </div>
     </div>
     <div class="loginPage_button_group">
-      <transition>
-        <!-- <button class="chartPage_subInfo_button" type="button"
-          @click="handChange(); ">save</button> -->
 
+      <button type="button" @click="aaa()">Revise</button>
+
+    </div>
+    <div class="loginPage_button_group">
+      <transition>
         <button class="loginPage_button" :class="{ loginButton: isCheck }" type="button" id="LogInCheck"
           @click="onLogInCheck()">Revise</button>
-
       </transition>
     </div>
   </div>
