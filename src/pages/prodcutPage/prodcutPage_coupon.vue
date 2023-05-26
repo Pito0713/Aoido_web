@@ -11,16 +11,22 @@ const props = defineProps({
   data: {}
 })
 
-const toggle = async (_value) => {
+const addCart = async (_value) => {
   let token = Cookies.get('token')
-  store.isloadingChange(true)
-  let submitData = {
-    id: _value._id,
-    token: token,
-    count: 1
+  if (!['', null, undefined].includes(token)) {
+    store.isloadingChange(true)
+    let submitData = {
+      id: _value._id,
+      token: token,
+      count: 1
+    }
+    let response = await Service.postCreateCart(submitData);
+    store.isloadingChange(false)
+  } else {
+    store.isNotificationChange(true);
+    store.NotificationMessageChange('ログインしてください。')
+    router.push('/loginPage');
   }
-  let response = await Service.postCreateCart(submitData);
-  store.isloadingChange(false)
 }
 
 const handleClick = () => {
@@ -44,7 +50,7 @@ const handleClick = () => {
           </div>
         </div>
       </div>
-      <button class="prodcutPage_coupon_button" @click="toggle(data)">ついか</button>
+      <button class="prodcutPage_coupon_button" @click="addCart(data)">ついか</button>
     </div>
     <div class="accordion_content">
       <div>

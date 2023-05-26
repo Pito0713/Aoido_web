@@ -22,18 +22,24 @@ const decrement = () => {
 
 const addCart = async () => {
   let token = Cookies.get('token')
-  store.isloadingChange(true)
-  let submitData = {
-    id: expanded.value._id,
-    token: token,
-    count: count.value
-  }
+  if (!['', null, undefined].includes(token)) {
+    store.isloadingChange(true)
+    let submitData = {
+      id: expanded.value._id,
+      token: token,
+      count: count.value
+    }
 
-  let response = await Service.postUploadCart(submitData);
+    let response = await Service.postUploadCart(submitData);
 
-  if (response?.status === 'success' && response?.data) {
+    if (response?.status === 'success' && response?.data) {
+    }
+    store.isloadingChange(false)
+  } else {
+    store.isNotificationChange(true);
+    store.NotificationMessageChange('ログインしてください。')
+    router.push('/loginPage');
   }
-  store.isloadingChange(false)
 }
 
 
