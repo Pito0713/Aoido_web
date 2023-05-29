@@ -63,7 +63,7 @@ class Service {
   postRegister= async (submitData: register) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/register`,
+      `http://192.168.23.138:8082/register`,
       '',
       submitData
     );
@@ -73,7 +73,7 @@ class Service {
   postLogin = async (submitData: register) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/login`,
+      `http://192.168.23.138:8082/login`,
       '',
       submitData
     );
@@ -83,7 +83,7 @@ class Service {
   postUserinfo = async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/userinfo`,
+      `http://192.168.23.138:8082/userinfo`,
       '',
       submitData
     );
@@ -93,7 +93,7 @@ class Service {
   postUploadUser= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/uploadUser`,
+      `http://192.168.23.138:8082/uploadUser`,
       '',
       submitData
     );
@@ -103,7 +103,7 @@ class Service {
   postUploadUserImage= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/uploadUserImage`,
+      `http://192.168.23.138:8082/uploadUserImage`,
       '',
       submitData
     );
@@ -113,7 +113,7 @@ class Service {
   postProductDatabase= async (submitData: Product) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/productDatabase`,
+      `http://192.168.23.138:8082/productDatabase`,
       '',
       submitData
     );
@@ -123,7 +123,7 @@ class Service {
   postProductFilter= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/productFilter`,
+      `http://192.168.23.138:8082/productFilter`,
       '',
       submitData
     );
@@ -133,7 +133,7 @@ class Service {
   postChartData= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/cartData`,
+      `http://192.168.23.138:8082/cartData`,
       '',
       submitData
     );
@@ -143,7 +143,7 @@ class Service {
   postCreateChart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/createCart`,
+      `http://192.168.23.138:8082/createCart`,
       '',
       submitData
     );
@@ -153,7 +153,7 @@ class Service {
   postUploadChart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/uploadCart`,
+      `http://192.168.23.138:8082/uploadCart`,
       '',
       submitData
     );
@@ -163,7 +163,7 @@ class Service {
   postDeleteChart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'Delete',
-      `http://192.168.23.197:8082/deleteCart`,
+      `http://192.168.23.138:8082/deleteCart`,
       '',
       submitData
     );
@@ -173,7 +173,7 @@ class Service {
   postFindAllCoupon= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://192.168.23.197:8082/findAllCoupon`,
+      `http://192.168.23.138:8082/findAllCoupon`,
       '',
       submitData
     );
@@ -183,7 +183,7 @@ class Service {
   getCountyItems= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'get',
-      `http://192.168.23.197:8082/allCountry`,
+      `http://192.168.23.138:8082/allCountry`,
       '',
       submitData
     );
@@ -193,7 +193,7 @@ class Service {
   patchUpdateCouponUser= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'PATCH',
-      `http://192.168.23.197:8082/updateCouponUser/`,
+      `http://192.168.23.138:8082/updateCouponUser/`,
       submitData.id,
       submitData
     );
