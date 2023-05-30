@@ -18,9 +18,7 @@ const { isAlertBoxComfirm, isloading, isNotification } = storeToRefs(store);
     <template v-if="isAlertBoxComfirm">
       <alertBoxPage></alertBoxPage>
     </template>
-    <template v-if="isNotification">
-      <notificationPage />
-    </template>
+    <notificationPage />
     <App />
   </div>
 </template>
