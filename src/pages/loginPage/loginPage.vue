@@ -14,12 +14,12 @@ const router = useRouter()
 
 const isCheck = ref(false)
 const ListData = reactive({
-  name: '',
+  account: '',
   password: '',
 });
 
 const rules = {
-  name: { required },
+  account: { required },
   password: { required },
 }
 
@@ -53,11 +53,12 @@ const onLogInCheck = async () => {
     LogInCheck.style.transform = `translate3d(${mathX}px, ${mathY}px, ${mathZ}px)`
 
 
-    if (v$.value.name.$error) keyframe('loginPage_name1')
+    if (v$.value.account.$error) keyframe('loginPage_account')
     if (v$.value.password.$error) keyframe('loginPage_password')
   } else {
+    store.isloadingChange(true)
     let submitData = {
-      account: ListData.name,
+      account: ListData.account,
       password: ListData.password,
     };
     const response = await Service.postLogin(submitData);
@@ -72,38 +73,48 @@ const onLogInCheck = async () => {
       store.isNotificationChange(true);
       store.NotificationMessageChange(response.message)
     }
+    store.isloadingChange(false)
   }
+}
+
+const createMember = async () => {
+  router.push('/createMember');
 }
 </script>
 
 <template>
   <div class="loginPage">
-    <div class="loginPage_content" id="loginPage_name1">
-      <a class="loginPage_text">name</a>
-      <div class="loginPage_name">
-        <input class="loginPage_input" v-model="v$.name.$model" placeholder='name' />
-        <formerrors :errors="v$.name" />
-      </div>
+    <div class="loginPage_button_group">
+      <button type="button" @click="createMember()">新規アカウント登録</button>
     </div>
-    <div>
-      <div class="loginPage_content" id="loginPage_password">
-        <a class="loginPage_text">password</a>
+    <div class="loginPage_content" id="loginPage_account">
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <a class="loginPage_text">アカウント</a>
+        <div class="loginPage_account">
+          <input class="loginPage_input" v-model="v$.account.$model" placeholder='account' />
+          <formerrors :errors="v$.account" msg="必須入力" />
+        </div>
+      </div>
+
+    </div>
+    <div class="loginPage_content" id="loginPage_password">
+      <div style="display: flex;justify-content: center;
+    align-items: center;">
+        <a class="loginPage_text">パスワード</a>
         <div>
           <input class="loginPage_input" v-model="v$.password.$model" placeholder='password' />
-          <formerrors :errors="v$.password" />
+          <formerrors :errors="v$.password" msg="必須入力" />
         </div>
       </div>
     </div>
+
     <div class="loginPage_button_group">
       <transition>
-        <!-- <button class="chartPage_subInfo_button" type="button"
-          @click="handChange(); ">save</button> -->
-
         <button class="loginPage_button" :class="{ loginButton: isCheck }" type="button" id="LogInCheck"
-          @click="onLogInCheck()">Revise</button>
-
+          @click="onLogInCheck()">ログイン</button>
       </transition>
     </div>
+
   </div>
 </template>
 

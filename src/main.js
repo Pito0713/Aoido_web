@@ -17,11 +17,43 @@ defineRule('required', (value) => {
   return true;
 });
 
+defineRule('account', (value) => {
+  const accountRegex = /^[a-zA-Z0-9]+$/;
+  let isValidAccount = accountRegex.test(value);
+  if (!isValidAccount) {
+    return '数字と英字を含んでいる必要があります';
+  }
+  return true;
+});
+
+defineRule('password', (value) => {
+  const passwordRegex = /^[a-zA-Z0-9]+$/;
+  const passwordLengthRegex = /^\d{6,12}$/;
+  let isValidPassword = passwordRegex.test(value);
+  let isValidPasswordLength = passwordLengthRegex.test(value);
+  if (!isValidPassword) {
+    return '数字と英字を含んでいる必要があります';
+  }
+  if (!isValidPasswordLength) {
+    return '6桁から12桁までのパスワードを入力してください。';
+  }
+  return true;
+});
+
 defineRule('email', (value) => {
   const emailRegex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
   let isValidEmail = emailRegex.test(value);
   if (!isValidEmail) {
     return 'メールアドレス必須です';
+  }
+  return true;
+});
+
+defineRule('phone', (value) => {
+  const phoneRegex = /^\d{10}$/;
+  let isValidPhone = phoneRegex.test(value);
+  if (!isValidPhone) {
+    return '正しい電話番号を入力してください';
   }
   return true;
 });

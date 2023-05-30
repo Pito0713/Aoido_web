@@ -48,6 +48,12 @@ const routes = [
     name: 'loginPage',
     meta: { requiresAuth: false },
   },
+  {
+    path: '/createMember',
+    component: () => import('../pages/loginPage/createMember.vue'),
+    name: 'createMember',
+    meta: { requiresAuth: false },
+  },
 ];
 
 export { routes };
