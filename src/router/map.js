@@ -37,9 +37,9 @@ const routes = [
     props: true, // 啟用 props
   },
   {
-    path: '/chartPage',
-    component: () => import('../pages/chartPage/chartPage.vue'),
-    name: 'chartPage',
+    path: '/cartPage',
+    component: () => import('../pages/cartPage/cartPage.vue'),
+    name: 'cartPage',
     meta: { requiresAuth: true },
   },
   {

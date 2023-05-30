@@ -7,10 +7,12 @@
   top: 55px;
   right: -205px;
   transition: all 1s ease;
+  z-index: 500;
+  background-color: white;
 }
 
 .route {
   animation: route 1s;
-  transform:  translate(-200px);
+  transform:  translate(-205px);
   backface-visibility: hidden;
 }

@@ -11,14 +11,14 @@ const isChecked = inject('isChecked');
 
 <template>
   <div>
-    <div class="chartPage_subInfo_container">
-      <label class="chartPage_subInfo_label">名前 :</label>
-      <input class="chartPage_subInfo_input" v-model="orderListData.uesrName" placeholder="uesrName"
+    <div class="cartPage_subInfo_container">
+      <label class="cartPage_subInfo_label">名前 :</label>
+      <input class="cartPage_subInfo_input" v-model="orderListData.uesrName" placeholder="uesrName"
         :disabled="isChecked" />
     </div>
-    <div class="chartPage_subInfo_container">
-      <label class="chartPage_subInfo_label">県/町村:</label>
-      <div class="chartPage_subInfo_select">
+    <div class="cartPage_subInfo_container">
+      <label class="cartPage_subInfo_label">県/町村:</label>
+      <div class="cartPage_subInfo_select">
         <select style="height: 2rem;" v-model="selectedCityOption" :disabled="isChecked">
           <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
             {{ option }}
@@ -32,13 +32,13 @@ const isChecked = inject('isChecked');
         </select>
       </div>
     </div>
-    <div class="chartPage_subInfo_container">
-      <label class="chartPage_subInfo_label">住所 :</label>
-      <input class="chartPage_subInfo_input" v-model="orderListData.addres" placeholder="addres" :disabled="isChecked" />
+    <div class="cartPage_subInfo_container">
+      <label class="cartPage_subInfo_label">住所 :</label>
+      <input class="cartPage_subInfo_input" v-model="orderListData.addres" placeholder="addres" :disabled="isChecked" />
     </div>
-    <div class="chartPage_subInfo_container">
-      <label class="chartPage_subInfo_label">電話 :</label>
-      <input class="chartPage_subInfo_input" v-model="orderListData.phone" placeholder="phone" :disabled="isChecked" />
+    <div class="cartPage_subInfo_container">
+      <label class="cartPage_subInfo_label">電話 :</label>
+      <input class="cartPage_subInfo_input" v-model="orderListData.phone" placeholder="phone" :disabled="isChecked" />
     </div>
   </div>
 </template>

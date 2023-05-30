@@ -129,40 +129,40 @@ class Service {
     return data;
   }
 
-  postChartData= async (submitData: Cargo) => {
+  postCartData= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://localhost:8082/chartData`,
+      `http://localhost:8082/cartData`,
       '',
       submitData
     );
     return data;
   }
 
-  postCreateChart= async (submitData: Cargo) => {
+  postCreateCart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://localhost:8082/createChart`,
+      `http://localhost:8082/createCart`,
       '',
       submitData
     );
     return data;
   }
 
-  postUploadChart= async (submitData: Cargo) => {
+  postUploadCart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'POST',
-      `http://localhost:8082/uploadChart`,
+      `http://localhost:8082/uploadCart`,
       '',
       submitData
     );
     return data;
   }
 
-  postDeleteChart= async (submitData: Cargo) => {
+  postDeleteCart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'Delete',
-      `http://localhost:8082/deleteChart`,
+      `http://localhost:8082/deleteCart`,
       '',
       submitData
     );
