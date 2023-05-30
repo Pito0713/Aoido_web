@@ -1,5 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
+import Cookies from 'js-cookie';
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
 import { useRouter } from 'vue-router'
@@ -16,10 +17,11 @@ const state = reactive({
 });
 
 const increment = async () => {
+  let token = Cookies.get('token')
   state.count++;
   let submitData = {
     id: props.data._id,
-    token: props.data.token,
+    token: token,
     count: 1
   }
   let response = await Service.postUploadCart(submitData);
@@ -30,6 +32,7 @@ const increment = async () => {
 }
 
 const decrement = async () => {
+  let token = Cookies.get('token')
   if ((state.count) <= 1) {
     store.isAlertBoxComfirmChange(true);
     store.AlertMessageChange('少なくとも1つの商品')
@@ -37,7 +40,7 @@ const decrement = async () => {
     state.count--;
     let submitData = {
       id: props.data._id,
-      token: props.data.token,
+      token: token,
       count: -1
     }
     let response = await Service.postUploadCart(submitData);

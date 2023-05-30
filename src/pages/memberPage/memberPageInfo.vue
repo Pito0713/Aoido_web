@@ -38,19 +38,7 @@ const selectedCityOption = ref('')
 const selectedTownOption = ref('')
 
 const onSubmit = handleSubmit((e) => {
-  let token = Cookies.get('token')
-  let submitData = {
-    uesrName: userList.uesrName,
-    birth: userList.birth,
-    phone: userList.phone,
-    city: selectedCityOption.value,
-    town: selectedTownOption.value,
-    addres: userList.addres,
-    mail: userList.mail,
-    photo: userList.photo,
-    token: token,
-  };
-  postUploadUser(submitData)
+  postUploadUser()
 });
 
 const onFileInputChange = (event) => {
@@ -79,13 +67,26 @@ const uploadFile = async () => {
   const response = await Service.postUploadUserImage(formData);
   if (response?.status === 'success' && response?.data) {
     userList.photo = response.data.imageUrl
+    postUploadUser()
   }
   store.isloadingChange(false)
 
 };
 
-const postUploadUser = async (submitData) => {
+const postUploadUser = async () => {
   store.isloadingChange(true)
+  let token = Cookies.get('token')
+  let submitData = {
+    uesrName: userList.uesrName,
+    birth: userList.birth,
+    phone: userList.phone,
+    city: selectedCityOption.value,
+    town: selectedTownOption.value,
+    addres: userList.addres,
+    mail: userList.mail,
+    photo: userList.photo,
+    token: token,
+  };
 
   const response = await Service.postUploadUser(submitData);
   if (response?.status === 'success' && response?.data) {
@@ -128,11 +129,9 @@ const handleClick = () => {
   router.push({ name: 'memberPage_handPassWord' });
 }
 
-
 watch(selectedCityOption, () => {
   CityTownData.Town = CountyData.data[selectedCityOption.value]
 });
-
 
 onMounted(() => {
   postUserinfo()
@@ -170,57 +169,66 @@ provide('userList', userList);
         <Field name="uesrName" v-model="userList.uesrName" rules="required" v-slot="{ field }">
           <label class="memberPage_Item_content">
             <a class="memberPage_Item_label">なまえ:</a>
-            <input class="memberPage_Item_input" type="text" v-bind="field" />
-            <ErrorMessage v-if="errors" :errors="errors" name="uesrName" />
+            <div class="memberPage_Item_input">
+              <input type="text" v-bind="field" />
+              <ErrorMessage v-if="errors" :errors="errors" name="uesrName" />
+            </div>
           </label>
         </Field>
 
         <Field name="birth" label="birth">
           <label class="memberPage_Item_content">
             <a class="memberPage_Item_label">誕生日:</a>
-
-            <DatePicker v-model="userList.birth" style="width: 170px; height: 2rem; padding-left: 7.5px;"></DatePicker>
-            <ErrorMessage :errors="errors" name="birth" />
+            <div class="memberPage_Item_input">
+              <DatePicker v-model="userList.birth" style="width: 170px; height: 2rem; padding-left: 7.5px;"></DatePicker>
+              <ErrorMessage :errors="errors" name="birth" />
+            </div>
           </label>
         </Field>
 
         <Field name="phone" label="phone" v-model="userList.phone" v-slot="{ field }">
           <label class="memberPage_Item_content">
             <a class="memberPage_Item_label">県/町村:</a>
-            <div class="memberPage_Item_select">
-              <select style="width: 65px; height: 2rem;" v-model="selectedCityOption">
-                <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
-                  {{ option }}
-                </option>
-              </select>
-              <a> / </a>
-              <select style="width: 65px; height: 2rem;" v-model="selectedTownOption">
-                <option v-for="(option, index) in CityTownData.Town" :key="index" :value="option">
-                  {{ option }}
-                </option>
-              </select>
+            <div class="memberPage_Item_input">
+              <div class="memberPage_Item_select">
+                <select style="width: 65px; height: 2rem;" v-model="selectedCityOption">
+                  <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
+                    {{ option }}
+                  </option>
+                </select>
+                <a> / </a>
+                <select style="width: 65px; height: 2rem;" v-model="selectedTownOption">
+                  <option v-for="(option, index) in CityTownData.Town" :key="index" :value="option">
+                    {{ option }}
+                  </option>
+                </select>
+              </div>
+              <ErrorMessage v-if="errors" :errors="errors" name="uesrName" />
             </div>
-            <ErrorMessage v-if="errors" :errors="errors" name="uesrName" />
           </label>
         </Field>
-        <label class="memberPage_Item_content">
-          <a class="memberPage_Item_label">住所:</a>
-          <Field name="addres" label="addres" v-model="userList.addres" v-slot="{ field }">
-            <input class="memberPage_Item_input" type="text" v-bind="field" />
-            <ErrorMessage :errors="errors" name="addres" />
-          </Field>
-        </label>
+
+        <Field name="addres" label="addres" v-model="userList.addres" v-slot="{ field }">
+          <label class="memberPage_Item_content">
+            <a class="memberPage_Item_label">住所:</a>
+            <div class="memberPage_Item_input">
+              <input type="text" v-bind="field" />
+              <ErrorMessage :errors="errors" name="addres" />
+            </div>
+          </label>
+        </Field>
 
         <Field name="mail" label="mail" v-model="userList.mail" rules="required|email" v-slot="{ field }">
           <label class="memberPage_Item_content">
             <a class="memberPage_Item_label">メールボックス:</a>
-            <input class="memberPage_Item_input" type="text" v-bind="field" />
-            <ErrorMessage :errors="errors" name="mail" />
+            <div class="memberPage_Item_input">
+              <input class="memberPage_Item_input" type="text" v-bind="field" />
+              <ErrorMessage :errors="errors" name="mail" />
+            </div>
           </label>
         </Field>
 
       </form>
-
     </div>
   </div>
 </template>

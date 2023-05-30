@@ -3,6 +3,7 @@ import memberPage_title from './memberPage_title.vue';
 import memberPageInfo from './memberPageInfo.vue';
 import memberPageCoupon from './memberPageCoupon.vue';
 import Cookies from 'js-cookie';
+import titleDot from '@COM/title-dot/title-dot.vue';
 
 const logOut = () => {
   Cookies.remove('password');
@@ -12,9 +13,9 @@ const logOut = () => {
 
 <template>
   <div class="memberPage_container">
-    <memberPage_title class="memberPage_title" msg='かいいんじょうほう' />
+    <titleDot msg='かいいんじょうほう' />
     <memberPageInfo></memberPageInfo>
-    <memberPage_title class="memberPage_title" msg='クーポン' />
+    <titleDot msg='クーポン' />
     <memberPageCoupon></memberPageCoupon>
     <div class="memberPage_logout_button">
       <button type="button" @click="logOut()">ログアウト</button>
