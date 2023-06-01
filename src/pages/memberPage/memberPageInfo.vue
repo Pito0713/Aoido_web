@@ -43,7 +43,7 @@ const onSubmit = handleSubmit((e) => {
 
 const onFileInputChange = (event) => {
   const files = event.target.files;
-  if (files && ['image/jpg', 'image/jpeg', 'image/png'].includes(files[0].type)) {
+  if (files && ['image/jpg', 'image/jpeg', 'image/png'].includes(files[0].type) && files[0].size < 1 * 1024 * 1024) {
     const reader = new FileReader();
     reader.onload = (e) => {
       imagePreviewUrl.value = e.target.result;
@@ -147,11 +147,17 @@ provide('userList', userList);
     <div class="memberPage_img_container">
       <label class="memberPage_Upload">
         <div class="memberPage_Img">
-          <template v-if="userList.photo">
-            <img :src="userList.photo" />
+          <template v-if="imagePreviewUrl">
+            <img :src="imagePreviewUrl" />
           </template>
           <template v-else>
-            <img :src="imagePreviewUrl" v-if="imagePreviewUrl" />
+            <template v-if="userList.photo">
+              <img :src="userList.photo" />
+            </template>
+            <template v-else>
+              <img :src="imagePreviewUrl" v-if="imagePreviewUrl" />
+            </template>
+
           </template>
         </div>
         <input type="file" ref="fileInput" style="display:none;" @change="onFileInputChange" />

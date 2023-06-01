@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const requestInterceptor = (config:any) => {
-  config.timeout = 5000
+  //config.timeout = 5000
   return config;
 };
 
@@ -88,6 +88,17 @@ class Service {
     );
     return data;
   }
+
+  postHandPassWord = async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://localhost:8082/handPassWord`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
 
   postUploadUser= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
