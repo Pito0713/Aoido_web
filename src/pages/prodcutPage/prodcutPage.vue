@@ -105,21 +105,21 @@ provide('callCategoryFilter', callCategoryFilter);
   <div class="prodcutPage_container">
     <div>
       <div class="prodcutPage_category">
-        <button style="flex: 2.5;" class="prodcutPage_category_container" @click="callPriceFilter()">
-          <img class="prodcutPage_category_img" src="../../assets/filter.png" />
-          <template v-if="isSort === 'asc'">
-            <a>価格が低い順</a>
-          </template>
-          <template v-else>
-            <a>価格が高い順</a>
-          </template>
-        </button>
-        <div style="flex: 5;" class="prodcutPage_category_container">
-          <prodcutPage_category />
-        </div>
-        <div style="flex: 2.5;" class="prodcutPage_category_container">
-          <input type="text" v-model="searchText" @keydown.enter="callSearch" />
-          <button @click="callSearch"><img class="prodcutPage_category_img" src="../../assets/search.png" /></button>
+        <prodcutPage_category />
+        <div>
+          <button style="width: 175px;" class="prodcutPage_category_container" @click="callPriceFilter()">
+            <img class="prodcutPage_category_img" src="../../assets/filter.png" />
+            <template v-if="isSort === 'asc'">
+              <a>価格が低い順</a>
+            </template>
+            <template v-else>
+              <a>価格が高い順</a>
+            </template>
+          </button>
+          <div style="width: 175px;" class="prodcutPage_category_container">
+            <input type="text" v-model="searchText" @keydown.enter="callSearch" />
+            <button @click="callSearch"><img class="prodcutPage_category_img" src="../../assets/search.png" /></button>
+          </div>
         </div>
 
       </div>
