@@ -58,6 +58,13 @@ defineRule('phone', (value) => {
   return true;
 });
 
+defineRule('confirmed', (value, [target]) => {
+  if (value === target) {
+    return true;
+  }
+  return '新しいパスワードと異なります';
+});
+
 createApp(App)
   .use(router)
   .use(pinia)
