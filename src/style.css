@@ -1,6 +1,6 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -12,8 +12,10 @@
   --primary-color:#62635c;
   --title-color:#d08c60;
   --bottom-color:#bdae2c;
-  --background-color:#ffbd91;
+  --background-color:#e0e0e0;
+  --background-color-active:#f0f0f0;
   --error-color:#da4040;
+  --box-shadow: #313131;
 }
 
 a {
@@ -31,6 +33,10 @@ body {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
 }
 
 ul {
