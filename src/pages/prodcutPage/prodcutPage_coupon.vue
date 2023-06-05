@@ -36,29 +36,29 @@ const handleClick = () => {
 
 <template>
   <div class="prodcutPage_coupon_content">
+    <div class="prodcutPage_coupon_img">
+      <img :src="data.imageUrl" />
+    </div>
     <div class="prodcutPage_coupon_container">
       <div class="prodcutPage_coupon_info">
-        <div class="prodcutPage_coupon_img">
-          <img :src="data.imageUrl" />
-        </div>
         <div class="prodcutPage_coupon_describe">
           <div class="prodcutPage_coupon_text">
-            <a> {{ data.describe }} </a>
+            <a style="font-size: 1.8rem;"> {{ data.describe }} </a>
           </div>
-          <div class="prodcutPage_coupon_text" style="text-align: end;">
-            <a> $ {{ data.price }} </a>
+          <div class="prodcutPage_coupon_text">
+            <a style="font-size: 1.2rem;"> {{ data.category }} </a>
+            <div>
+              <a style="font-size: 1.2rem; padding-right: 10px;"> $ {{ data.price }} </a>
+              <button class="prodcutPage_coupon_button" @click="addCart(data)">ついか</button>
+            </div>
           </div>
         </div>
       </div>
-      <button class="prodcutPage_coupon_button" @click="addCart(data)">ついか</button>
-    </div>
-    <div class="accordion_content">
-      <div>
-        <div class="accordion_content_info">ぶんるい: {{ data.category }}</div>
+      <div class="accordion_content">
         <div class="accordion_content_info"><a>びこう: {{ data.remark }}</a></div>
-        <div class="accordion_content_info"><a>名前: {{ data.describe }}</a></div>
+        <button class="accordion_content_button" @click="handleClick()">しょうさい</button>
       </div>
-      <button class="accordion_content_button" @click="handleClick()">しょうさい</button>
+      <div class="prodcutPage_coupon_waves waves_one"></div>
     </div>
   </div>
 </template>
