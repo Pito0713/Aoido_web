@@ -16,8 +16,8 @@ const router = useRouter()
 
 <template>
   <div class="container">
-    <navBugerPage v-if="router.currentRoute.value.path !== ('/loginPage')" :isView="isView"
-      @handViewChange="handViewChange()" />
+    <!-- <navBugerPage v-if="router.currentRoute.value.path !== ('/loginPage')" :isView="isView"
+      @handViewChange="handViewChange()" /> -->
     <div class="content">
       <div class="view">
         <router-view />
