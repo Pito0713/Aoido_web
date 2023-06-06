@@ -50,49 +50,53 @@ const addCart = async () => {
   <div>
     <goBackPage />
 
-    <div style=" margin: 30px;">
-      <div class="prodcutPage_Detail">
-        <div class="prodcutPage_Detail_img">{{ expanded.imageUrl }}</div>
-        <div class="prodcutPage_Detail_Container">
-          <div class="prodcutPage_Detail_Content">
-            <div class="prodcutPage_Detail_Text" style="flex-direction: column;">
-              <a style="font-size: 1rem;">ぶんるい</a>
-              <a style="font-size: 2rem;">{{ expanded.describe }}</a>
-            </div>
-            <div class="prodcutPage_Detail_Text">
-              <a style="font-size: 1rem;">価格</a>
-              <a style="font-size: 1.2rem;">¥ {{ expanded.price }}</a>
-            </div>
+    <div class="prodcutPage_Detail">
+      <div class="prodcutPage_Detail_Container">
+        <div class="prodcutPage_Detail_Content">
+          <div class="prodcutPage_Detail_img">{{ expanded.imageUrl }}</div>
+        </div>
+        <div class="prodcutPage_Detail_Content">
+          <div class="prodcutPage_Detail_Text">
+            <a style="font-size: 1rem;">ぶんるい</a>
+            <a style="font-size: 2rem;">{{ expanded.category }}</a>
           </div>
-          <div class="prodcutPage_Detail_Content" style="justify-content: end;">
-            <div class=" prodcutPage_Detail_buttonGroup">
-              <button @click="increment">
-                <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.png" />
-              </button>
-              <div class="prodcutPage_Detail_count">
-                <a>
-                  {{ count }}
-                </a>
-              </div>
-              <button @click="decrement">
-                <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.png">
-              </button>
-              <button class="prodcutPage_Detail_button" @click="addCart()">
-                <a>add cart</a>
-              </button>
-            </div>
+          <div class="prodcutPage_Detail_Text">
+            <a style="font-size: 1rem;">ぶんるい</a>
+            <a style="font-size: 2rem;">{{ expanded.describe }}</a>
           </div>
         </div>
       </div>
-      <div class="prodcutPage_Detail">
-        <div class="prodcutPage_Detail_Text" style="flex-direction: column;align-items: center;">
-          <a style="font-size: 2rem;">しょうさい </a>
-          <a style="font-size: 1rem;">{{
-            `「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。s`
-          }}
-          </a>
+      <div class="prodcutPage_Detail_Container">
+        <div class="prodcutPage_Detail_Content">
+          <div class="prodcutPage_Detail_Text" style="flex-direction: column;">
+            <a style="font-size: 2rem;">しょうさい </a>
+            <a style="font-size: 1rem;">{{
+              `「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす`
+            }}</a>
+          </div>
         </div>
-
+        <div class="prodcutPage_Detail_Content">
+          <div class="prodcutPage_Detail_Text">
+            <a style="font-size: 1rem;">価格</a>
+            <a style="font-size: 1.2rem;">¥ {{ expanded.price }}</a>
+          </div>
+          <div class=" prodcutPage_Detail_buttonGroup">
+            <button @click="increment">
+              <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.png" />
+            </button>
+            <div class="prodcutPage_Detail_count">
+              <a>
+                {{ count }}
+              </a>
+            </div>
+            <button @click="decrement">
+              <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.png">
+            </button>
+            <button class="prodcutPage_Detail_button" @click="addCart()">
+              <a>add cart</a>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

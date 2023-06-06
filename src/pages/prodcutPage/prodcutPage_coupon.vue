@@ -49,14 +49,22 @@ const handleClick = () => {
             <a style="font-size: 1.2rem;"> {{ data.category }} </a>
             <div>
               <a style="font-size: 1.2rem; padding-right: 10px;"> $ {{ data.price }} </a>
-              <button class="prodcutPage_coupon_button" @click="addCart(data)">ついか</button>
+              <button class="prodcutPage_coupon_button" @click="addCart(data)">
+                <a>
+                  ついか
+                </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
       <div class="accordion_content">
         <div class="accordion_content_info"><a>びこう: {{ data.remark }}</a></div>
-        <button class="accordion_content_button" @click="handleClick()">しょうさい</button>
+        <button class="accordion_content_button" @click="handleClick()">
+          <a>
+            しょうさい
+          </a>
+        </button>
       </div>
       <div class="prodcutPage_coupon_waves waves_one"></div>
     </div>

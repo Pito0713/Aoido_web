@@ -11,7 +11,7 @@ watch(selectedCityOption, (newVal, oldVal) => {
 </script>
 
 <template>
-  <select class="prodcutPage_category_container" v-model="selectedCityOption">
+  <select class="prodcutPage_category_container select_container" v-model="selectedCityOption">
     <option v-for="(option, index) in categoryList.data" :key="index" :value="option.category">
       <div class="prodcutPage_category_item">
         {{ option.category }}

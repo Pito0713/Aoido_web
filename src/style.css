@@ -9,11 +9,19 @@
 
   --text-color:#2f312e;
   --border-color:#757a75;
-  --primary-color:#62635c;
+  --primary-color:#b3b3b3;
   --title-color:#d08c60;
-  --bottom-color:#ece9c6;
-  --primary-background-color:#f1f1f1;
+  --bottom-color:#868686;
+  --bottom-text-color:#fafafa;
+
+
+  --primary-prodcutPageItem-background-color:#f1f1f1;
+  --primary-prodcutPage-select:#f1f1f1;
+
+
   --error-color:#da4040;
+  --box-shadow: #9e9e9e;
+
 }
 
 a {

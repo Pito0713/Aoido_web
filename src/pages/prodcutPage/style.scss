@@ -8,33 +8,43 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0px 20px;
-
+  margin: 10px 20px;
 
   .prodcutPage_category_container {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
-    border: 1px gray solid;
     height: 2rem;
     width: 150px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  .select_container {
+    background-color: var(--primary-prodcutPageItem-background-color)
   }
   .prodcutPage_category_item{
     margin: 5px 10px;
   }
   img {
+    padding: 5px;
     width: 20px;
     height: 20px;
   }
+
+  .prodcutPage_category_img {
+    background-color: var(--primary-prodcutPageItem-background-color);
+    border-radius: 5px;
+  }
+
   input {
     width: 100%;
+    height: 2rem
   }
 }
 
 .prodcutPage_pagination {
   margin: 0px 20px;
 }
-
 
 //////////////////////////////////////////////////////////////
 .prodcutPage_Item{
@@ -43,8 +53,9 @@
   margin: 0px 20px;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 70vh;
-  border: 1px gray solid;
+  height: 75vh;
+  border: 1px var(--border-color) solid;
+  border-radius: 20px;
 
   .prodcutPage_Item_noData {
     font-size: 20px;
@@ -60,18 +71,19 @@
   position: relative;
   display: block;
   overflow: hidden;
-  margin: 5px;
-  background-color: var(--primary-background-color);
-  height: calc(100% - 5px);
+  margin: 10px;
+  background-color: var(--primary-prodcutPageItem-background-color);
+  height: calc(100% - 10px);
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   border-radius: 20px;
 
+
   .prodcutPage_coupon_container {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 90px;
     transition: all 0.75s linear;
     transition-timing-function: cubic-bezier(.15,.5,.5,.5);
   }
@@ -88,10 +100,19 @@
 
   .prodcutPage_coupon_waves {
     position: absolute;
-    width: 1000px;
+    width: 975px;
     height:  1000px;
-    top: -35px;
-    left: -120%;
+    top: -15px;
+    left: -155%;
+  }
+  @media screen and  (max-width:432px){
+    .prodcutPage_coupon_waves {
+      position: absolute;
+      width: 975px;
+      height:  1000px;
+      top: -25px;
+      left: -120%;
+    }
   }
 
   .waves_one {
@@ -142,48 +163,48 @@
     width: 75px;
     background-color: var(--bottom-color);
     border-radius: 5px;
+    a {
+      color: var(--bottom-text-color);
+    }
   }
+
 }
 
 @media screen and (min-width:1441px){
   .prodcutPage_Item {
     display: grid;
-    grid-template-columns: repeat(5, minmax(150px, 1fr));
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(5, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
   }
 }
-
 @media screen and (max-width:1440px){
   .prodcutPage_Item {
     display: grid;
-    grid-template-columns: repeat(4, minmax(150px, 1fr));
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
   }
 }
 @media screen and  (max-width:1024px){
   .prodcutPage_Item {
     display: grid;
-    grid-template-columns: repeat(3, minmax(150px, 1fr));
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
   }
 }
-
 @media screen and  (max-width:769px){
   .prodcutPage_Item {
     display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
   }
 }
-
 @media screen and  (max-width:432px){
   .prodcutPage_Item {
     display: grid;
-    grid-template-columns: repeat(1, minmax(150px, 1fr));
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
     grid-auto-rows: 300px;
   }
 }
-
 
 //////////////////////////////////////////////////////////////
 .accordion_content {
@@ -214,6 +235,11 @@
     justify-content: center;
     align-items: center;
     width:100px;
+    background-color: var(--bottom-color);
+    border-radius: 5px;
+    a {
+      color: var(--bottom-text-color);
+    }
   }
 }
 
@@ -222,9 +248,24 @@
   opacity: 1;
 }
 
+.prodcutPage_coupon_content:hover {
+  animation: shadow-pop-br 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+@keyframes shadow-pop-br {
+  0% {
+    box-shadow: 0 0 var(--box-shadow), 0 0 var(--box-shadow), 0 0 var(--box-shadow), 0 0 var(--box-shadow), 0 0 var(--box-shadow);
+  }
+  100% {
+    box-shadow: 1px 1px 1px var(--box-shadow), 2px 2px 2px  var(--box-shadow), 3px 3px 3px var(--box-shadow), 4px 4px 4px var(--box-shadow), 5px 5px 5px var(--box-shadow);
+  }
+}
+
 .prodcutPage_Detail {
   display: flex;
-  justify-content:center ;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   .prodcutPage_Detail_img {
     border: 1px gray solid;
@@ -233,20 +274,21 @@
     align-items: center;
     width: 300px;
     height: 300px;
+    border-radius: 10px;
   }
 
   .prodcutPage_Detail_Container {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     padding-left: 25px;
   }
 
   .prodcutPage_Detail_Content {
     display: flex;
-    justify-content: start;
-    flex-direction: column;
     align-items: flex-start;
+    flex-direction: column;
+    margin: 25px;
+    width: 300px;
   }
   .prodcutPage_Detail_count {
     width: 30px;
@@ -274,27 +316,28 @@
   }
   .prodcutPage_Detail_Text {
     display: flex;
-    width: 80%;
     a {
-      margin: 2px;
+      margin: 5px;
     }
   }
 }
+
 @media screen and  (max-width:769px){
-  .prodcutPage_Detail {
+  .prodcutPage_Detail_Container {
     flex-direction: column;
-    justify-content: centser;
-    align-items: center;
-    .prodcutPage_Detail_Content {
-      display: flex;
-      width: 300px;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    .prodcutPage_Detail_Container {
-      padding-left: 0px;
-    }
   }
+  // .prodcutPage_Detail {
+
+  //   justify-content: center;
+  //   align-items: center;
+  //   .prodcutPage_Detail_Content {
+  //     display: flex;
+  //     justify-content: space-between;
+  //   }
+  //   .prodcutPage_Detail_Container {
+  //     padding-left: 0px;
+  //   }
+  // }
 }
 
 

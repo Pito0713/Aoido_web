@@ -108,7 +108,7 @@ provide('callCategoryFilter', callCategoryFilter);
         <prodcutPage_category />
         <div>
           <button style="width: 175px;" class="prodcutPage_category_container" @click="callPriceFilter()">
-            <img class="prodcutPage_category_img" src="../../assets/filter.png" />
+            <img src="../../assets/filter.png" />
             <template v-if="isSort === 'asc'">
               <a>価格が低い順</a>
             </template>
@@ -118,7 +118,9 @@ provide('callCategoryFilter', callCategoryFilter);
           </button>
           <div style="width: 175px;" class="prodcutPage_category_container">
             <input type="text" v-model="searchText" @keydown.enter="callSearch" />
-            <button @click="callSearch"><img class="prodcutPage_category_img" src="../../assets/search.png" /></button>
+            <button @click="callSearch">
+              <img class="prodcutPage_category_img" src="../../assets/search.png" />
+            </button>
           </div>
         </div>
 
