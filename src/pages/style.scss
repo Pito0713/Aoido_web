@@ -21,25 +21,15 @@
 .head {
   position: fixed;
   display: flex;
-  top: calc(100% - 50px);
+  top: calc(100% - 45px);
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  white-space: nowrap;
-  background-color:var(--background-color);
-  width: 100%;
-  animation: shadow-drop-top 0.4s cubic-bezier(0.5, 0.5, 0.5, 0.5) both;
+  background-color: var(--header-background-color);
+  border-radius: 10px;
+  border: 1px var( --border-color) solid;
+  padding: 0px 20px;
 }
-
-@keyframes shadow-drop-top {
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.5);
-  }
-}
-
 
 .asideMenuPageTransform {
   transform: translate(0px);
