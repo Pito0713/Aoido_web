@@ -137,8 +137,12 @@ provide('callCategoryFilter', callCategoryFilter);
           </div>
         </template>
       </div>
+      <div class="prodcutPage_pagination">
+        <pagination :page="page" @onPageChange="onPageChange" />
+      </div>
     </div>
-    <pagination class="prodcutPage_pagination" :page="page" @onPageChange="onPageChange" />
+
+
   </div>
 </template>
 

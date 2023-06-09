@@ -1,19 +1,16 @@
+@import "@/configs/share.scss";
+//////////////////////////////////////////////////////////////
 .prodcutPage_container {
-  display: flex;
+  @include flex-properties(space-between, center);
   flex-direction: column;
-  justify-content: space-between;
 }
-
+//////////////////////////////////////////////////////////////
 .prodcutPage_category{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-properties(space-between, center);
   margin: 10px 20px;
 
   .prodcutPage_category_container {
-    display: flex;
-    justify-content: end;
-    align-items: center;
+    @include flex-properties(end, center);
     height: 2rem;
     width: 150px;
     margin: 5px;
@@ -22,32 +19,30 @@
   .select_container {
     background-color: var(--primary-prodcutPageItem-background-color)
   }
-  .prodcutPage_category_item{
+  .prodcutPage_category_item {
     margin: 5px 10px;
+  }
+  .prodcutPage_category_img {
+    background-color: var(--primary-prodcutPageItem-background-color);
+    border-radius: 5px;
   }
   img {
     padding: 5px;
     width: 20px;
     height: 20px;
   }
-
-  .prodcutPage_category_img {
-    background-color: var(--primary-prodcutPageItem-background-color);
-    border-radius: 5px;
-  }
-
   input {
     width: 100%;
     height: 2rem
   }
 }
-
-.prodcutPage_pagination {
-  margin: 0px 20px;
-}
-
 //////////////////////////////////////////////////////////////
-.prodcutPage_Item{
+.prodcutPage_pagination {
+  margin: 10px 0px;
+  width: calc(100% - 20px) ;
+}
+//////////////////////////////////////////////////////////////
+.prodcutPage_Item {
   display: flex;
   flex-wrap: wrap;
   margin: 0px 20px;
@@ -58,34 +53,113 @@
   border-radius: 20px;
 
   .prodcutPage_Item_noData {
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-properties(center, center);
+    font-size: 1.5rem;
     width: 100%;
     text-align: center;
   }
 }
 
+@media screen and (min-width:1441px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and (max-width:1440px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and  (max-width:1024px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and  (max-width:876px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and  (max-width:567px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px,1fr));
+    grid-auto-rows: 375px;
+  }
+}
+//////////////////////////////////////////////////////////////
 .prodcutPage_coupon_content {
-  position: relative;
-  display: block;
+  @include relative-block;
+  @include flex-properties(flex-end, flex-start);
   overflow: hidden;
   margin: 10px;
   background-color: var(--primary-prodcutPageItem-background-color);
   height: calc(100% - 10px);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
   border-radius: 20px;
+  flex-direction: column;
 
+  .prodcutPage_coupon_title {
+    @include relative-block;
+    @include flex-properties(flex-start, flex-end);
+    width: 120px;
+    height: 40px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: rgb(255, 255, 255);
+    margin: 7.5px 7.5px 0px 7.5px;
+    border: 1px black solid;
+
+    &::before {
+      content: "";
+      @include absolute-block;
+      @include flex-properties(flex-start, flex-end);
+      border-radius: 10px 10px 0px 0px;
+      margin: 7.5px 7.5px 0px 7.5px;
+      background-color: rgb(221, 221, 221);
+      width: 105px;
+      height: 42.5px;
+      left: 0;
+      top: 0px;
+      z-index: 2;
+    }
+
+    .prodcutPage_coupon_title_text {
+      @include absolute-block;
+      font-size: 2rem;
+      z-index: 2;
+      top: 15px;
+      padding: 0px 15px 0px 15px;
+    }
+  }
 
   .prodcutPage_coupon_container {
-    position: relative;
-    width: 100%;
+    @include relative-block;
+    width: calc(100% - 15px);
     height: 90px;
-    transition: all 0.75s linear;
+    transition: all 0.25s linear;
     transition-timing-function: cubic-bezier(.15,.5,.5,.5);
+    margin: 0px 7.5px 7.5px 7.5px;
+    border-radius: 0px 10px 10px 10px;
+    border: 1px black solid;
+    background-color: rgb(255, 255, 255);
+
+    &::before {
+      content: "";
+      @include absolute-block;
+      border-radius: 0px 10px 10px 10px;
+      background-color: rgb(221, 221, 221);
+      width: calc(100% - 15px);
+      height: 75px;
+      margin: 7.5px 7.5px 0px 7.5px;
+      top: 0px;
+    }
   }
 
   .prodcutPage_coupon_container:hover {
@@ -93,13 +167,11 @@
   }
 
   .prodcutPage_coupon_info {
-    position: relative;
-    display: flex;
-    z-index: 2;
+    @include relative-block;
   }
 
   .prodcutPage_coupon_waves {
-    position: absolute;
+    @include absolute-block;
     width: 975px;
     height:  1000px;
     top: -15px;
@@ -107,7 +179,7 @@
   }
   @media screen and  (max-width:432px){
     .prodcutPage_coupon_waves {
-      position: absolute;
+      @include absolute-block;
       width: 975px;
       height:  1000px;
       top: -25px;
@@ -115,128 +187,95 @@
     }
   }
 
-  .waves_one {
-    background: linear-gradient(60deg, rgb(255, 255, 255) 0%,rgb(219, 219, 219)) 100%;
-    transition-timing-function: cubic-bezier(.15,.5,.5,.5);
-    animation: rotate 7500ms infinite linear;
-    border-radius: 45%;
-  }
-  @keyframes rotate {
-    0%{
-      transform: rotate(0deg);
-    }
-    100%{
-      transform: rotate(360deg);
-    }
-  }
-
   .prodcutPage_coupon_img {
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 100%;
+    @include absolute-block;
+    top:7.5px;
+    left: 7.5px;
+    border-radius: 15px;
+    background-color: rgb(148, 148, 148);
+    border: 1px solid black;
+    width: calc(100% - 15px);
+    height: calc(100% - 15px);
     img {
       width: 100%;
-      height: 100%
+      height: 100%;
     }
   }
 
   .prodcutPage_coupon_describe {
+    @include flex-properties(flex-start, flex-start);
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
     flex-direction: column;
   }
 
   .prodcutPage_coupon_text {
+    @include flex-properties(space-between, center);
+    width: calc(100% - 30px);
+    padding: 5px 15px 0px 15px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0px 5px 5px 5px;
+  }
+
+  .prodcutPage_coupon_describe_text {
+    padding: 5px 15px 0px 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 
   .prodcutPage_coupon_button {
+    @include relative-block;
     padding: 5px;
     width: 75px;
     background-color: var(--bottom-color);
     border-radius: 5px;
+    z-index: 2;
     a {
       color: var(--bottom-text-color);
     }
   }
 
 }
-
-@media screen and (min-width:1441px){
-  .prodcutPage_Item {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(220px, 1fr));
-    grid-auto-rows: 250px;
-  }
-}
-@media screen and (max-width:1440px){
-  .prodcutPage_Item {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(220px, 1fr));
-    grid-auto-rows: 250px;
-  }
-}
-@media screen and  (max-width:1024px){
-  .prodcutPage_Item {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
-    grid-auto-rows: 250px;
-  }
-}
-@media screen and  (max-width:769px){
-  .prodcutPage_Item {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
-    grid-auto-rows: 250px;
-  }
-}
-@media screen and  (max-width:432px){
-  .prodcutPage_Item {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(300px, 1fr));
-    grid-auto-rows: 300px;
-  }
-}
-
 //////////////////////////////////////////////////////////////
 .accordion_content {
-  position: relative;
+  @include relative-block;
+  @include flex-properties(space-between, center);
   display: flex;
-  z-index: 2;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease-in-out;
-  justify-content: space-between;
-  align-items: center;
 
   .accordion_content_info {
-    position: relative;
+    @include relative-block;
+    @include flex-properties(space-between, center);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 30px);
+    margin: 5px 15px 0px 15px;
+  }
+
+  .accordion_content_info_text {
+    @include relative-block;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    width: calc(100% - 100px);
+    width: calc(100% - 115px);
   }
 
   .accordion_content_button {
-    margin: 5px;
+    @include relative-block;
+    @include flex-properties(center, center);
     padding: 5px;
     height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width:100px;
     background-color: var(--bottom-color);
     border-radius: 5px;
+    z-index: 2;
     a {
       color: var(--bottom-text-color);
     }
@@ -244,12 +283,25 @@
 }
 
 .prodcutPage_coupon_container:hover > .accordion_content {
+  @include relative-block;
   visibility: visible;
   opacity: 1;
+
+  &::before {
+    content: "";
+    @include absolute-block;
+    border-radius: 0px 0px 10px 10px;
+    background-color: rgb(221, 221, 221);
+    width: calc(100% - 15px);
+    height: 72.5px;
+    margin: 7.5px 7.5px 0px 7.5px;
+    top: -10px;
+    transition: background-color 0.25s ease;
+  }
 }
 
 .prodcutPage_coupon_content:hover {
-  animation: shadow-pop-br 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  animation: shadow-pop-br 0.25s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
 @keyframes shadow-pop-br {
@@ -262,30 +314,28 @@
 }
 
 .prodcutPage_Detail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include relative-block;
+  @include flex-properties(center, center);
   flex-direction: column;
 
   .prodcutPage_Detail_img {
+    @include relative-block;
+    @include flex-properties(center, center);
     border: 1px gray solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 300px;
     height: 300px;
     border-radius: 10px;
   }
 
   .prodcutPage_Detail_Container {
-    display: flex;
-    justify-content: space-between;
+    @include relative-block;
+    @include flex-properties(space-between, center);
     padding-left: 25px;
   }
 
   .prodcutPage_Detail_Content {
-    display: flex;
-    align-items: flex-start;
+    @include relative-block;
+    @include flex-properties(flex-start, flex-start);
     flex-direction: column;
     margin: 25px;
     width: 300px;
@@ -296,17 +346,15 @@
   }
 
   .prodcutPage_Detail_buttonGroup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include relative-block;
+    @include flex-properties(center, center);
     padding: 10px;
   }
 
   .prodcutPage_Detail_button {
     border: 1px gray solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include relative-block;
+    @include flex-properties(center, center);
     padding: 10px;
   }
   .prodcutPage_Detail_buttonImg {
@@ -326,19 +374,21 @@
   .prodcutPage_Detail_Container {
     flex-direction: column;
   }
-  // .prodcutPage_Detail {
-
-  //   justify-content: center;
-  //   align-items: center;
-  //   .prodcutPage_Detail_Content {
-  //     display: flex;
-  //     justify-content: space-between;
-  //   }
-  //   .prodcutPage_Detail_Container {
-  //     padding-left: 0px;
-  //   }
-  // }
 }
 
 
+  // .waves_one {
+  //   background: linear-gradient(60deg, rgb(255, 255, 255) 0%,rgb(219, 219, 219)) 100%;
+  //   transition-timing-function: cubic-bezier(.15,.5,.5,.5);
+  //   animation: rotate 7500ms infinite linear;
+  //   border-radius: 45%;
+  // }
+  // @keyframes rotate {
+  //   0%{
+  //     transform: rotate(0deg);
+  //   }
+  //   100%{
+  //     transform: rotate(360deg);
+  //   }
+  // }
 

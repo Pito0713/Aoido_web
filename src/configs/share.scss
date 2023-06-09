@@ -1,0 +1,14 @@
+@mixin relative-block ($relative: relative, $block: block) {
+  position: $relative;
+  display: $block;
+}
+@mixin absolute-block ($absolute: absolute, $block: block) {
+  position: $absolute;
+  display: $block;
+}
+
+@mixin flex-properties ($justify-content, $align-items) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items:  $align-items
+}
