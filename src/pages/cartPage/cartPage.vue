@@ -153,6 +153,7 @@ watch(cartList, (newVal, oldVal) => {
 
 watch(isChecked, (newVal, oldVal) => {
   if (newVal) postUserinfo()
+  isView.value = isChecked.value
 });
 
 watch(selectedOption, (newVal, oldVal) => {
@@ -171,13 +172,25 @@ provide('selectedTownOption', selectedTownOption);
 provide('CityTownData', CityTownData);
 provide('isChecked', isChecked);
 
+
+
+const isView = ref(false)
 </script>
 
 
 
 <template>
   <div class="cartPage">
-    <div class="container">
+    <div class="cartPage_container">
+
+      <div v-if="isChecked" :class="{ cartPage_subInfo_pa: isChecked }" class="cartPage_subInfo">
+        <titleDot msg="注文情報" />
+        <div class="cartPage_subInfo_checkbox">
+          <input type="checkbox">
+          <label>同じ会員情報</label>
+        </div>
+        <cartPage_subInfo />
+      </div>
       <div class="cartPage_subInfo">
         <titleDot msg="注文情報" />
         <div class="cartPage_subInfo_checkbox">
@@ -186,6 +199,8 @@ provide('isChecked', isChecked);
         </div>
         <cartPage_subInfo />
       </div>
+
+
       <div class="cartPage_Item">
         <titleDot msg="ショッピングカート" />
         <ul class="cartPage_Item_ul">
