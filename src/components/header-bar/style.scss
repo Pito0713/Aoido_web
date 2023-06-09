@@ -42,7 +42,7 @@
   animation: showCycle-pop 0.5s cubic-bezier(0.45, 0.000, 0.75, 0.75) both;
   background: no-repeat url(../../assets/cycle.svg)  var(--header-background-color);
   position: absolute;
-  transition: all 1s ease;
+  transition: all 0.75s ease;
   top: -30px;
   width: 60px;
   height: 60px;

@@ -3,20 +3,15 @@ import { MENU_LIST } from '../../configs/site'
 import { useRouter } from 'vue-router'
 import { ref, reactive, onMounted, onUnmounted, watch, onUpdated } from 'vue'
 const router = useRouter()
-// const aaa = ref({ left: '20px' })
 const localCycle = ref({ left: '-100%' })
-
-
 const spppp = (e) => {
   localCycle.value = e
 }
-
 
 onUpdated(() => {
   let target = MENU_LIST.filter((e) => { return e.route === router.currentRoute.value.fullPath })
   localCycle.value = target[0].style
 })
-
 
 
 </script>
@@ -34,8 +29,7 @@ onUpdated(() => {
 
         </router-link>
       </li>
-      <div class="showCycle" :style="localCycle">
-      </div>
+      <div class="showCycle" :style="localCycle"></div>
     </div>
   </ul>
 </template>
