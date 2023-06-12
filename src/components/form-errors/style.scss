@@ -1,0 +1,11 @@
+.form-errors {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-size: .8125rem;
+  line-height: 2;
+  list-style: disc;
+  list-style-position: inside;
+  color: var(--error-color)
+}

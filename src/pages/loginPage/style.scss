@@ -1,0 +1,93 @@
+@use "sass:math";
+
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  cursor: pointer;
+
+  .loginPage_content {
+    display: flex;
+    height: 2rem;
+    margin: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .loginPage_text {
+    margin-right: 10px;
+  }
+
+  .loginPage_input {
+    width: 150px;
+    height: 2rem;
+  }
+
+  .loginPage_button_group {
+    margin: 10px;
+  }
+
+  .loginPage_button {
+    position: relative;
+    display: block;
+    transition: all 0.1s ease;
+    background-color: var(--bottom-color);
+    padding: 7.5px;
+    margin: 5px;
+    border-radius: 2px;
+  }
+
+  .loginButton {
+    animation: loginButton 0.1s;
+    transform: translate(100px);
+    backface-visibility: hidden;
+  }
+
+}
+
+.createMember {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .createMember_container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+
+    .createMember_container_inputgroup {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      white-space: word-wrap;
+    }
+
+    input {
+      height: 2rem;
+    }
+    a{
+      width: 100px;
+      text-align: center;
+      white-space: word-wrap;
+      padding-right: 10px;
+    }
+  }
+  .createMember_errorMessage {
+    font-size: 0.8rem;
+    margin-top: 8px;
+    color: gray;
+  }
+  .createMember_button {
+    margin-top: 20px;
+    border: 1px gray solid;
+    padding: 5px;
+  }
+}
+
+

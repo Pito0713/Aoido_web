@@ -1,0 +1,26 @@
+.alertBoxPage {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10,10,10,0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  .alertBoxPage_content {
+    background-color: white;
+    width: 225px;
+    height: 100px;
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .alertBoxPage_button_group {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .alertBoxPage_button {
+    margin: 0px 10px;
+  }
+}

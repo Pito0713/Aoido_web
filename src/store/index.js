@@ -1,4 +1,4 @@
-import { createPinia } from "pinia";
+import { createPinia } from 'pinia';
 
 // 創建 pinia
 const pinia = createPinia();

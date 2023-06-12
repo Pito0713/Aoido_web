@@ -1,0 +1,394 @@
+@import "@/configs/share.scss";
+//////////////////////////////////////////////////////////////
+.prodcutPage_container {
+  @include flex-properties(space-between, center);
+  flex-direction: column;
+}
+//////////////////////////////////////////////////////////////
+.prodcutPage_category{
+  @include flex-properties(space-between, center);
+  margin: 10px 20px;
+
+  .prodcutPage_category_container {
+    @include flex-properties(end, center);
+    height: 2rem;
+    width: 150px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  .select_container {
+    background-color: var(--primary-prodcutPageItem-background-color)
+  }
+  .prodcutPage_category_item {
+    margin: 5px 10px;
+  }
+  .prodcutPage_category_img {
+    background-color: var(--primary-prodcutPageItem-background-color);
+    border-radius: 5px;
+  }
+  img {
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+  }
+  input {
+    width: 100%;
+    height: 2rem
+  }
+}
+//////////////////////////////////////////////////////////////
+.prodcutPage_pagination {
+  margin: 10px 0px;
+  width: calc(100% - 20px) ;
+}
+//////////////////////////////////////////////////////////////
+.prodcutPage_Item {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 75vh;
+  border: 1px var(--border-color) solid;
+  border-radius: 20px;
+
+  .prodcutPage_Item_noData {
+    @include flex-properties(center, center);
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width:1441px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and (max-width:1440px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and  (max-width:1024px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and  (max-width:876px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-auto-rows: 375px;
+  }
+}
+@media screen and  (max-width:567px){
+  .prodcutPage_Item {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px,1fr));
+    grid-auto-rows: 375px;
+  }
+}
+//////////////////////////////////////////////////////////////
+.prodcutPage_coupon_content {
+  @include relative-block;
+  @include flex-properties(flex-end, flex-start);
+  overflow: hidden;
+  margin: 10px;
+  background-color: var(--primary-prodcutPageItem-background-color);
+  height: calc(100% - 10px);
+  border-radius: 20px;
+  flex-direction: column;
+
+  .prodcutPage_coupon_title {
+    @include relative-block;
+    @include flex-properties(flex-start, flex-end);
+    width: 120px;
+    height: 40px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: rgb(255, 255, 255);
+    margin: 7.5px 7.5px 0px 7.5px;
+    border: 1px black solid;
+
+    &::before {
+      content: "";
+      @include absolute-block;
+      @include flex-properties(flex-start, flex-end);
+      border-radius: 10px 10px 0px 0px;
+      margin: 7.5px 7.5px 0px 7.5px;
+      background-color: rgb(221, 221, 221);
+      width: 105px;
+      height: 42.5px;
+      left: 0;
+      top: 0px;
+      z-index: 2;
+    }
+
+    .prodcutPage_coupon_title_text {
+      @include absolute-block;
+      font-size: 2rem;
+      z-index: 2;
+      top: 15px;
+      padding: 0px 15px 0px 15px;
+    }
+  }
+
+  .prodcutPage_coupon_container {
+    @include relative-block;
+    width: calc(100% - 15px);
+    height: 90px;
+    transition: all 0.25s linear;
+    transition-timing-function: cubic-bezier(.15,.5,.5,.5);
+    margin: 0px 7.5px 7.5px 7.5px;
+    border-radius: 0px 10px 10px 10px;
+    border: 1px black solid;
+    background-color: rgb(255, 255, 255);
+
+    &::before {
+      content: "";
+      @include absolute-block;
+      border-radius: 0px 10px 10px 10px;
+      background-color: rgb(221, 221, 221);
+      width: calc(100% - 15px);
+      height: 75px;
+      margin: 7.5px 7.5px 0px 7.5px;
+      top: 0px;
+    }
+  }
+
+  .prodcutPage_coupon_container:hover {
+    height: 150px;
+  }
+
+  .prodcutPage_coupon_info {
+    @include relative-block;
+  }
+
+  .prodcutPage_coupon_waves {
+    @include absolute-block;
+    width: 975px;
+    height:  1000px;
+    top: -15px;
+    left: -155%;
+  }
+  @media screen and  (max-width:432px){
+    .prodcutPage_coupon_waves {
+      @include absolute-block;
+      width: 975px;
+      height:  1000px;
+      top: -25px;
+      left: -120%;
+    }
+  }
+
+  .prodcutPage_coupon_img {
+    @include absolute-block;
+    top:7.5px;
+    left: 7.5px;
+    border-radius: 15px;
+    background-color: rgb(148, 148, 148);
+    border: 1px solid black;
+    width: calc(100% - 15px);
+    height: calc(100% - 15px);
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .prodcutPage_coupon_describe {
+    @include flex-properties(flex-start, flex-start);
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .prodcutPage_coupon_text {
+    @include flex-properties(space-between, center);
+    width: calc(100% - 30px);
+    padding: 5px 15px 0px 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .prodcutPage_coupon_describe_text {
+    padding: 5px 15px 0px 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .prodcutPage_coupon_button {
+    @include relative-block;
+    padding: 5px;
+    width: 75px;
+    background-color: var(--bottom-color);
+    border-radius: 5px;
+    z-index: 2;
+    a {
+      color: var(--bottom-text-color);
+    }
+  }
+
+}
+//////////////////////////////////////////////////////////////
+.accordion_content {
+  @include relative-block;
+  @include flex-properties(space-between, center);
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease-in-out;
+
+  .accordion_content_info {
+    @include relative-block;
+    @include flex-properties(space-between, center);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 30px);
+    margin: 5px 15px 0px 15px;
+  }
+
+  .accordion_content_info_text {
+    @include relative-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    width: calc(100% - 115px);
+  }
+
+  .accordion_content_button {
+    @include relative-block;
+    @include flex-properties(center, center);
+    padding: 5px;
+    height: 30px;
+    width:100px;
+    background-color: var(--bottom-color);
+    border-radius: 5px;
+    z-index: 2;
+    a {
+      color: var(--bottom-text-color);
+    }
+  }
+}
+
+.prodcutPage_coupon_container:hover > .accordion_content {
+  @include relative-block;
+  visibility: visible;
+  opacity: 1;
+
+  &::before {
+    content: "";
+    @include absolute-block;
+    border-radius: 0px 0px 10px 10px;
+    background-color: rgb(221, 221, 221);
+    width: calc(100% - 15px);
+    height: 72.5px;
+    margin: 7.5px 7.5px 0px 7.5px;
+    top: -10px;
+    transition: background-color 0.25s ease;
+  }
+}
+
+.prodcutPage_coupon_content:hover {
+  animation: shadow-pop-br 0.25s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+@keyframes shadow-pop-br {
+  0% {
+    box-shadow: 0 0 var(--box-shadow), 0 0 var(--box-shadow), 0 0 var(--box-shadow), 0 0 var(--box-shadow), 0 0 var(--box-shadow);
+  }
+  100% {
+    box-shadow: 1px 1px 1px var(--box-shadow), 2px 2px 2px  var(--box-shadow), 3px 3px 3px var(--box-shadow), 4px 4px 4px var(--box-shadow), 5px 5px 5px var(--box-shadow);
+  }
+}
+
+.prodcutPage_Detail {
+  @include relative-block;
+  @include flex-properties(center, center);
+  flex-direction: column;
+
+  .prodcutPage_Detail_img {
+    @include relative-block;
+    @include flex-properties(center, center);
+    border: 1px gray solid;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+  }
+
+  .prodcutPage_Detail_Container {
+    @include relative-block;
+    @include flex-properties(space-between, center);
+    padding-left: 25px;
+  }
+
+  .prodcutPage_Detail_Content {
+    @include relative-block;
+    @include flex-properties(flex-start, flex-start);
+    flex-direction: column;
+    margin: 25px;
+    width: 300px;
+  }
+  .prodcutPage_Detail_count {
+    width: 30px;
+    text-align: center;
+  }
+
+  .prodcutPage_Detail_buttonGroup {
+    @include relative-block;
+    @include flex-properties(center, center);
+    padding: 10px;
+  }
+
+  .prodcutPage_Detail_button {
+    border: 1px gray solid;
+    @include relative-block;
+    @include flex-properties(center, center);
+    padding: 10px;
+  }
+  .prodcutPage_Detail_buttonImg {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+  }
+  .prodcutPage_Detail_Text {
+    display: flex;
+    a {
+      margin: 5px;
+    }
+  }
+}
+
+@media screen and  (max-width:769px){
+  .prodcutPage_Detail_Container {
+    flex-direction: column;
+  }
+}
+
+
+  // .waves_one {
+  //   background: linear-gradient(60deg, rgb(255, 255, 255) 0%,rgb(219, 219, 219)) 100%;
+  //   transition-timing-function: cubic-bezier(.15,.5,.5,.5);
+  //   animation: rotate 7500ms infinite linear;
+  //   border-radius: 45%;
+  // }
+  // @keyframes rotate {
+  //   0%{
+  //     transform: rotate(0deg);
+  //   }
+  //   100%{
+  //     transform: rotate(360deg);
+  //   }
+  // }
+

@@ -1,20 +1,38 @@
-import { defineStore } from "pinia";
-import Cookies from "js-cookie";
+import { defineStore } from 'pinia';
 
-export const useStore = defineStore("Main", {
+export const useStore = defineStore('Main', {
   state: () => ({
-    APILoading: false,
-    counter: Cookies.get("counter") ? Cookies.get("counter") : 1,
+    isAlertBoxComfirm: false,
+    AlertMessage: '',
+
+    isCheckLogin: false,
+    isloading: false,
+
+    isNotification: false,
+    NotificationMessage: '',
   }),
   getters: {},
-  actions: {},
   actions: {
-    increment() {
-      this.counter++;
-      Cookies.set("counter", this.counter);
+    isAlertBoxComfirmChange(e) {
+      this.isAlertBoxComfirm = e;
     },
-    randomizeCounter() {
-      this.counter = Math.round(100 * Math.random());
+    isNotificationChange(e) {
+      this.isNotification = e;
+      setTimeout(() => {
+        this.isNotification = !e;
+      }, 2000);
+    },
+    AlertMessageChange(e) {
+      this.AlertMessage = e;
+    },
+    NotificationMessageChange(e) {
+      this.NotificationMessage = e;
+    },
+    isCheckLoginChange(e) {
+      this.isCheckLogin = e;
+    },
+    isloadingChange(e) {
+      this.isloading = e;
     },
   },
 });

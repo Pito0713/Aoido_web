@@ -1,0 +1,25 @@
+.homePage_carousel_container {
+  display: block;
+  overflow: hidden;
+  transition: all 1s ease;
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.homePage_carousel_itemContainer {
+  position: absolute;
+  display: block;
+  border: 1px gray solid;
+  width: 100%;
+  transition: all 1s ease;
+  height: 100%;
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+}

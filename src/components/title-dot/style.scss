@@ -1,0 +1,17 @@
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  .titleText {
+    font-size: 1.5rem;
+  }
+}
+
+.TitleDot {
+  width: 5px;
+  height: 5px;
+  background-color: black;
+  display: block;
+  margin: 0px 20px 0px 20px;
+}

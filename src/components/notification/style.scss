@@ -1,0 +1,18 @@
+.notificationPage {
+  border: 1px gray solid;
+  width: 200px;
+  height: 45px;
+  display: block;
+  position: fixed;
+  top: 55px;
+  right: -205px;
+  transition: all 1s ease;
+  z-index: 500;
+  background-color: white;
+}
+
+.route {
+  animation: route 1s;
+  transform:  translate(-205px);
+  backface-visibility: hidden;
+}
