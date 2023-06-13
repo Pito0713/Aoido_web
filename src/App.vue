@@ -11,7 +11,7 @@ const { isAlertBoxComfirm, isloading, isNotification } = storeToRefs(store);
 </script>
 
 <template>
-  <div class="app">
+  <div>
     <template v-if="isloading">
       <loadingPage />
     </template>

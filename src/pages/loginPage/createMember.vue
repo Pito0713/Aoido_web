@@ -31,8 +31,8 @@ const CityTownData = reactive({
   City: '',
   Town: '',
 });
-const selectedCityOption = ref('')
-const selectedTownOption = ref('')
+const selectedCityOption = ref('臺北市')
+const selectedTownOption = ref('中正區')
 
 import { useForm } from 'vee-validate';
 const router = useRouter()
@@ -85,7 +85,7 @@ onMounted(() => {
 
         <Field name="account" v-model="userList.account" rules="account" v-slot="{ field }">
           <label class="createMember_container">
-            <a>アカウント(必須入力):</a>
+            <a class="createMember_text">アカウント(必須):</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
               <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="account" />
@@ -95,7 +95,7 @@ onMounted(() => {
 
         <Field name="password" v-model="userList.password" rules="password" v-slot="{ field }">
           <label class="createMember_container">
-            <a>パスワード(必須入力):</a>
+            <a class="createMember_text">パスワード(必須):</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
               <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="password" />
@@ -105,15 +105,17 @@ onMounted(() => {
 
         <Field name="birth" label="birth" v-model="userList.birth">
           <label class="createMember_container">
-            <a>誕生日:</a>
-            <DatePicker v-model="userList.birth" style="width: 175px; height: 2rem;"></DatePicker>
+            <a class="createMember_text">誕生日:</a>
+            <div class="createMember_container_inputgroup">
+              <DatePicker v-model="userList.birth" style="width: 175px; height: 2rem;"></DatePicker>
+            </div>
           </label>
           <ErrorMessage v-if="errors" :errors="errors" name="birth" />
         </Field>
 
         <Field name="mail" v-model="userList.mail" rules="email" v-slot="{ field }">
           <label class="createMember_container">
-            <a>ポスト(必須入力):</a>
+            <a class="createMember_text">ポスト(必須):</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
               <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="mail" />
@@ -123,7 +125,7 @@ onMounted(() => {
 
         <Field name="phone" v-model="userList.phone" rules="phone" v-slot="{ field }">
           <label class="createMember_container">
-            <a>電話(必須入力):</a>
+            <a class="createMember_text">電話(必須):</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
               <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="phone" />
@@ -133,7 +135,7 @@ onMounted(() => {
 
         <Field name="uesrName" v-model="userList.uesrName" v-slot="{ field }">
           <label class="createMember_container">
-            <a>ニックネーム:</a>
+            <a class="createMember_text">ニックネーム:</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
             </div>
@@ -142,15 +144,15 @@ onMounted(() => {
 
         <Field name="City" v-slot="{ field }">
           <label class="createMember_container">
-            <a>県/町村:</a>
-            <div>
-              <select style="width: 65px; height: 2rem;" v-model="selectedCityOption">
+            <a class="createMember_text">県/町村:</a>
+            <div class="createMember_container_inputgroup" style="flex-direction: row;">
+              <select class="createMember_select" v-model="selectedCityOption">
                 <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
                   {{ option }}
                 </option>
               </select>
-              <a> / </a>
-              <select style="width: 65px; height: 2rem;" v-model="selectedTownOption">
+              <a style="font-size: 1.5rem; margin: 0px 10px;"> / </a>
+              <select class="createMember_select" v-model="selectedTownOption">
                 <option v-for="(option, index) in CityTownData.Town" :key="index" :value="option">
                   {{ option }}
                 </option>
@@ -161,16 +163,14 @@ onMounted(() => {
 
         <Field name="addres" v-model="userList.addres" v-slot="{ field }">
           <label class="createMember_container">
-            <a>住所:</a>
+            <a class="createMember_text">住所:</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
             </div>
           </label>
         </Field>
 
-        <div class="createMember_button">
-          <button type="button" @click="onSubmit()">登録</button>
-        </div>
+        <button class="createMember_button" type="button" @click="onSubmit()">登録</button>
       </div>
 
     </form>

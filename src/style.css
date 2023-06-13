@@ -8,13 +8,19 @@
   -webkit-text-size-adjust: 100%;
 
   --text-color:#2f312e;
-  --border-color:#757a75;
-  --primary-color:#b3b3b3;
   --title-color:#d08c60;
-  --bottom-color:#868686;
-  --bottom-text-color:#fafafa;
-  --background-color:#fbfbfb;
+  --primary-color:#b3b3b3;
 
+  --border-color:#2a2a2a;
+  --primary-border-color:#f7f7f7;
+  --active-border-color:#ffffff;
+
+
+  --botton-color:#f0f0f0;
+  --active-botton-color: #f9f9f9;
+  --botton-text-color:#fafafa;
+
+  --background-color:#fbfbfb;
   --header-background-color: #d0d0d0;
 
   --primary-chartPage-background-color:#fbfbfb;
@@ -73,13 +79,24 @@ ol {
 input {
   border: 0px;
   border-bottom: 1px #2f312e  solid;
+  background-color: transparent;
+}
+input:focus {
+  outline: none;
 }
 
 button {
   padding: 0;
   margin: 0;
   background-color: transparent;
-  border: 0px;
+  border: 0px ;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+select {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
 }
 
 @media (min-width:576px){

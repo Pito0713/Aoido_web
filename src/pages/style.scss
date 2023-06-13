@@ -4,13 +4,14 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 80vh;
+  // background: linear-gradient(to top, #ffffff, #cbcbcb);
+
+
   .content {
     width: 100%;
     display: block;
     position: relative;
-    margin-bottom: 70px;
-    margin-top: 57px;
     .view {
       display: block;
       position: relative;
