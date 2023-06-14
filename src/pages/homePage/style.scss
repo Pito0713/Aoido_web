@@ -1,19 +1,60 @@
+@import "@/configs/share.scss";
 .homePage_carousel_container {
-  display: block;
-  overflow: hidden;
-  transition: all 1s ease;
+  @include flex-properties(center, center);
   position: relative;
-  height: 300px;
-  width: 100%;
+  height: 350px;
+  transition: all 1s ease;
+  overflow: hidden;
+
+  .homePage_carousel_itemContainer {
+    @include absolute-block ;
+    transition: all 1s ease;
+    height: 350px;
+  }
+
+  .homePage_carousel_img {
+    border: 1px gray solid;
+    @include flex-properties(center, center);
+    height: calc(100% - 40px);
+    border-radius: 15px;
+    margin: 20px;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
 
-.homePage_carousel_itemContainer {
-  position: absolute;
-  display: block;
-  border: 1px gray solid;
-  width: 100%;
-  transition: all 1s ease;
-  height: 100%;
+@media(min-width:1441px){
+  .homePage_carousel_itemContainer {
+    width: 1440px;
+  }
+}
+@media (max-width:1440px){
+  .homePage_carousel_itemContainer {
+    width: 1024px;
+  }
+}
+@media  (max-width:1024px){
+  .homePage_carousel_itemContainer {
+    width: 768px;
+  }
+}
+@media (max-width:769px){
+  .homePage_carousel_itemContainer {
+    width: 576px;
+  }
+}
+@media (max-width:576px){
+  .homePage_carousel_itemContainer {
+    width: 432px
+  }
+}
+
+@media (max-width:432px){
+  .homePage_carousel_itemContainer {
+    width: 100%
+  }
 }
 
 .slide-enter-from {

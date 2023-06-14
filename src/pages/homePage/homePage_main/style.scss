@@ -1,81 +1,150 @@
+@import "@/configs/share.scss";
+
 .homePage_main{
-  display: block;
-  position: relative;
+  @include relative-block;
   text-align: center;
 }
 
 .homePage_main_prouduct {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  @include flex-properties(center, center);
+  flex-direction: column;
+
   margin: 20px;
-}
-
-.homePage_main_title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.homePage_main_about {
-  display: flex;
-  margin: 20px;
-}
-
-.TitleDot {
-  width: 5px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  margin: 25px;
+  width: calc(100% - 40px);
 }
 
 
 .homePage_main_prouduct_describe {
-  flex:  1;
-  .homePage_main_prouduct_describe_category {
-    display: flex;
-    margin-bottom: 20px;
-    justify-content: center;
-    div {
-      border-right: 1px gray solid;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-    div:last-child {
-      border-right: 0px gray solid;
-    }
-  }
   .homePage_main_prouduct_describe_container {
-    display: flex;
-    border: 1px gray solid;
+    @include flex-properties(center, center);
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
   }
   .homePage_main_prouduct_describe_container_item {
     border: 1px gray solid;
-    height: 125px;
-    width: 40%;
+    border-radius: 10px;
+    height: 200px;
+    width: 200px;
     margin: 10px;
     > div {
       height: 75%;
       margin: 0;
-      border: 1px gray solid;
+      border-bottom: 1px gray solid;
     }
   }
 }
 
 .homePage_main_prouduct_item {
-  display: block;
-  flex:  1;
+  @include relative-block;
+  width: calc(100% - 100px);
   margin: 20px;
+  height: 350px;
+  border: 1px gray solid;
+  border-radius: 20px;
   div {
+    @include flex-properties(center, center);
     border: 1px gray solid;
-    // height: 100%;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  img {
+    height: 20px;
+    width: 20px;
   }
 }
 
-.homePage_main_about_content {
-  border: 1px gray solid;
+.homePage_main_about {
+  @include flex-properties(center, center);
+  margin: 20px;
+  flex-direction: column;
+  .homePage_main_about_describe {
+    @include relative-block;
+    margin: 20px;
+    width: 100%;
+    div {
+      @include flex-properties(center, center);
+      border: 1px gray solid;
+      height: 120px;
+      border-radius: 10px;
+      margin: 10px;
+    }
+    img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  .homePage_main_about_info {
+    @include relative-block;
+    width: 100%;
+    height: 520px;
+
+    .homePage_main_about_info_container {
+      border: 1px gray solid;
+      margin: 10px;
+      height: 45px;
+      border-radius: 30px;
+      writing-mode: horizontal-tb;
+      text-orientation: mixed;
+      transition: all 0.75s ease;
+    }
+    img {
+      height: 20px;
+      width: 20px;
+    }
+    .route {
+      height: 320px
+    }
+  }
 }
+
+
+
+
+
+@media screen and (min-width:756px)  {
+  .homePage_main_prouduct {
+    @include flex-properties(center, flex-start);
+    flex-direction: row;
+  }
+  .homePage_main_prouduct_describe {
+    width: 50%;
+    .homePage_main_prouduct_describe_container {
+      @include flex-properties(flex-start, center);
+    }
+  }
+  .homePage_main_prouduct_item {
+    
+    width: 50%;
+  }
+  .homePage_main_about {
+    flex-direction: row;
+    @include flex-properties(flex-start, flex-start);
+    .homePage_main_about_describe {
+      width: 50%;
+    }
+    .homePage_main_about_info {
+      width: 50%;
+      @include flex-properties(flex-start, center);
+      height: 300px;
+      .homePage_main_about_info_container {
+        width: 45px;
+        height: 275px;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+      }
+      .route {
+        width: 400px
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width:756px) and (max-width:1023px) {
+  .homePage_main_prouduct_describe {
+    .homePage_main_prouduct_describe_container_item {
+      height: 150px;
+      width: calc(50% - 25px);
+    }
+  }
+}
+
