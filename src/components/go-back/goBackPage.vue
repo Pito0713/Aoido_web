@@ -11,9 +11,9 @@ const toggle = () => {
 
 <template>
   <div class="goBackPage">
-    <button @click="toggle()">
-      <img class="goBackArrow" src="../../assets/leftArrow.png" />
-    </button>
+    <div @click="toggle()">
+      <img class="goBackArrow" src="../../assets/arrowLeft.svg" />
+    </div>
   </div>
 </template>
 

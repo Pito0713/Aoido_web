@@ -3,12 +3,11 @@ const props = defineProps({
   errors: Object,
   msg: String
 })
-console.log(props.msg)
 </script>
 
 <template>
   <ol v-if="errors.$error" class="form-errors ">
-    <li> {{ props.msg }} </li>
+    <li> {{ props.errors.$errors[0].$message }} </li>
   </ol>
 </template>
 

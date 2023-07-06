@@ -23,7 +23,7 @@ const router = useRouter()
         <router-view />
       </div>
     </div>
-    <headerbar v-if="router.currentRoute.value.path !== ('/loginPage')" class="head" />
+    <headerbar v-if="!['/loginPage', '/createMember'].includes(router.currentRoute.value.path)" class="head" />
   </div>
 </template>
 
