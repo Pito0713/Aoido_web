@@ -7,8 +7,14 @@
   display: $block;
 }
 
+@mixin fixed-block ($fixed: fixed, $block: block) {
+  position: $fixed;
+  display: $block;
+}
+
 @mixin flex-properties ($justify-content, $align-items) {
   display: flex;
+  position: relative;
   justify-content: $justify-content;
   align-items:  $align-items
 }
