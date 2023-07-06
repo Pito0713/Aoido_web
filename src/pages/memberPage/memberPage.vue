@@ -1,5 +1,4 @@
 <script setup>
-import memberPage_title from './memberPage_title.vue';
 import memberPageInfo from './memberPageInfo.vue';
 import memberPageCoupon from './memberPageCoupon.vue';
 import Cookies from 'js-cookie';
@@ -23,7 +22,10 @@ const logOut = () => {
     <titleDot msg='クーポン' />
     <memberPageCoupon></memberPageCoupon>
     <div class="memberPage_logout_button">
-      <button type="button" @click="logOut()">ログアウト</button>
+      <button type="button" @click="logOut()">
+        <a>ログアウト</a>
+        <img style="width: 15px; height: 15px;" src="../../assets/logOut.svg">
+      </button>
     </div>
   </div>
 </template>

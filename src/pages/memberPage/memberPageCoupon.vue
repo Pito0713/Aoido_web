@@ -70,6 +70,10 @@ onMounted(() => {
   <div class="memberPageCoupon_container">
     <template v-for="(item, index) in couponList.data">
       <div class="memberPageCoupon_Item">
+        <template v-if="isFilterId(item.user)">
+          <img class="memberPageCoupon_container_img" src='../../assets/pin.svg'>
+        </template>
+
         <div class=" memberPageCoupon_Item_description">
           <a>{{ item.describe }}</a>
           <a>{{ moment(item.startDate).format('L') }} - {{ moment(item.endDate).format('L') }}</a>
@@ -91,7 +95,6 @@ onMounted(() => {
                 期限切れです
               </button>
             </template>
-
           </template>
         </div>
       </div>

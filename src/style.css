@@ -11,8 +11,8 @@
   --border-color:#757a75;
   --primary-color:#b3b3b3;
   --title-color:#d08c60;
-  --bottom-color:#868686;
-  --bottom-text-color:#fafafa;
+  --bottom-color:#b4b4b4;
+  --bottom-text-color:#2d2d2d;
   --background-color:#fbfbfb;
 
   --header-background-color: #d0d0d0;
@@ -22,6 +22,8 @@
 
   --primary-prodcutPageItem-background-color:#f1f1f1;
   --primary-prodcutPage-select:#f1f1f1;
+
+  --primary-memberPage-border:#1c1c1c;
 
 
   --error-color:#da4040;

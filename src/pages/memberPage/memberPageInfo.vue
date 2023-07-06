@@ -162,13 +162,17 @@ provide('userList', userList);
         </div>
         <input type="file" ref="fileInput" style="display:none;" @change="onFileInputChange" />
       </label>
-      <button class="memberPage_Item_button" @click="uploadFile">{{ `アップロードする変更` }}</button>
-      <button class="memberPage_Item_button" @click="handleClick()">{{ `パスワード変更` }}</button>
+      <button class="memberPage_img_container_button" @click="uploadFile">{{ `アップロードする変更` }}</button>
+      <button class="memberPage_img_container_button" @click="handleClick()">{{ `パスワード変更` }}</button>
     </div>
     <div class="memberPage_Item">
       <form @submit.prevent="onSubmit" class="memberPage_Item_container">
         <div class="memberPage_Item_button_title">
-          <a>かいいん</a>
+          <div class="memberPage_Item_button_title_text">
+            <a>かいいん</a>
+            <img class="memberPage_Item_button_title_img" src="../../assets/info.svg" />
+          </div>
+
           <button class="memberPage_Item_button" type="submit">{{ `変 更` }}</button>
         </div>
 
@@ -197,13 +201,13 @@ provide('userList', userList);
             <a class="memberPage_Item_label">県/町村:</a>
             <div class="memberPage_Item_input">
               <div class="memberPage_Item_select">
-                <select style="width: 65px; height: 2rem;" v-model="selectedCityOption">
+                <select style="width: 65px; height: 2rem; margin: 0px 10px;" v-model="selectedCityOption">
                   <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
                     {{ option }}
                   </option>
                 </select>
                 <a> / </a>
-                <select style="width: 65px; height: 2rem;" v-model="selectedTownOption">
+                <select style="width: 65px; height: 2rem; margin: 0px 10px;" v-model="selectedTownOption">
                   <option v-for="(option, index) in CityTownData.Town" :key="index" :value="option">
                     {{ option }}
                   </option>
