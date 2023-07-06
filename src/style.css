@@ -8,7 +8,7 @@
   -webkit-text-size-adjust: 100%;
 
   --text-color:#2f312e;
-  --border-color:#757a75;
+  --border-color:#4c4c4c;
   --primary-color:#b3b3b3;
   --title-color:#d08c60;
   --bottom-color:#b4b4b4;
@@ -20,7 +20,10 @@
   --primary-chartPage-background-color:#fbfbfb;
 
 
-  --primary-prodcutPageItem-background-color:#f1f1f1;
+  --primary-prodcutPageItem-background-color:#ffffff;
+  --primary-prodcutPageCoupon-background-color:#d8d8d8;
+  --primary-prodcutPageInfo-background-color:#f3f3f3;
+  --prodcutPage-border-color:#1a1a1a;
   --primary-prodcutPage-select:#f1f1f1;
 
   --primary-memberPage-border:#1c1c1c;

@@ -116,10 +116,10 @@ provide('callCategoryFilter', callCategoryFilter);
               <a>価格が高い順</a>
             </template>
           </button>
-          <div style="width: 175px;" class="prodcutPage_category_container">
+          <div style="width: 175px; border: 1px black solid;" class="prodcutPage_category_container">
             <input type="text" v-model="searchText" @keydown.enter="callSearch" />
             <button @click="callSearch">
-              <img class="prodcutPage_category_img" src="../../assets/search.png" />
+              <img class="prodcutPage_category_img" src="../../assets/search.svg" />
             </button>
           </div>
         </div>
@@ -130,10 +130,12 @@ provide('callCategoryFilter', callCategoryFilter);
           <prodcutPage_coupon :data=item />
         </template>
         <template v-else>
-          <div class="prodcutPage_Item_noData">
-            <a>
-              データがありません
-            </a>
+          <div class="prodcutPage_coupon_content">
+            <div class="prodcutPage_Item_noData">
+              <a>
+                データがありません
+              </a>
+            </div>
           </div>
         </template>
       </div>
