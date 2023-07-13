@@ -18,7 +18,7 @@ const routes = [
     meta: { requiresAuth: false },
   },
   {
-    path: '/prodcutPage_Detail/:id',
+    path: '/prodcutPage/prodcutPage_Detail/:id',
     component: () => import('../pages/prodcutPage/prodcutPage_Detail.vue'),
     name: 'prodcutPage_Detail',
     props: true, // 啟用 props
@@ -30,7 +30,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: '/memberPage_handPassWord',
+    path: '/memberPage/memberPage_handPassWord',
     component: () => import('../pages/memberPage/memberPage_handPassWord.vue'),
     name: 'memberPage_handPassWord',
     meta: { requiresAuth: true },

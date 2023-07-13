@@ -210,6 +210,34 @@ class Service {
     return data;
   }
 
+  getFindActiveCarouselImg= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'GET',
+      `http://localhost:8082/findActiveCarouselImg`,
+      '',
+      submitData
+    );
+    return data;
+  }
+  getFindActiveAboutImg= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'GET',
+      `http://localhost:8082/findActiveAboutImg`,
+      '',
+      submitData
+    );
+    return data;
+  }
+  getFindActiveMainImg= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'GET',
+      `http://localhost:8082/findActiveMainImg`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
 }
 
 export default new Service()

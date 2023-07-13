@@ -75,7 +75,6 @@
       .memberPageCoupon_Item_description {
         @include flex-properties(start, start);
         flex-direction: column;
-        z-index: 2;
         a {
           margin: 2.5px
         }
@@ -83,7 +82,6 @@
 
       .memberPageCoupon_Item_button {
         @include flex-properties(center, center);
-        z-index: 2
       }
     }
 

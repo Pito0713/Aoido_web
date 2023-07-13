@@ -1,11 +1,26 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import Service from "@SERVICE/service";
 const List = [
   { item: 'template' },
   { item: 'template' },
   { item: 'template' },
   { item: 'template' },
 ]
+
+const mainPhoto = reactive({
+  data: {},
+});
+const getFindActiveMainImg = async () => {
+  let response = await Service.getFindActiveMainImg();
+  if (response.status === 'success') {
+    mainPhoto.data = response.data
+  }
+}
+
+onMounted(() => {
+  getFindActiveMainImg()
+})
 </script>
 
 <template>
@@ -22,6 +37,7 @@ const List = [
     </div>
     <div class="homePage_main_prouduct_item">
       <div>
+        <img src='../../../assets/archive.png' alt="">
         <a> Specifies the largest possible scale a font can reach when allowFontScaling is enabled. Possible values:</a>
       </div>
     </div>
