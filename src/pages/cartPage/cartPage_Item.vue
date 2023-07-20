@@ -79,7 +79,7 @@ const handleClick = () => {
           </a>
         </div>
         <button @click.stop="deleteCart">
-          <img class="cartPage_Item_img" src="../../assets/plus.png" />
+          <img class="cartPage_Item_img" src="../../assets/trash.svg" />
         </button>
       </div>
       <div class="cartPage_Item_describe">
@@ -91,7 +91,7 @@ const handleClick = () => {
         </div>
         <div class="cartPage_Item_store">
           <button @click.stop="increment">
-            <img class="cartPage_Item_img" src="../../assets/plus.png" />
+            <img class="cartPage_Item_img" src="../../assets/plus.svg" />
           </button>
           <div class="cartPage_Item_Data">
             <a>
@@ -99,7 +99,7 @@ const handleClick = () => {
             </a>
           </div>
           <button @click.stop="decrement">
-            <img class="cartPage_Item_img" src="../../assets/plus.png">
+            <img class="cartPage_Item_img" src="../../assets/minus.svg">
           </button>
         </div>
       </div>

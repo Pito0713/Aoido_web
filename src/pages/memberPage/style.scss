@@ -53,8 +53,8 @@
       @include  absolute-block;
       top: -20px;
       left: -20px;
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
     }
     @keyframes pop {
       0% {
@@ -162,8 +162,9 @@
       width: 100%;
       text-align: center;
       .memberPage_Item_button_title_img {
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
+        margin-left: 5px
       }
       .memberPage_Item_button_title_text {
         @include flex-properties(center, center);
