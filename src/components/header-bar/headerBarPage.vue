@@ -27,8 +27,7 @@ onUpdated(() => {
         <router-link class="nav_items" :to="item.route" :key="index"
           :class="{ nav_items_animation: router.currentRoute.value.fullPath.split('/')[1] === item.name }">
           <div @click="localCycleChange(item.style)">
-            <img v-if="router.currentRoute.value.fullPath !== item.route" class="nav_items_img" :src=item.img alt="" />
-            <img v-else class="nav_items_img" :src=item.activeImg alt="" />
+            <img class="nav_items_img" :src=item.activeImg alt="" />
           </div>
         </router-link>
       </li>
