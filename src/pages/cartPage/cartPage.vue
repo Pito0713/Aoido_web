@@ -183,21 +183,23 @@ const isView = ref(false)
   <div class="cartPage">
     <div class="cartPage_container">
 
-      <div v-if="isChecked" :class="{ cartPage_subInfo_pa: isChecked }" class="cartPage_subInfo">
+      <!-- <div v-if="isChecked" :class="{ cartPage_subInfo_pa: isChecked }" class="cartPage_subInfo">
         <titleDot msg="注文情報" />
         <div class="cartPage_subInfo_checkbox">
           <input type="checkbox">
           <label>同じ会員情報</label>
         </div>
         <cartPage_subInfo />
-      </div>
+      </div> -->
       <div class="cartPage_subInfo">
         <titleDot msg="注文情報" />
-        <div class="cartPage_subInfo_checkbox">
-          <input type="checkbox" id="checkbox" v-model="isChecked">
-          <label for="checkbox">同じ会員情報</label>
+        <div class="cartPage_subInfo_content">
+          <div class="cartPage_subInfo_checkbox">
+            <input type="checkbox" id="checkbox" v-model="isChecked">
+            <label for="checkbox">同じ会員情報</label>
+          </div>
+          <cartPage_subInfo />
         </div>
-        <cartPage_subInfo />
       </div>
 
 
@@ -214,29 +216,29 @@ const isView = ref(false)
       <div style="margin: 10px 2px;">
         <a style="margin: 10px">クーポン</a>
       </div>
-
-      <template v-if='Object.keys(couponList.data).length > 0'>
-        <template v-for="(item, index) in couponList.data" :key="item.id">
-          <div class="cartPageCheckOut">
-            <input type="radio" :value="item" v-model="selectedOption" />
-            <div>
-              <a>{{ item.describe }}</a>
-              <a style="margin-left: 5px;">¥ {{ item.discount }}</a>
-              <a style="color: gray; font-size: 0.8rem; margin-left: 5px;">{{ moment(item.startDate).format('L') }} - {{
-                moment(item.endDate).format('L')
-              }}</a>
+      <div class="cartPageCoupon_container">
+        <template v-if='Object.keys(couponList.data).length > 0'>
+          <template v-for="(item, index) in couponList.data" :key="item.id">
+            <div class="cartPage_coupon_item">
+              <input type="radio" :value="item" v-model="selectedOption" />
+              <div>
+                <a>{{ item.describe }}</a>
+                <a style="margin-left: 5px;">¥ {{ item.discount }}</a>
+                <a style="color: gray; font-size: 0.8rem; margin-left: 5px;">{{ moment(item.startDate).format('L') }} - {{
+                  moment(item.endDate).format('L')
+                }}</a>
+              </div>
             </div>
+          </template>
+        </template>
+        <template v-else>
+          <div style="margin: 10px 2px;">
+            <a style="margin: 10px">
+              クーポンはありません。
+            </a>
           </div>
         </template>
-      </template>
-      <template v-else>
-        <div style="margin: 10px 2px;">
-          <a style="margin: 10px">
-            クーポンはありません。
-          </a>
-        </div>
-      </template>
-
+      </div>
     </div>
     <div class="cartPage_total">
       <div>
@@ -249,10 +251,13 @@ const isView = ref(false)
           <a class="cartPage_total_titel">{{ selectedOption.describe ? selectedOption.describe : '未使用のクーポン' }}</a>
         </div>
       </div>
-      <div style="display: flex; justify-content: center; align-items: center;">
-        <a class="cartPage_total_titel">ごうけい</a>
-        <a> ¥ </a>
-        <a class="cartPage_total_titel">{{ selectedPriec }}</a>
+      <div class="cartPage_total_groud">
+        <div>
+          <a class="cartPage_total_titel">ごうけい</a>
+          <a> ¥ </a>
+          <a class="cartPage_total_titel">{{ selectedPriec }}</a>
+        </div>
+
         <button class="cartPage_total_button" @click="handleCheckOut()"> お会計</button>
       </div>
 
