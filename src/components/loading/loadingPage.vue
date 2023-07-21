@@ -1,16 +1,11 @@
 <script setup>
-import { useStore } from '../../store/main';
-import { storeToRefs } from 'pinia';
-
-const store = useStore();
-const { isloading } = storeToRefs(store);
-
 </script>
 
 <template>
   <div class="loadingPage">
     <div class="loadingPage_content">
-      <a>loading</a>
+      <a class="loadingPage_content_text">loading</a>
+      <img src='../../assets/loading.svg'>
     </div>
   </div>
 </template>
