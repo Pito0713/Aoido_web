@@ -10,11 +10,11 @@ const localCycleChange = (e) => {
 
 onUpdated(() => {
   let target = MENU_LIST.filter((e) => { return e.name === router.currentRoute.value.fullPath.split("/")[1] })
-
   if (target.length > 0) {
     localCycle.value = target[0].style
+  } else {
+    router.push({ name: 'homePage' });
   }
-  console.log(localCycle.value)
 })
 
 
@@ -30,7 +30,6 @@ onUpdated(() => {
             <img v-if="router.currentRoute.value.fullPath !== item.route" class="nav_items_img" :src=item.img alt="" />
             <img v-else class="nav_items_img" :src=item.activeImg alt="" />
           </div>
-
         </router-link>
       </li>
       <div class="showCycle" :style="localCycle"></div>
