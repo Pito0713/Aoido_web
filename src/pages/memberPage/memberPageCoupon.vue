@@ -79,23 +79,30 @@ onMounted(() => {
           <a>{{ moment(item.startDate).format('L') }} - {{ moment(item.endDate).format('L') }}</a>
         </div>
         <div class="memberPageCoupon_Item_button">
-          <template v-if="isFilterId(item.user)">
+          <template v-if="Number(item.count) <= 0">
             <button :disabled="true">
-              已受け取る
+              終了した
             </button>
           </template>
           <template v-else>
-            <template v-if="currentTime.isBetween(item.startDate, item.endDate)">
-              <button @click="patchUpdateCouponUser(item)">
-                受け取る
+            <template v-if="isFilterId(item.user)">
+              <button :disabled="true">
+                已受け取る
               </button>
             </template>
             <template v-else>
-              <button :disabled="true">
-                期限切れです
-              </button>
-            </template>
-          </template>
+              <template v-if="currentTime.isBetween(item.startDate, item.endDate)">
+                <button @click="patchUpdateCouponUser(item)">
+                  受け取る
+                </button>
+              </template>
+              <template v-else>
+                <button :disabled="true">
+                  期限切れです
+                </button>
+              </template>
+            </template></template>
+
         </div>
       </div>
     </template>

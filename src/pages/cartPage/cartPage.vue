@@ -1,18 +1,19 @@
 <script setup>
 import { ref, onMounted, reactive, watch, provide } from 'vue'
 import Cookies from 'js-cookie';
-import Service from "@SERVICE/service";
+import moment from 'moment';
 import cartPage_Item from './cartPage_Item.vue'
 import cartPage_subInfo from './cartPage_subInfo.vue'
-import titleDot from '../../components/title-dot/title-dot.vue';
-
-import moment from 'moment';
-
-const currentTime = moment();
-
-
+import titleDot from '@COM/title-dot/title-dot.vue';
 import { useStore } from '@STORE/main';
+import Service from "@SERVICE/service";
+
+import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia';
+
+const router = useRouter()
 const store = useStore();
+const { isAlertBoxComfirm } = storeToRefs(store);
 
 const selectedCityOption = ref('臺北市')
 const selectedTownOption = ref('中正區')
@@ -21,11 +22,14 @@ const selectedPriec = ref('');
 const originalselectedPriec = ref('');
 const selectedOption = ref('');
 const isChecked = ref(false)
+const isCheckedOut = ref(false)
+const isView = ref(false)
 const id = ref(Cookies.get('id'))
 
 const cartList = reactive({
   data: {},
 });
+
 const orderListData = reactive({
   uesrName: '',
   city: '',
@@ -33,6 +37,7 @@ const orderListData = reactive({
   addres: '',
   phone: ''
 });
+
 const CountyData = reactive({
   data: {}
 });
@@ -60,26 +65,44 @@ const postCartData = async () => {
   store.isloadingChange(false)
 };
 
-
 const handleCheckOut = async () => {
   let CheckOutList = cartList.data.map(item => { return { id: item._id, count: item.count } })
-
-  store.isloadingChange(true)
   let token = Cookies.get('token')
-  let submitData = {
-    token: token,
-    CheckOutList: CheckOutList,
-    infoData: {
-      uesrName: orderListData.uesrName,
-      addres: orderListData.addres,
-      city: selectedCityOption.value,
-      town: selectedTownOption.value,
-      phone: orderListData.phone
-    }
-  }
-  ////  訂單系統
+  if (
+    ['', null, undefined].includes(orderListData.uesrName) &&
+    ['', null, undefined].includes(orderListData.addres) &&
+    ['', null, undefined].includes(orderListData.phone)) {
+    store.isAlertBoxComfirmChange(true);
+    store.AlertMessageChange('資料未齊全')
+  } else if (CheckOutList.length == 0) {
+    store.isAlertBoxComfirmChange(true);
+    store.AlertMessageChange('購物車沒東西')
+  } else {
+    store.isloadingChange(true)
 
-  store.isloadingChange(false)
+    let submitData = {
+      id: id.value,
+      token: token,
+      CheckOutList: CheckOutList,
+      selectedOption: selectedOption.value.id ? selectedOption.value.id : '',
+      infoData: {
+        uesrName: orderListData.uesrName,
+        addres: orderListData.addres,
+        city: selectedCityOption.value,
+        town: selectedTownOption.value,
+        phone: orderListData.phone
+      }
+    }
+
+    const response = await Service.postCreateOrder(submitData);
+    if (response?.status === 'success') {
+      store.isAlertBoxComfirmChange(true);
+      store.AlertMessageChange('訂單成立')
+      isCheckedOut.value = true;
+    }
+
+    store.isloadingChange(false)
+  }
 }
 
 
@@ -113,23 +136,15 @@ const postUserinfo = async () => {
   }
 }
 
-const postFindAllCoupon = async () => {
-  let token = Cookies.get('token')
+const postFindPersonalCoupon = async () => {
   let submitData = {
-    token: token,
+    id: id.value,
   };
 
   store.isloadingChange(true)
-  const response = await Service.postFindAllCoupon(submitData);
+  const response = await Service.postFindPersonalCoupon(submitData);
   if (response?.status === 'success' && response?.data) {
-    let filterData = response.data.map(item => {
-      let target = item.user.filter((_value) => {
-        return (_value === id.value && currentTime.isBetween(item.startDate, item.endDate))
-      })
-      if (target.length > 0) return item
-      else return null
-    })
-    couponList.data = filterData.filter((item) => item);
+    couponList.data = response.data
   }
 
   store.isloadingChange(false)
@@ -138,6 +153,11 @@ const postFindAllCoupon = async () => {
 const isNegative = (number) => {
   return number < 0;
 }
+
+const toggle = () => {
+  router.go(0);
+}
+
 
 watch(selectedCityOption, (newVal, oldVal) => {
   CityTownData.Town = CountyData.data[selectedCityOption.value]
@@ -160,10 +180,14 @@ watch(selectedOption, (newVal, oldVal) => {
   selectedPriec.value = !isNegative(Number(originalselectedPriec.value) - Number(newVal.discount)) ? Number(originalselectedPriec.value) - Number(newVal.discount) : 0
 });
 
+watch(isAlertBoxComfirm, (newVal, oldVal) => {
+  if (!newVal && isCheckedOut.value) toggle()
+});
+
 onMounted(() => {
   postCartData()
   getCountyItems()
-  postFindAllCoupon()
+  postFindPersonalCoupon()
 });
 
 provide('orderListData', orderListData);
@@ -171,26 +195,11 @@ provide('selectedCityOption', selectedCityOption);
 provide('selectedTownOption', selectedTownOption);
 provide('CityTownData', CityTownData);
 provide('isChecked', isChecked);
-
-
-
-const isView = ref(false)
 </script>
-
-
 
 <template>
   <div class="cartPage">
     <div class="cartPage_container">
-
-      <!-- <div v-if="isChecked" :class="{ cartPage_subInfo_pa: isChecked }" class="cartPage_subInfo">
-        <titleDot msg="注文情報" />
-        <div class="cartPage_subInfo_checkbox">
-          <input type="checkbox">
-          <label>同じ会員情報</label>
-        </div>
-        <cartPage_subInfo />
-      </div> -->
       <div class="cartPage_subInfo">
         <titleDot msg="注文情報" />
         <div class="cartPage_subInfo_content">
@@ -201,8 +210,6 @@ const isView = ref(false)
           <cartPage_subInfo />
         </div>
       </div>
-
-
       <div class="cartPage_Item">
         <titleDot msg="ショッピングカート" />
         <ul class="cartPage_Item_ul">
@@ -257,10 +264,8 @@ const isView = ref(false)
           <a> ¥ </a>
           <a class="cartPage_total_titel">{{ selectedPriec }}</a>
         </div>
-
         <button class="cartPage_total_button" @click="handleCheckOut()"> お会計</button>
       </div>
-
     </div>
   </div>
 </template>
