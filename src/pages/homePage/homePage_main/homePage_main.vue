@@ -7,10 +7,10 @@ import titleDot from '@COM/title-dot/title-dot.vue';
 
 <template>
   <div class="homePage_main">
-    <titleDot msg='template' />
-    <homePage_main_prouduct />
     <titleDot msg='about' />
     <homePage_main_about />
+    <titleDot msg='おすすめ' />
+    <homePage_main_prouduct />
   </div>
 </template>
 

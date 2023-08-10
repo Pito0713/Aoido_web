@@ -2,14 +2,14 @@
 .homePage_carousel_container {
   @include flex-properties(center, center);
   position: relative;
-  height: 350px;
+  height: 450px;
   transition: all 1s ease;
   overflow: hidden;
 
   .homePage_carousel_itemContainer {
     @include absolute-block ;
     transition: all 1s ease;
-    height: 350px;
+    height: 450px;
   }
 
   .homePage_carousel_img {
@@ -17,6 +17,7 @@
     @include flex-properties(center, center);
     height: calc(100% - 40px);
     border-radius: 15px;
+    border-width: 2px;
     margin: 20px;
     overflow: hidden;
   }

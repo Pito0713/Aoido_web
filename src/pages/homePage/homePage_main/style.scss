@@ -7,9 +7,7 @@
 
 .homePage_main_prouduct {
   @include flex-properties(center, center);
-  flex-direction: column;
-
-  margin: 20px;
+  flex-direction: column;  margin: 20px;
   width: calc(100% - 40px);
 }
 
@@ -20,15 +18,20 @@
     flex-wrap: wrap;
   }
   .homePage_main_prouduct_describe_container_item {
-    border: 1px gray solid;
+    border: 2px gray solid;
     border-radius: 10px;
     height: 200px;
     width: 200px;
     margin: 10px;
+    overflow: hidden;
     > div {
-      height: 75%;
       margin: 0;
       border-bottom: 1px gray solid;
+      img{
+        height: 100%;
+        width: 100%;
+
+      }
     }
   }
 }
@@ -49,7 +52,7 @@
   }
   img {
     height: 100%;
-      width: 100%;
+    width: 100%;
   }
 }
 
@@ -77,13 +80,13 @@
   .homePage_main_about_info {
     @include relative-block;
     width: 100%;
-    height: 520px;
+    height: 700px;
 
     .homePage_main_about_info_container {
       border: 1px gray solid;
       margin: 10px;
-      height: 45px;
-      border-radius: 30px;
+      height: 65px;
+      border-radius: 50px;
       writing-mode: horizontal-tb;
       text-orientation: mixed;
       transition: all 0.75s ease;
@@ -94,7 +97,7 @@
       width: 100%;
     }
     .route {
-      height: 320px
+      height: 350px
     }
   }
 }
@@ -105,7 +108,7 @@
 
 @media screen and (min-width:756px)  {
   .homePage_main_prouduct {
-    @include flex-properties(center, flex-start);
+    @include flex-properties(flex-start, flex-start);
     flex-direction: row;
   }
   .homePage_main_prouduct_describe {
@@ -122,20 +125,20 @@
     flex-direction: row;
     @include flex-properties(flex-start, flex-start);
     .homePage_main_about_describe {
-      width: 50%;
+      width: 100%;
     }
     .homePage_main_about_info {
-      width: 50%;
+      width: 100%;
       @include flex-properties(flex-start, center);
-      height: 300px;
+      height: 400px;
       .homePage_main_about_info_container {
-        width: 45px;
-        height: 275px;
+        width: 75px;
+        height: 375px;
         writing-mode: vertical-rl;
         text-orientation: upright;
       }
       .route {
-        width: 400px
+        width: 80%
       }
     }
   }

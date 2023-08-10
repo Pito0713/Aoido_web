@@ -13,7 +13,7 @@ const paginationValue = ref(50)
 const category = ref([])
 const isSort = ref('asc')
 const ProductDataList = reactive({
-  data: {},
+  data: {}
 });
 
 const categoryList = reactive({
@@ -103,27 +103,28 @@ provide('callCategoryFilter', callCategoryFilter);
 
 <template>
   <div class="prodcutPage_container">
-    <div>
-      <div class="prodcutPage_category">
-        <prodcutPage_category />
-        <div>
-          <button style="width: 175px;" class="prodcutPage_category_container" @click="callPriceFilter()">
-            <img src="../../assets/filter.png" />
-            <template v-if="isSort === 'asc'">
-              <a>価格が低い順</a>
-            </template>
-            <template v-else>
-              <a>価格が高い順</a>
-            </template>
-          </button>
-          <div style="width: 175px; border: 1px black solid;" class="prodcutPage_category_container">
-            <input type="text" v-model="searchText" @keydown.enter="callSearch" />
-            <button @click="callSearch">
-              <img class="prodcutPage_category_img" src="../../assets/search.svg" />
+    <div class="prodcutPage_content">
+      <div>
+        <div class="prodcutPage_category">
+          <prodcutPage_category />
+          <div>
+            <button style="" class="prodcutPage_category_container" @click="callPriceFilter()">
+              <img src="../../assets/filter.svg" />
+              <template v-if="isSort === 'asc'">
+                <a>価格が低い順</a>
+              </template>
+              <template v-else>
+                <a>価格が高い順</a>
+              </template>
             </button>
+            <div style=" border: 1px black solid;" class="prodcutPage_category_container">
+              <input type="text" v-model="searchText" @keydown.enter="callSearch" />
+              <button @click="callSearch">
+                <img class="prodcutPage_category_img" src="../../assets/search.svg" />
+              </button>
+            </div>
           </div>
         </div>
-
       </div>
       <div class="prodcutPage_Item">
         <template v-if="ProductDataList?.data?.length > 0" v-for="(item, index) in ProductDataList.data">
@@ -143,8 +144,6 @@ provide('callCategoryFilter', callCategoryFilter);
         <pagination :page="page" @onPageChange="onPageChange" />
       </div>
     </div>
-
-
   </div>
 </template>
 
