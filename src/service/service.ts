@@ -190,6 +190,16 @@ class Service {
     return data;
   }
 
+  postFindPersonalCoupon= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://localhost:8082/findPersonalCoupon`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
   getCountyItems= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
       'get',
@@ -232,6 +242,16 @@ class Service {
     let data = await fetchApi_AuthData(
       'GET',
       `http://localhost:8082/findActiveMainImg`,
+      '',
+      submitData
+    );
+    return data;
+  }
+
+  postCreateOrder= async (submitData: Cargo) => {
+    let data = await fetchApi_AuthData(
+      'POST',
+      `http://localhost:8082/createOrder`,
       '',
       submitData
     );
