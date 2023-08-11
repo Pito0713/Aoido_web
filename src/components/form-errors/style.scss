@@ -1,5 +1,6 @@
+@import "@/configs/share.scss";
 .form-errors {
-  display: block;
+  @include relative-block;
   margin: 0;
   padding: 0;
   width: 100%;

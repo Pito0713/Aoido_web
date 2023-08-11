@@ -1,18 +1,21 @@
+@import "@/configs/share.scss";
 .notificationPage {
-  border: 1px gray solid;
-  width: 200px;
-  height: 45px;
-  display: block;
-  position: fixed;
+  @include  fixed-block;
+  border: 1.5px var(--border-color) solid;
+  border-radius: 5px;
+  width: 220px;
+  height: 35px;
   top: 55px;
-  right: -205px;
+  right: -250px;
   transition: all 1s ease;
-  z-index: 500;
-  background-color: white;
+  z-index: 999;
+  background-color: var(--background-color);
+  font-size: 15px;
+  padding: 10px;
 }
 
 .route {
   animation: route 1s;
-  transform:  translate(-205px);
+  transform:  translate(-250px);
   backface-visibility: hidden;
 }

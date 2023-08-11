@@ -1,7 +1,9 @@
 import axios from 'axios'
+import { useStore } from '@STORE/main';
+const store = useStore();
 
 const requestInterceptor = (config:any) => {
-  //config.timeout = 5000
+  config.timeout = 10000
   return config;
 };
 
@@ -14,6 +16,8 @@ const requestInterceptorError = error => {
 };
 
 const responseInterceptorError = error => {
+  store.isNotificationChange(true);
+  store.NotificationMessageChange(error.response.data?.message)
   return Promise.reject(error);
 };
 
@@ -33,22 +37,38 @@ const fetchApi_AuthData = async (method: string, url: string, params: string | u
     });
     return response.data;
   } catch (error: any) {
-    return error.response.data;
+    return error.response;
   };
 }
-interface register {
+
+interface Userinfo {
   account?: string,
   password?: string,
+  uesrName?: string,
+  birth?: Date | string,
+  mail?: string,
+  phone?: Number | string,
+  addres?: string,
+  city?: string,
+  town?: string,
+  token?: string | null | undefined,
+  oldPassWord?: string | null | undefined,
+  newPassWord?: string | null | undefined,
+  newPassWordAgain?: string | null | undefined,
 }
 
 interface Cargo {
-  id?: string,
-  describe?: string,
-  singNumber?: string,
-  startDate?: Date | string,
-  endDate?: Date | string,
-  remark?: string,
   token?: string | null | undefined,
+  page?: Number | string,
+  pagination?: Number | string,
+  id?: string,
+  count?: Number | string,
+}
+
+interface Coupon {
+  id?: string,
+  token?: string | null | undefined,
+  user?: string,
 }
 
 interface Product {
@@ -56,10 +76,11 @@ interface Product {
   category?: string,
   page?: string,
   pagination?: string,
+  isSort?: boolean,
 }
 
 class Service {
-  postRegister= async (submitData: register) => {
+  postRegister= async (submitData: Userinfo) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/register`,
@@ -69,7 +90,7 @@ class Service {
     return data;
   }
 
-  postLogin = async (submitData: register) => {
+  postLogin = async (submitData: Userinfo) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/login`,
@@ -79,7 +100,7 @@ class Service {
     return data;
   }
 
-  postUserinfo = async (submitData: Cargo) => {
+  postUserinfo = async (submitData: Userinfo) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/userinfo`,
@@ -89,7 +110,7 @@ class Service {
     return data;
   }
 
-  postHandPassWord = async (submitData: Cargo) => {
+  postHandPassWord = async (submitData: Userinfo) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/handPassWord`,
@@ -100,7 +121,7 @@ class Service {
   }
 
 
-  postUploadUser= async (submitData: Cargo) => {
+  postUploadUser= async (submitData: Userinfo) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/uploadUser`,
@@ -110,7 +131,7 @@ class Service {
     return data;
   }
 
-  postUploadUserImage= async (submitData: Cargo) => {
+  postUploadUserImage= async (submitData:any) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/uploadUserImage`,
@@ -130,7 +151,7 @@ class Service {
     return data;
   }
 
-  postProductFilter= async (submitData: Cargo) => {
+  postProductFilter= async (submitData: Product) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/productFilter`,
@@ -172,7 +193,7 @@ class Service {
 
   postDeleteCart= async (submitData: Cargo) => {
     let data = await fetchApi_AuthData(
-      'Delete',
+      'DELETE',
       `http://localhost:8082/deleteCart`,
       '',
       submitData
@@ -180,7 +201,7 @@ class Service {
     return data;
   }
 
-  postFindAllCoupon= async (submitData: Cargo) => {
+  postFindAllCoupon= async (submitData: Coupon) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/findAllCoupon`,
@@ -190,7 +211,7 @@ class Service {
     return data;
   }
 
-  postFindPersonalCoupon= async (submitData: Cargo) => {
+  postFindPersonalCoupon= async (submitData: Coupon) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/findPersonalCoupon`,
@@ -200,7 +221,7 @@ class Service {
     return data;
   }
 
-  getCountyItems= async (submitData: Cargo) => {
+  getCountyItems= async (submitData: any) => {
     let data = await fetchApi_AuthData(
       'get',
       `http://localhost:8082/allCountry`,
@@ -210,7 +231,7 @@ class Service {
     return data;
   }
 
-  patchUpdateCouponUser= async (submitData: Cargo) => {
+  patchUpdateCouponUser= async (submitData: Coupon) => {
     let data = await fetchApi_AuthData(
       'PATCH',
       `http://localhost:8082/updateCouponUser/`,
@@ -220,7 +241,7 @@ class Service {
     return data;
   }
 
-  getFindActiveCarouselImg= async (submitData: Cargo) => {
+  getFindActiveCarouselImg= async (submitData: any) => {
     let data = await fetchApi_AuthData(
       'GET',
       `http://localhost:8082/findActiveCarouselImg`,
@@ -229,7 +250,7 @@ class Service {
     );
     return data;
   }
-  getFindActiveAboutImg= async (submitData: Cargo) => {
+  getFindActiveAboutImg= async (submitData: any) => {
     let data = await fetchApi_AuthData(
       'GET',
       `http://localhost:8082/findActiveAboutImg`,
@@ -238,7 +259,7 @@ class Service {
     );
     return data;
   }
-  getFindActiveMainImg= async (submitData: Cargo) => {
+  getFindActiveMainImg= async (submitData: any) => {
     let data = await fetchApi_AuthData(
       'GET',
       `http://localhost:8082/findActiveMainImg`,
@@ -248,7 +269,7 @@ class Service {
     return data;
   }
 
-  postCreateOrder= async (submitData: Cargo) => {
+  postCreateOrder= async (submitData: any) => {
     let data = await fetchApi_AuthData(
       'POST',
       `http://localhost:8082/createOrder`,

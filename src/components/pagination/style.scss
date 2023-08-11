@@ -1,7 +1,6 @@
+@import "@/configs/share.scss";
 .pagination_container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  @include flex-properties(flex-end, center);
 }
 
 .pagination_Arrow {

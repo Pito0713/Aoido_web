@@ -18,15 +18,16 @@ const state = reactive({
 
 const increment = async () => {
   let token = Cookies.get('token')
-  state.count++;
+
   let submitData = {
     id: props.data._id,
     token: token,
     count: 1
   }
-  let response = await Service.postUploadCart(submitData);
+  let response = await Service.postCreateCart(submitData);
 
   if (response.status === 'success') {
+    state.count++;
     props.refresh()
   }
 }
@@ -37,15 +38,16 @@ const decrement = async () => {
     store.isAlertBoxComfirmChange(true);
     store.AlertMessageChange('少なくとも1つの商品')
   } else {
-    state.count--;
+
     let submitData = {
       id: props.data._id,
       token: token,
       count: -1
     }
-    let response = await Service.postUploadCart(submitData);
+    let response = await Service.postCreateCart(submitData);
 
     if (response.status === 'success') {
+      state.count--;
       props.refresh()
     }
   }

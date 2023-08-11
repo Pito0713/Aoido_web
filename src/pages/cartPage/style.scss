@@ -22,7 +22,7 @@
   border: 2px gray solid;
   border-radius: 5px;
   flex: 5;
-  margin: 10px;
+  margin: 5px;
   text-align: center;
   // animation: shadow-pop-br 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
   .cartPage_Item_contaner {
@@ -39,7 +39,7 @@
   .cartPage_Item_li {
     @include flex-properties(center,center);
     @include relative-block;
-    margin: 0px 15px;
+    margin: 5px 15px;
   }
   .cartPage_Item_content {
     @include relative-block;
@@ -77,7 +77,7 @@
   flex-direction: column;
   border: 2px gray solid;
   border-radius: 5px;
-  margin: 10px;
+  margin: 5px;
   background-color: var(--primary-chartPage-background-color);
   // animation: shadow-pop-br 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 
@@ -159,7 +159,7 @@
   @include flex-properties(space-between,center);
   border: 2px gray solid;
   border-radius: 5px;
-  margin: 2px 10px;
+  margin: 10px 5px 5px 5px;
   .cartPage_total_titel {
     margin: 10px;
   }
@@ -171,6 +171,12 @@
   }
   .cartPage_total_group {
     margin: 10px 2px;
+  }
+}
+
+@media (max-width:576px){
+  .cartPage_total {
+    margin: 5px;
   }
 }
 
@@ -191,7 +197,7 @@
 .cartPageCoupon {
   border: 2px gray solid;
   border-radius: 5px;
-  margin: 2px 10px;
+  margin: 5px;
 }
 .cartPage_coupon_item {
   display: flex;

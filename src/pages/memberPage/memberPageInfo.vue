@@ -74,8 +74,9 @@ const uploadFile = async () => {
 };
 
 const postUploadUser = async () => {
-  store.isloadingChange(true)
+
   let token = Cookies.get('token')
+
   let submitData = {
     uesrName: userList.uesrName,
     birth: userList.birth,
@@ -88,11 +89,18 @@ const postUploadUser = async () => {
     token: token,
   };
 
-  const response = await Service.postUploadUser(submitData);
-  if (response?.status === 'success' && response?.data) {
-    postUserinfo()
+  if (selectedCityOption.value && selectedTownOption.value) {
+    store.isloadingChange(true)
+    const response = await Service.postUploadUser(submitData);
+    if (response?.status === 'success' && response?.data) {
+      postUserinfo()
+    }
+    store.isloadingChange(false)
+  } else {
+    store.isAlertBoxComfirmChange(true);
+    store.AlertMessageChange('資料未齊全')
   }
-  store.isloadingChange(false)
+
 }
 
 const postUserinfo = async () => {
@@ -129,8 +137,9 @@ const handleClick = () => {
   router.push({ name: 'memberPage_handPassWord' });
 }
 
-watch(selectedCityOption, () => {
+watch(selectedCityOption, (newValue, oldValue) => {
   CityTownData.Town = CountyData.data[selectedCityOption.value]
+  if (!['', null, undefined].includes(oldValue) && newValue !== oldValue) selectedTownOption.value = ''
 });
 
 onMounted(() => {

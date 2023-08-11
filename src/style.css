@@ -109,7 +109,7 @@ select {
 @media (min-width:576px){
   .app {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
   }

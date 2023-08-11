@@ -28,13 +28,9 @@ const getFindActiveAboutImg = async () => {
     }
   }
 }
-
-
-
 onMounted(() => {
   getFindActiveAboutImg()
 })
-console.log(mainPhoto)
 </script>
 
 <template>

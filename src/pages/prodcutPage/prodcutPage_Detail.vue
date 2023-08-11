@@ -23,6 +23,7 @@ const decrement = () => {
 const addCart = async () => {
   let token = Cookies.get('token')
   if (!['', null, undefined].includes(token)) {
+
     store.isloadingChange(true)
     let submitData = {
       id: expanded.value._id,
@@ -30,11 +31,12 @@ const addCart = async () => {
       count: count.value
     }
 
-    let response = await Service.postUploadCart(submitData);
+    let response = await Service.postCreateCart(submitData);
 
     if (response?.status === 'success' && response?.data) {
     }
     store.isloadingChange(false)
+
   } else {
     store.isNotificationChange(true);
     store.NotificationMessageChange('ログインしてください。')
@@ -70,32 +72,32 @@ const addCart = async () => {
         <div class="prodcutPage_Detail_Content">
           <div class="prodcutPage_Detail_Text" style="flex-direction: column;">
             <a style="font-size: 2rem;">しょうさい </a>
-            <a style="font-size: 1rem;">{{
-              `「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす。「明日がら」なるす`
-            }}</a>
+            <a style="font-size: 1rem;">{{ expanded.remark }}</a>
           </div>
         </div>
         <div class="prodcutPage_Detail_Content">
           <div class="prodcutPage_Detail_Text">
-            <a style="font-size: 1rem;">価格</a>
-            <a style="font-size: 1.2rem;">¥ {{ expanded.price }}</a>
-          </div>
-          <div class=" prodcutPage_Detail_buttonGroup">
-            <button @click="increment">
-              <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.png" />
-            </button>
-            <div class="prodcutPage_Detail_count">
-              <a>
-                {{ count }}
-              </a>
+            <a style="font-size: 2rem;">価格</a>
+            <a style="font-size: 1.5rem;">¥ {{ expanded.price }}</a>
+            <div class=" prodcutPage_Detail_buttonGroup">
+              <button @click="increment">
+                <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.svg" />
+              </button>
+              <div class="prodcutPage_Detail_count">
+                <a>
+                  {{ count }}
+                </a>
+              </div>
+              <button @click="decrement">
+                <img class="prodcutPage_Detail_buttonImg" src="../../assets/minus.svg">
+              </button>
+
             </div>
-            <button @click="decrement">
-              <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.png">
-            </button>
-            <button class="prodcutPage_Detail_button" @click="addCart()">
-              <a>add cart</a>
-            </button>
           </div>
+
+          <button class="prodcutPage_Detail_button" @click="addCart()">
+            <a>add cart</a>
+          </button>
         </div>
       </div>
     </div>

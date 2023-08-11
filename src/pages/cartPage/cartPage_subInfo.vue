@@ -19,13 +19,13 @@ const isChecked = inject('isChecked');
     <div class="cartPage_subInfo_container">
       <label class="cartPage_subInfo_label">県/町村:</label>
       <div class="cartPage_subInfo_select">
-        <select style="height: 2rem;" v-model="selectedCityOption" :disabled="isChecked">
+        <select style="height: 2rem; margin: 0px 7.5px;" v-model="selectedCityOption" :disabled="isChecked">
           <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
             {{ option }}
           </option>
         </select>
         <a> / </a>
-        <select style="height: 2rem;" v-model="selectedTownOption" :disabled="isChecked">
+        <select style="height: 2rem; margin: 0px 7.5px;" v-model="selectedTownOption" :disabled="isChecked">
           <option v-for="(option, index) in CityTownData.Town" :key="index" :value="option">
             {{ option }}
           </option>

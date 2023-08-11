@@ -7,9 +7,19 @@ const localCycle = ref({ left: '-100%' })
 const localCycleChange = (e) => {
   localCycle.value = e
 }
+onMounted(() => {
+  let target = MENU_LIST.filter((e) => { return e.name === router.currentRoute.value.fullPath.split("/")[1] })
+
+  if (target.length > 0) {
+    localCycle.value = target[0].style
+  } else {
+    router.push({ name: 'homePage' });
+  }
+})
 
 onUpdated(() => {
   let target = MENU_LIST.filter((e) => { return e.name === router.currentRoute.value.fullPath.split("/")[1] })
+
   if (target.length > 0) {
     localCycle.value = target[0].style
   } else {

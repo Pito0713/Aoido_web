@@ -69,8 +69,8 @@ const handleCheckOut = async () => {
   let CheckOutList = cartList.data.map(item => { return { id: item._id, count: item.count } })
   let token = Cookies.get('token')
   if (
-    ['', null, undefined].includes(orderListData.uesrName) &&
-    ['', null, undefined].includes(orderListData.addres) &&
+    ['', null, undefined].includes(orderListData.uesrName) ||
+    ['', null, undefined].includes(orderListData.addres) ||
     ['', null, undefined].includes(orderListData.phone)) {
     store.isAlertBoxComfirmChange(true);
     store.AlertMessageChange('資料未齊全')

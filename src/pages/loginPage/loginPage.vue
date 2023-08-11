@@ -88,9 +88,6 @@ const onLogInCheck = async () => {
       Cookies.set('token', response.data.user.token);
       Cookies.set('id', response.data.user.id);
       router.push('/homePage');
-    } else {
-      store.isNotificationChange(true);
-      store.NotificationMessageChange(response.message)
     }
     store.isloadingChange(false)
   }

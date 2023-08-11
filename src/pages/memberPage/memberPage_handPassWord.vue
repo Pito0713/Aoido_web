@@ -54,7 +54,8 @@ const onSubmit = handleSubmit((e) => {
             <a class="memberPage_handPassWord_label">古いパスワード:</a>
             <div class="memberPage_handPassWord_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage v-if="errors" :errors="errors" name="oldPassWord" />
+              <ErrorMessage class="memberPage_handPassWord_input_text" v-if="errors" :errors="errors"
+                name="oldPassWord" />
             </div>
 
           </label>
@@ -64,7 +65,8 @@ const onSubmit = handleSubmit((e) => {
             <a class="memberPage_handPassWord_label">新しいパスワード: </a>
             <div class="memberPage_handPassWord_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage v-if="errors" :errors="errors" name="newPassWord" />
+              <ErrorMessage class="memberPage_handPassWord_input_text" v-if="errors" :errors="errors"
+                name="newPassWord" />
             </div>
           </label>
         </Field>
@@ -74,7 +76,8 @@ const onSubmit = handleSubmit((e) => {
             <a class="memberPage_handPassWord_label">新しいパスワードをもう一度入力してください:</a>
             <div class="memberPage_handPassWord_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage v-if="errors" :errors="errors" name="newPassWordAgain" />
+              <ErrorMessage class="memberPage_handPassWord_input_text" v-if="errors" :errors="errors"
+                name="newPassWordAgain" />
             </div>
           </label>
         </Field>

@@ -362,10 +362,12 @@
     @include relative-block;
     @include flex-properties(center, center);
     padding: 10px;
+    margin-left: 15px;
   }
 
   .prodcutPage_Detail_button {
     border: 1px gray solid;
+    border-radius: 5px;
     @include relative-block;
     @include flex-properties(center, center);
     padding: 10px;
@@ -377,6 +379,7 @@
   }
   .prodcutPage_Detail_Text {
     display: flex;
+    @include flex-properties(flex-start, center);
     a {
       margin: 5px;
     }
