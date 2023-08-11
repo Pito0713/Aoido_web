@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from './router/index';
 import pinia from './store/index';
 import { Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate';
+import i18n from './i18';
 
 // 設置全局配置
 configure({
@@ -68,6 +69,7 @@ defineRule('confirmed', (value, [target]) => {
 createApp(App)
   .use(router)
   .use(pinia)
+  .use(i18n)
 
   .component('Field', Field)
   .component('Form', Form)
