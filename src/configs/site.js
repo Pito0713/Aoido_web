@@ -1,3 +1,6 @@
+// 預設語言
+export const LANGUAGE_DEFAULT = 'zh-TW';
+
 export const MENU_LIST = [
   {
     code: 1,
