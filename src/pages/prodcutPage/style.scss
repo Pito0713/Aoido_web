@@ -153,7 +153,7 @@
   .prodcutPage_coupon_container {
     @include relative-block;
     width: calc(100% - 18px);
-    height: 95px;
+    height: 65px;
     transition: all 0.25s linear;
     transition-timing-function: cubic-bezier(.15,.5,.5,.5);
     margin: 0px 7.5px 7.5px 7.5px;
@@ -166,7 +166,7 @@
       @include absolute-block;
       border-radius: 0px 10px 10px 10px;
       width: calc(100% - 12px);
-      height: 82.5px;
+      height: 50px;
       margin: 7.5px 7.5px 0px 7.5px;
       top: 0px;
       left: -1px;
@@ -175,11 +175,12 @@
   }
 
   .prodcutPage_coupon_container:hover {
-    height: 150px;
+    height: 100px;
   }
 
   .prodcutPage_coupon_info {
     @include relative-block;
+    margin: 10px 0px 0px 0px;
   }
 
   .prodcutPage_coupon_waves {
@@ -222,14 +223,14 @@
   .prodcutPage_coupon_text {
     @include flex-properties(space-between, center);
     width: calc(100% - 30px);
-    padding: 5px 15px 0px 15px;
+    padding: 0px 15px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
   .prodcutPage_coupon_describe_text {
-    padding: 5px 15px 0px 15px;
+    padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -262,7 +263,7 @@
 
   .accordion_content_info {
     @include relative-block;
-    @include flex-properties(space-between, center);
+    @include flex-properties(flex-end, center);
     overflow: hidden;
     text-overflow: ellipsis;
     width: calc(100% - 30px);
@@ -284,7 +285,7 @@
     @include flex-properties(center, center);
     padding: 5px;
     height: 30px;
-    width:100px;
+    width: 100px;
     background-color: var(--bottom-color);
     border-radius: 5px;
     border: 1px solid var(--prodcutPage-border-color);
@@ -305,9 +306,9 @@
     @include absolute-block;
     border-radius: 0px 0px 10px 10px;
     width: calc(100% - 12px);
-    height: 100.5px;
+    height: 50px;
     margin: 7px 7px 0px 7px;
-    top: -39.5px;
+    top: -20px;
     transition: background-color 0.25s ease;
     background-color: var(--primary-prodcutPageInfo-background-color);
   }
@@ -391,20 +392,3 @@
     flex-direction: column;
   }
 }
-
-
-//   // .waves_one {
-//   //   background: linear-gradient(60deg, rgb(255, 255, 255) 0%,rgb(219, 219, 219)) 100%;
-//   //   transition-timing-function: cubic-bezier(.15,.5,.5,.5);
-//   //   animation: rotate 7500ms infinite linear;
-//   //   border-radius: 45%;
-//   // }
-//   // @keyframes rotate {
-//   //   0%{
-//   //     transform: rotate(0deg);
-//   //   }
-//   //   100%{
-//   //     transform: rotate(360deg);
-//   //   }
-//   // }
-

@@ -78,7 +78,7 @@ const addCart = async () => {
         <div class="prodcutPage_Detail_Content">
           <div class="prodcutPage_Detail_Text">
             <a style="font-size: 2rem;">価格</a>
-            <a style="font-size: 1.5rem;">¥ {{ expanded.price }}</a>
+            <a style="font-size: 1.5rem;">$ {{ expanded.price }}</a>
             <div class=" prodcutPage_Detail_buttonGroup">
               <button @click="increment">
                 <img class="prodcutPage_Detail_buttonImg" src="../../assets/plus.svg" />

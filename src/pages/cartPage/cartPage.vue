@@ -230,7 +230,7 @@ provide('isChecked', isChecked);
               <input type="radio" :value="item" v-model="selectedOption" />
               <div>
                 <a>{{ item.describe }}</a>
-                <a style="margin-left: 5px;">¥ {{ item.discount }}</a>
+                <a style="margin-left: 5px;">$ {{ item.discount }}</a>
                 <a style="color: gray; font-size: 0.8rem; margin-left: 5px;">{{ moment(item.startDate).format('L') }} - {{
                   moment(item.endDate).format('L')
                 }}</a>
@@ -261,7 +261,7 @@ provide('isChecked', isChecked);
       <div class="cartPage_total_groud">
         <div>
           <a class="cartPage_total_titel">ごうけい</a>
-          <a> ¥ </a>
+          <a> $ </a>
           <a class="cartPage_total_titel">{{ selectedPriec }}</a>
         </div>
         <button class="cartPage_total_button" @click="handleCheckOut()"> お会計</button>

@@ -86,7 +86,7 @@ const handleClick = () => {
       </div>
       <div class="cartPage_Item_describe">
         <div class="cartPage_Item_text">
-          <a> ¥ </a>
+          <a> $ </a>
           <a>
             {{ data.price }}
           </a>

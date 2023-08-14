@@ -41,17 +41,14 @@ const handleClick = () => {
     </div>
     <div class="prodcutPage_coupon_title">
       <a class="prodcutPage_coupon_title_text">
-        {{ data.price }}
+        $ {{ data.price }}
       </a>
     </div>
     <div class="prodcutPage_coupon_container">
       <div class="prodcutPage_coupon_info">
         <div class="prodcutPage_coupon_describe">
-          <div>
-            <a class="prodcutPage_coupon_describe_text" style="font-size: 1.8rem;"> {{ data.describe }} </a>
-          </div>
           <div class="prodcutPage_coupon_text">
-            <a style="font-size: 1.5rem;"> {{ data.category }} </a>
+            <a class="prodcutPage_coupon_describe_text" style="font-size: 1.8rem;"> {{ data.describe }} </a>
             <div>
               <button class="prodcutPage_coupon_button" @click="addCart(data)">
                 <a>
@@ -64,7 +61,6 @@ const handleClick = () => {
       </div>
       <div class="accordion_content">
         <div class="accordion_content_info">
-          <a class="accordion_content_info_text">びこう: {{ data.remark }}</a>
           <button class="accordion_content_button" @click="handleClick()">
             <a>
               しょうさい
