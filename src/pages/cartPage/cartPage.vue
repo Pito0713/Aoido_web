@@ -201,17 +201,17 @@ provide('isChecked', isChecked);
   <div class="cartPage">
     <div class="cartPage_container">
       <div class="cartPage_subInfo">
-        <titleDot msg="注文情報" />
+        <titleDot msg="會員資料" />
         <div class="cartPage_subInfo_content">
           <div class="cartPage_subInfo_checkbox">
             <input type="checkbox" id="checkbox" v-model="isChecked">
-            <label for="checkbox">同じ会員情報</label>
+            <label for="checkbox">{{ $t('同會員資料') }}</label>
           </div>
           <cartPage_subInfo />
         </div>
       </div>
       <div class="cartPage_Item">
-        <titleDot msg="ショッピングカート" />
+        <titleDot msg="購物車" />
         <ul class="cartPage_Item_ul">
           <li class="cartPage_Item_li" v-for=" (item, index) in cartList.data" :key="item._id">
             <cartPage_Item :data=item :refresh="() => postCartData()" />
@@ -221,7 +221,7 @@ provide('isChecked', isChecked);
     </div>
     <div class="cartPageCoupon">
       <div style="margin: 10px 2px;">
-        <a style="margin: 10px">クーポン</a>
+        <a style="margin: 10px">{{ $t('優惠卷') }}</a>
       </div>
       <div class="cartPageCoupon_container">
         <template v-if='Object.keys(couponList.data).length > 0'>
@@ -241,7 +241,7 @@ provide('isChecked', isChecked);
         <template v-else>
           <div style="margin: 10px 2px;">
             <a style="margin: 10px">
-              クーポンはありません。
+              {{ $t('沒有優惠卷') }}
             </a>
           </div>
         </template>
@@ -250,21 +250,21 @@ provide('isChecked', isChecked);
     <div class="cartPage_total">
       <div>
         <div class="cartPage_total_group">
-          <a class="cartPage_total_titel">選択した商品</a>
+          <a class="cartPage_total_titel">{{ $t('選的商品') }}</a>
           <a class="cartPage_total_titel">{{ cartList.data.length }}</a>
         </div>
         <div class="cartPage_total_group">
-          <a v-if="selectedOption.describe" class="cartPage_total_titel">クーポンを使用する</a>
-          <a class="cartPage_total_titel">{{ selectedOption.describe ? selectedOption.describe : '未使用のクーポン' }}</a>
+          <a v-if="selectedOption.describe" class="cartPage_total_titel">{{ $t('使用優惠卷') }}</a>
+          <a class="cartPage_total_titel">{{ selectedOption.describe ? selectedOption.describe : $t('未使用優惠卷') }}</a>
         </div>
       </div>
       <div class="cartPage_total_groud">
         <div>
-          <a class="cartPage_total_titel">ごうけい</a>
+          <a class="cartPage_total_titel">{{ $t('合計金額') }}</a>
           <a> ¥ </a>
           <a class="cartPage_total_titel">{{ selectedPriec }}</a>
         </div>
-        <button class="cartPage_total_button" @click="handleCheckOut()"> お会計</button>
+        <button class="cartPage_total_button" @click="handleCheckOut()">{{ $t('結帳') }}</button>
       </div>
     </div>
   </div>

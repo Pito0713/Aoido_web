@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onMounted, reactive, watch, provide } from 'vue'
 import { useRouter } from 'vue-router'
-import Cookies from 'js-cookie';
+import { useForm } from 'vee-validate';
 import DatePicker from 'vue3-datepicker';
+import Cookies from 'js-cookie';
+
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
-import { useForm } from 'vee-validate';
+import { LANGUAGE_LIST } from '../../configs/site'
 
 const { handleSubmit, form, errors } = useForm()
 const store = useStore();
@@ -36,6 +38,7 @@ const fileData = ref(null);
 const imagePreviewUrl = ref(null);
 const selectedCityOption = ref('')
 const selectedTownOption = ref('')
+const selectedlanguage = ref(Cookies.get('language'))
 
 const onSubmit = handleSubmit((e) => {
   postUploadUser()
@@ -54,7 +57,7 @@ const onFileInputChange = (event) => {
     imagePreviewUrl.value = null;
     fileData.value = null;
     store.isAlertBoxComfirmChange(true);
-    store.AlertMessageChange('画像形式はサポートされていません。')
+    store.AlertMessageChange('圖像不支援')
   }
 };
 
@@ -74,7 +77,6 @@ const uploadFile = async () => {
 };
 
 const postUploadUser = async () => {
-
   let token = Cookies.get('token')
 
   let submitData = {
@@ -142,6 +144,14 @@ watch(selectedCityOption, (newValue, oldValue) => {
   if (!['', null, undefined].includes(oldValue) && newValue !== oldValue) selectedTownOption.value = ''
 });
 
+watch(selectedlanguage, (newValue, oldValue) => {
+  console.log(oldValue)
+  console.log(newValue)
+  if (!['', null, undefined].includes(oldValue) && newValue !== oldValue) {
+    store.defaultLanguageChange(newValue)
+  }
+});
+
 onMounted(() => {
   postUserinfo()
   getCountyItems()
@@ -164,50 +174,55 @@ provide('userList', userList);
               <img :src="userList.photo" />
             </template>
             <template v-else>
-              <img :src="imagePreviewUrl" v-if="imagePreviewUrl" />
+              <img style="width: 40px;" src="../../assets/plus.svg" />
             </template>
-
           </template>
         </div>
         <input type="file" ref="fileInput" style="display:none;" @change="onFileInputChange" />
       </label>
-      <button class="memberPage_img_container_button" @click="uploadFile">{{ `アップロードする変更` }}</button>
-      <button class="memberPage_img_container_button" @click="handleClick()">{{ `パスワード変更` }}</button>
+      <div class="memberPage_img_container_group">
+        <button class="memberPage_img_container_button" @click="uploadFile">{{ $t('個人圖片變更') }}</button>
+        <button class="memberPage_img_container_button" @click="handleClick()">{{ $t('密碼變更') }}</button>
+      </div>
     </div>
     <div class="memberPage_Item">
       <form @submit.prevent="onSubmit" class="memberPage_Item_container">
         <div class="memberPage_Item_button_title">
-          <div class="memberPage_Item_button_title_text">
-            <a>かいいん</a>
+          <div class="memberPage_Item_container_group">
             <img class="memberPage_Item_button_title_img" src="../../assets/info.svg" />
+            <select class="memberPage_Item_container_select" v-model="selectedlanguage">
+              <option v-for="(item, index) in LANGUAGE_LIST" :key="index" :value="item.value">
+                {{ item.lang }}
+              </option>
+            </select>
           </div>
-
-          <button class="memberPage_Item_button" type="submit">{{ `変 更` }}</button>
+          <button class="memberPage_Item_button" type="submit">{{ $t('變更') }}</button>
         </div>
 
         <Field name="uesrName" v-model="userList.uesrName" rules="required" v-slot="{ field }">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">なまえ:</a>
+            <a class="memberPage_Item_label">{{ $t('名字') }}:</a>
             <div class="memberPage_Item_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage v-if="errors" :errors="errors" name="uesrName" />
+              <ErrorMessage name="uesrName" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
 
         <Field name="birth" label="birth">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">誕生日:</a>
+            <a class="memberPage_Item_label">{{ $t('生日') }}:</a>
             <div class="memberPage_Item_input">
               <DatePicker v-model="userList.birth" style="width: 170px; height: 2rem; padding-left: 7.5px;"></DatePicker>
-              <ErrorMessage :errors="errors" name="birth" />
             </div>
           </label>
         </Field>
 
         <Field name="phone" label="phone" v-model="userList.phone" v-slot="{ field }">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">県/町村:</a>
+            <a class="memberPage_Item_label">{{ $t('縣市/鄉鎮') }}:</a>
             <div class="memberPage_Item_input">
               <div class="memberPage_Item_select">
                 <select style="width: 65px; height: 2rem; margin: 0px 10px;" v-model="selectedCityOption">
@@ -222,31 +237,30 @@ provide('userList', userList);
                   </option>
                 </select>
               </div>
-              <ErrorMessage v-if="errors" :errors="errors" name="uesrName" />
             </div>
           </label>
         </Field>
 
         <Field name="addres" label="addres" v-model="userList.addres" v-slot="{ field }">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">住所:</a>
+            <a class="memberPage_Item_label">{{ $t('地址') }}:</a>
             <div class="memberPage_Item_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage :errors="errors" name="addres" />
             </div>
           </label>
         </Field>
 
-        <Field name="mail" label="mail" v-model="userList.mail" rules="required|email" v-slot="{ field }">
+        <Field name="mail" label="mail" v-model="userList.mail" rules="required|mail" v-slot="{ field }">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">メールボックス:</a>
+            <a class="memberPage_Item_label">{{ $t('郵箱') }}:</a>
             <div class="memberPage_Item_input">
               <input class="memberPage_Item_input" type="text" v-bind="field" />
-              <ErrorMessage :errors="errors" name="mail" />
+              <ErrorMessage name="mail" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
-
       </form>
     </div>
   </div>

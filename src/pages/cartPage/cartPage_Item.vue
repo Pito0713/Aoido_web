@@ -36,9 +36,8 @@ const decrement = async () => {
   let token = Cookies.get('token')
   if ((state.count) <= 1) {
     store.isAlertBoxComfirmChange(true);
-    store.AlertMessageChange('少なくとも1つの商品')
+    store.AlertMessageChange("商品最少要大於一個。")
   } else {
-
     let submitData = {
       id: props.data._id,
       token: token,

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import Cookies from 'js-cookie';
 
 export const useStore = defineStore('Main', {
   state: () => ({
@@ -10,6 +11,8 @@ export const useStore = defineStore('Main', {
 
     isNotification: false,
     NotificationMessage: '',
+
+    defaultLanguage: 'zh-TW',
   }),
   getters: {},
   actions: {
@@ -33,6 +36,11 @@ export const useStore = defineStore('Main', {
     },
     isloadingChange(e) {
       this.isloading = e;
+    },
+    defaultLanguageChange(e) {
+      Cookies.set('language', e);
+      this.defaultLanguage = e;
+      window.location.reload();
     },
   },
 });

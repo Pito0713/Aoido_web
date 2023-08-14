@@ -39,7 +39,7 @@ const addCart = async () => {
 
   } else {
     store.isNotificationChange(true);
-    store.NotificationMessageChange('ログインしてください。')
+    store.NotificationMessageChange('需先登入')
     router.push('/loginPage');
   }
 }
@@ -59,11 +59,11 @@ const addCart = async () => {
         </div>
         <div class="prodcutPage_Detail_Content">
           <div class="prodcutPage_Detail_Text">
-            <a style="font-size: 1rem;">ぶんるい</a>
+            <a style="font-size: 1rem;">{{ $t('商品分類') }}</a>
             <a style="font-size: 2rem;">{{ expanded.category }}</a>
           </div>
           <div class="prodcutPage_Detail_Text">
-            <a style="font-size: 1rem;">ぶんるい</a>
+            <a style="font-size: 1rem;">{{ $t('商品名稱') }}</a>
             <a style="font-size: 2rem;">{{ expanded.describe }}</a>
           </div>
         </div>
@@ -71,13 +71,13 @@ const addCart = async () => {
       <div class="prodcutPage_Detail_Container">
         <div class="prodcutPage_Detail_Content">
           <div class="prodcutPage_Detail_Text" style="flex-direction: column;">
-            <a style="font-size: 2rem;">しょうさい </a>
+            <a style="font-size: 2rem;">{{ $t('商品詳細') }}</a>
             <a style="font-size: 1rem;">{{ expanded.remark }}</a>
           </div>
         </div>
         <div class="prodcutPage_Detail_Content">
           <div class="prodcutPage_Detail_Text">
-            <a style="font-size: 2rem;">価格</a>
+            <a style="font-size: 2rem;">{{ $t('價格') }}</a>
             <a style="font-size: 1.5rem;">¥ {{ expanded.price }}</a>
             <div class=" prodcutPage_Detail_buttonGroup">
               <button @click="increment">
@@ -96,7 +96,7 @@ const addCart = async () => {
           </div>
 
           <button class="prodcutPage_Detail_button" @click="addCart()">
-            <a>add cart</a>
+            <a>{{ $t('購買') }}</a>
           </button>
         </div>
       </div>

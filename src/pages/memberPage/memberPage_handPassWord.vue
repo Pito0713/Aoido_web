@@ -51,39 +51,41 @@ const onSubmit = handleSubmit((e) => {
       <div class="memberPage_handPassWord_container">
         <Field name="oldPassWord" v-model="userList.oldPassWord" rules="required" v-slot="{ field }">
           <label class="memberPage_handPassWord_content">
-            <a class="memberPage_handPassWord_label">古いパスワード:</a>
+            <a class="memberPage_handPassWord_label">{{ $t('舊密碼') }}:</a>
             <div class="memberPage_handPassWord_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage class="memberPage_handPassWord_input_text" v-if="errors" :errors="errors"
-                name="oldPassWord" />
+              <ErrorMessage name="oldPassWord" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
 
           </label>
         </Field>
         <Field name="newPassWord" v-model="userList.newPassWord" rules="required" v-slot="{ field }">
           <label class="memberPage_handPassWord_content">
-            <a class="memberPage_handPassWord_label">新しいパスワード: </a>
+            <a class="memberPage_handPassWord_label">{{ $t('新密碼') }}: </a>
             <div class="memberPage_handPassWord_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage class="memberPage_handPassWord_input_text" v-if="errors" :errors="errors"
-                name="newPassWord" />
+              <ErrorMessage name="newPassWord" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
         <Field name="newPassWordAgain" v-model="userList.newPassWordAgain" rules="required|confirmed:@newPassWord"
           v-slot="{ field }">
           <label class="memberPage_handPassWord_content">
-            <a class="memberPage_handPassWord_label">新しいパスワードをもう一度入力してください:</a>
+            <a class="memberPage_handPassWord_label">{{ $t('確認新密碼') }}:</a>
             <div class="memberPage_handPassWord_input">
               <input type="text" v-bind="field" />
-              <ErrorMessage class="memberPage_handPassWord_input_text" v-if="errors" :errors="errors"
-                name="newPassWordAgain" />
+              <ErrorMessage name="newPassWordAgain" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
         <div class="memberPage_handPassWord_button">
-          <a>かいいん</a>
-          <button type="submit">{{ `変 更` }}</button>
+          <button type="submit">{{ $t('變更') }}</button>
         </div>
       </div>
 

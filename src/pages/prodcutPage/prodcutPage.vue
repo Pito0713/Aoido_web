@@ -111,10 +111,10 @@ provide('callCategoryFilter', callCategoryFilter);
             <button style="" class="prodcutPage_category_container" @click="callPriceFilter()">
               <img src="../../assets/filter.svg" />
               <template v-if="isSort === 'asc'">
-                <a>価格が低い順</a>
+                <a>{{ $t('從價格低排序') }}</a>
               </template>
               <template v-else>
-                <a>価格が高い順</a>
+                <a>{{ $t('從價格高排序') }}</a>
               </template>
             </button>
             <div style=" border: 1px black solid;" class="prodcutPage_category_container">
@@ -134,7 +134,7 @@ provide('callCategoryFilter', callCategoryFilter);
           <div class="prodcutPage_coupon_content">
             <div class="prodcutPage_Item_noData">
               <a>
-                データがありません
+                {{ $t('暫無資料') }}
               </a>
             </div>
           </div>

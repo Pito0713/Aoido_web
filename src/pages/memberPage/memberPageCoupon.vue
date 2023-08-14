@@ -44,7 +44,7 @@ const patchUpdateCouponUser = async (_value) => {
     const response = await Service.patchUpdateCouponUser(submitData);
     if (response?.status === 'success') {
       store.isAlertBoxComfirmChange(true);
-      store.AlertMessageChange('受け取りました')
+      store.AlertMessageChange('已領取')
       postFindAllCoupon()
     }
     store.isloadingChange(false)
@@ -81,28 +81,27 @@ onMounted(() => {
         <div class="memberPageCoupon_Item_button">
           <template v-if="Number(item.count) <= 0">
             <button :disabled="true">
-              終了した
+              {{ $t('已使用') }}
             </button>
           </template>
           <template v-else>
             <template v-if="isFilterId(item.user)">
               <button :disabled="true">
-                已受け取る
+                {{ $t('已領取') }}
               </button>
             </template>
             <template v-else>
               <template v-if="currentTime.isBetween(item.startDate, item.endDate)">
                 <button @click="patchUpdateCouponUser(item)">
-                  受け取る
+                  {{ $t('已領取') }}
                 </button>
               </template>
               <template v-else>
                 <button :disabled="true">
-                  期限切れです
+                  {{ $t('過期') }}
                 </button>
               </template>
             </template></template>
-
         </div>
       </div>
     </template>

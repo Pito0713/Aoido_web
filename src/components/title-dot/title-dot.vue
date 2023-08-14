@@ -7,7 +7,7 @@ const props = defineProps({
 <template>
   <div class="titleContainer">
     <div class="TitleDot"></div>
-    <a class="titleText"> {{ msg }} </a>
+    <a class="titleText"> {{ $t(msg) }} </a>
     <div class="TitleDot"></div>
   </div>
 </template>

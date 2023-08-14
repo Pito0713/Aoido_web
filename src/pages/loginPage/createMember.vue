@@ -53,7 +53,7 @@ const onSubmit = handleSubmit(async (e) => {
   if (response?.status === 'success' && response?.data) {
     router.push('/loginPage');
     store.isNotificationChange(true);
-    store.NotificationMessageChange('登録が成功しました')
+    store.NotificationMessageChange('登入成功')
   }
 });
 const getCountyItems = async () => {
@@ -80,62 +80,67 @@ onMounted(() => {
   <div>
     <goBackPage />
     <form @submit.prevent="onSubmit">
-
       <div class="createMember">
-
         <Field name="account" v-model="userList.account" rules="account" v-slot="{ field }">
           <label class="createMember_container">
-            <a class="createMember_text">アカウント(必須):</a>
+            <a class="createMember_text">{{ $t('帳號') }}({{ $t('必填') }}):</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
-              <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="account" />
+              <ErrorMessage name="account" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
 
         <Field name="password" v-model="userList.password" rules="password" v-slot="{ field }">
           <label class="createMember_container">
-            <a class="createMember_text">パスワード(必須):</a>
+            <a class="createMember_text">{{ $t('密碼') }}({{ $t('必填') }}):</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
-              <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="password" />
+              <ErrorMessage name="password" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
 
         <Field name="birth" label="birth" v-model="userList.birth">
           <label class="createMember_container">
-            <a class="createMember_text">誕生日:</a>
+            <a class="createMember_text">{{ $t('生日') }}:</a>
             <div class="createMember_container_inputgroup">
               <DatePicker v-model="userList.birth" style="width: 175px; height: 2rem;"></DatePicker>
             </div>
           </label>
-          <ErrorMessage v-if="errors" :errors="errors" name="birth" />
         </Field>
 
-        <Field name="mail" v-model="userList.mail" rules="email" v-slot="{ field }">
+        <Field name="mail" v-model="userList.mail" rules="mail" v-slot="{ field }">
           <label class="createMember_container">
-            <a class="createMember_text">ポスト(必須):</a>
+            <a class="createMember_text">{{ $t('郵箱') }}:</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
-              <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="mail" />
+              <ErrorMessage name="mail" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
 
         <Field name="phone" v-model="userList.phone" rules="phone" v-slot="{ field }">
           <label class="createMember_container">
-            <a class="createMember_text">電話(必須):</a>
+            <a class="createMember_text">{{ $t('電話') }}({{ $t('必填') }}):</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
-              <ErrorMessage class="createMember_errorMessage" v-if="errors" :errors="errors" name="phone" />
+              <ErrorMessage name="phone" v-slot="{ message }">
+                <a class="createMember_errorMessage">{{ $t(message) }}</a>
+              </ErrorMessage>
             </div>
           </label>
         </Field>
 
         <Field name="uesrName" v-model="userList.uesrName" v-slot="{ field }">
           <label class="createMember_container">
-            <a class="createMember_text">ニックネーム:</a>
+            <a class="createMember_text">{{ $t('暱稱') }}:</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
             </div>
@@ -144,7 +149,7 @@ onMounted(() => {
 
         <Field name="City" v-slot="{ field }">
           <label class="createMember_container">
-            <a class="createMember_text">県/町村:</a>
+            <a class="createMember_text">{{ $t('縣市/鄉鎮') }}:</a>
             <div class="createMember_container_inputgroup" style="flex-direction: row;">
               <select class="createMember_select" v-model="selectedCityOption">
                 <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
@@ -163,14 +168,14 @@ onMounted(() => {
 
         <Field name="addres" v-model="userList.addres" v-slot="{ field }">
           <label class="createMember_container">
-            <a class="createMember_text">住所:</a>
+            <a class="createMember_text">{{ $t('地址') }}:</a>
             <div class="createMember_container_inputgroup">
               <input type="text" v-bind="field" />
             </div>
           </label>
         </Field>
 
-        <button class="createMember_button" type="button" @click="onSubmit()">登録</button>
+        <button class="createMember_button" type="button" @click="onSubmit()">{{ $t('創建') }}</button>
       </div>
 
     </form>

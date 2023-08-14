@@ -17,13 +17,13 @@ const logOut = () => {
 
 <template>
   <div class="memberPage_container">
-    <titleDot msg='かいいんじょうほう' />
+    <titleDot msg='個人情報' />
     <memberPageInfo></memberPageInfo>
-    <titleDot msg='クーポン' />
+    <titleDot msg='優惠卷' />
     <memberPageCoupon></memberPageCoupon>
     <div class="memberPage_logout_button">
       <button type="button" @click="logOut()">
-        <a>ログアウト</a>
+        <a>{{ $t('登出') }}</a>
         <img style="width: 15px; height: 15px;" src="../../assets/logOut.svg">
       </button>
     </div>

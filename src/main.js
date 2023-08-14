@@ -13,7 +13,7 @@ configure({
 
 defineRule('required', (value) => {
   if (!value || !value.length) {
-    return '必須記入';
+    return '必填';
   }
   return true;
 });
@@ -22,7 +22,7 @@ defineRule('account', (value) => {
   const accountRegex = /^[a-zA-Z0-9]+$/;
   let isValidAccount = accountRegex.test(value);
   if (!isValidAccount) {
-    return '数字と英字を含んでいる必要があります';
+    return '只能輸入数字或字母。';
   }
   return true;
 });
@@ -33,19 +33,19 @@ defineRule('password', (value) => {
   let isValidPassword = passwordRegex.test(value);
   let isValidPasswordLength = passwordLengthRegex.test(value);
   if (!isValidPassword) {
-    return '数字と英字を含んでいる必要があります';
+    return '只能輸入数字或字母。';
   }
   if (!isValidPasswordLength) {
-    return '6桁から12桁までのパスワードを入力してください。';
+    return '最少6個字數最多12個。';
   }
   return true;
 });
 
-defineRule('email', (value) => {
+defineRule('mail', (value) => {
   const emailRegex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
   let isValidEmail = emailRegex.test(value);
   if (!isValidEmail) {
-    return 'メールアドレス必須です';
+    return '必須是郵箱格式。';
   }
   return true;
 });
@@ -54,7 +54,7 @@ defineRule('phone', (value) => {
   const phoneRegex = /^\d{10}$/;
   let isValidPhone = phoneRegex.test(value);
   if (!isValidPhone) {
-    return '正しい電話番号を入力してください';
+    return '電話格式有誤。';
   }
   return true;
 });
@@ -63,7 +63,7 @@ defineRule('confirmed', (value, [target]) => {
   if (value === target) {
     return true;
   }
-  return '新しいパスワードと異なります';
+  return '重複輸入的新密碼有誤。';
 });
 
 createApp(App)

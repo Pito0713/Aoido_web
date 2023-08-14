@@ -2,6 +2,7 @@ import { createI18n } from 'vue-i18n';
 import { LANGUAGE_DEFAULT } from '@/configs/site';
 import twLocale from './resources/zh-TW.json';
 import jpLocale from './resources/ja-JP.json';
+import Cookies from 'js-cookie';
 
 const messages = {
   'zh-TW': {
@@ -13,9 +14,10 @@ const messages = {
 };
 
 export const getLanguage = () => {
-  let language = window.localStorage.getItem('language');
+  let language = Cookies.get('language');
   if (!language) {
     language = LANGUAGE_DEFAULT;
+    Cookies.set('language', LANGUAGE_DEFAULT);
   }
   return language;
 };
@@ -25,7 +27,7 @@ export const seti18nLanguage = (language) => {
 };
 
 const i18n = new createI18n({
-  locale: 'zh-TW',
+  locale: getLanguage(),
   messages,
   fallbackLocale: 'zh-TW',
 });

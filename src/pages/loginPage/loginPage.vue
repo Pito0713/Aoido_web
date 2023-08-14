@@ -20,24 +20,24 @@ const infoData = reactive({
 
 const rules = {
   account: {
-    required: helpers.withMessage('必須入力', required),
+    required: helpers.withMessage('必填', required),
     maxLength: helpers.withMessage(
-      '最大12桁',
+      '最大12字數',
       maxLength(12),
     ),
     minLength: helpers.withMessage(
-      '最低3桁',
+      '最小3字數',
       minLength(3),
     ),
   },
   password: {
-    required: helpers.withMessage('必須入力', required),
+    required: helpers.withMessage('必填', required),
     maxLength: helpers.withMessage(
-      '最大12桁',
+      '最大12字數',
       maxLength(12),
     ),
     minLength: helpers.withMessage(
-      '最低3桁',
+      '最小3字數',
       minLength(3),
     ),
   },
@@ -123,22 +123,22 @@ watch(infoData, (newVal, oldVal) => {
     <div class="loginPage_button_group">
       <button class="loginPage_button" type="button" @click="createMember()">
         <a style="font-size: 0.85rem;">
-          新規アカウント登録
+          {{ $t('創新帳號') }}
         </a>
       </button>
       <template v-if="!isShowPassword">
         <button class="loginPage_button_Img" type="button" @click="isCheckPassword()">
           <img src='../../assets/logIn_active.svg' alt="" />
-          <a style="font-size: 0.85rem;">入力</a>
+          <a style="font-size: 0.85rem;">{{ $t('登入') }}</a>
         </button>
       </template>
     </div>
 
     <div class="loginPage_content" id="loginPage_account">
-      <a class="loginPage_text">アカウント</a>
+      <a class="loginPage_text">{{ $t('帳號') }}</a>
       <div>
         <div class="loginPage_input_group">
-          <input class="loginPage_input" v-model="v$.account.$model" placeholder='アカウント入力' />
+          <input class="loginPage_input" v-model="v$.account.$model" placeholder='account' />
           <div>
             <img src='' alt="" />
           </div>
@@ -150,11 +150,11 @@ watch(infoData, (newVal, oldVal) => {
     <transition name="fade">
       <template v-if="isShowPassword">
         <div class="loginPage_content" id="loginPage_password">
-          <a class="loginPage_text">パスワード</a>
+          <a class="loginPage_text">{{ $t('密碼') }}</a>
           <div>
             <div class="loginPage_input_group">
               <input :type="showPasswordValue ? 'text' : 'password'" class="loginPage_input" v-model="v$.password.$model"
-                placeholder='パスワード入力' />
+                placeholder='password' />
               <div @click="showPasswordChage()">
                 <template v-if="showPasswordValue">
                   <img src='../../assets/eye.svg' alt="" />
@@ -174,7 +174,7 @@ watch(infoData, (newVal, oldVal) => {
       <div class="loginPage_content" style="margin-top: 4rem;">
         <transition>
           <button class="loginPage_button" type="button" id="LogInCheckTransform" @click="onLogInCheck()">
-            <a style="font-size: 0.9rem;">ログイン</a>
+            <a style="font-size: 0.9rem;">{{ $t('登入') }}</a>
           </button>
         </transition>
       </div>

@@ -1,5 +1,4 @@
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import homePage_main_prouduct from './homePage_main_prouduct.vue'
 import homePage_main_about from './homePage_main_about.vue'
 import titleDot from '@COM/title-dot/title-dot.vue';
@@ -7,9 +6,8 @@ import titleDot from '@COM/title-dot/title-dot.vue';
 
 <template>
   <div class="homePage_main">
-    <titleDot msg='about' />
     <homePage_main_about />
-    <titleDot msg='おすすめ' />
+    <titleDot msg='推薦商品' />
     <homePage_main_prouduct />
   </div>
 </template>

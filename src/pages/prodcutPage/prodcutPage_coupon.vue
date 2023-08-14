@@ -24,7 +24,7 @@ const addCart = async (_value) => {
     store.isloadingChange(false)
   } else {
     store.isNotificationChange(true);
-    store.NotificationMessageChange('ログインしてください。')
+    store.NotificationMessageChange('需先登入')
     router.push('/loginPage');
   }
 }
@@ -55,7 +55,7 @@ const handleClick = () => {
             <div>
               <button class="prodcutPage_coupon_button" @click="addCart(data)">
                 <a>
-                  ついか
+                  {{ $t('購買') }}
                 </a>
               </button>
             </div>
@@ -67,13 +67,11 @@ const handleClick = () => {
           <a class="accordion_content_info_text">びこう: {{ data.remark }}</a>
           <button class="accordion_content_button" @click="handleClick()">
             <a>
-              しょうさい
+              {{ $t('商品詳細') }}
             </a>
           </button>
         </div>
-
       </div>
-      <!-- <div class="prodcutPage_coupon_waves waves_one"></div> -->
     </div>
   </div>
 </template>
