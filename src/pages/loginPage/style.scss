@@ -30,7 +30,6 @@
     @include flex-properties(center, center);
     width: 120px;
     height: 2rem;
-    font-size: 1rem;
     padding-left: 0.5rem;
   }
 
@@ -110,6 +109,7 @@
     border: 1px var( --primary-border-color) solid;
     border-radius: 2rem;
     margin: 0rem 1rem;
+    font-size: 1.25rem;
   }
 
   .createMember_button:hover {

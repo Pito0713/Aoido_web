@@ -102,7 +102,7 @@
     margin: 10px;
   }
   .cartPage_subInfo_label {
-    width: 50px;
+    width: 100px;
   }
   .cartPage_subInfo_input {
     height: 2.5rem;
@@ -126,34 +126,6 @@
     margin: 5px;
   }
 }
-// @keyframes shadow-pop-br {
-//   0% {
-//     box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
-//     transform: translateX(0) translateY(0) ;;
-//   }
-//   100% {
-//     box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e, 4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e, 8px 8px #3e3e3e;
-//     transform: translateX(-8px) translateY(-8px) ;
-//     transform-origin: top;
-//   }
-// }
-
-// @keyframes swing-top-fwd {
-//   0% {
-//     -webkit-transform: rotateX(0);
-//     transform: rotate3d(-5, 1, 0, 0deg);
-//     -webkit-transform-origin: top;
-//     transform-origin: 0% 0%;
-//     opacity: 1;
-//   }
-//   100% {
-//     -webkit-transform: rotateX(180deg);
-//     transform: rotate3d(-50, 1, 15, -180deg);
-//     -webkit-transform-origin: top;
-//     transform-origin: 0% 0%;
-//     opacity: 0;
-//   }
-// }
 
 .cartPage_total {
   @include flex-properties(space-between,center);
@@ -167,7 +139,7 @@
     @include flex-properties(center,center);
     border: 1px gray solid;
     border-radius: 5px;
-    width: 75px;
+    padding: 5px;
   }
   .cartPage_total_group {
     margin: 10px 2px;

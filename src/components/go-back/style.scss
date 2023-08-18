@@ -1,5 +1,26 @@
+@import "@/configs/share.scss";
 .goBackArrow {
   width: 2rem;
   height: 2rem;
-  margin: 20px 15px;
+  margin: 20px;
 }
+
+.goBackPageContainer {
+  @include flex-properties(flex-start, center);
+}
+
+.goBackPageImgContent {
+  width: 60px;
+  height: '100%';
+}
+
+.goBackPageTextContent {
+  @include flex-properties(center, center);
+  width: calc(100% - 60px);
+  height: '100%';
+  a {
+    font-size: 20px;
+  }
+}
+
+

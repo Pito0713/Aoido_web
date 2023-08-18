@@ -1,19 +1,23 @@
 <script setup>
-import { useStore } from '../../store/main';
 import { useRouter } from 'vue-router'
-const store = useStore();
 const router = useRouter()
 const toggle = () => {
   router.back()
 }
-
+const props = defineProps({
+  title: String | Number
+})
 </script>
 
 <template>
-  <div class="goBackPage">
-    <div @click="toggle()">
+  <div class="goBackPageContainer">
+    <div class="goBackPageImgContent" @click="toggle()">
       <img class="goBackArrow" src="../../assets/arrowLeft.svg" />
     </div>
+    <div class="goBackPageTextContent">
+      <a>{{ $t(props?.title ? props.title : '') }}</a>
+    </div>
+    <div class=" goBackPageImgContent"></div>
   </div>
 </template>
 

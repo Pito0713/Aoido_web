@@ -7,7 +7,7 @@ const props = defineProps({
 
 <template>
   <ol v-if="errors.$error" class="form-errors ">
-    <li> {{ props.errors.$errors[0].$message }} </li>
+    <li> {{ $t(props.errors.$errors[0].$message) }} </li>
   </ol>
 </template>
 

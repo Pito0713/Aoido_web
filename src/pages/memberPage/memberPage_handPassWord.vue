@@ -15,7 +15,7 @@ const userList = reactive({
 })
 import { useForm } from 'vee-validate';
 const router = useRouter()
-const { handleSubmit, form, errors } = useForm()
+const { handleSubmit, form, } = useForm()
 import { useStore } from '@STORE/main';
 const store = useStore();
 
@@ -33,6 +33,8 @@ const postHandPassWord = async () => {
   if (response?.status === 'success' && response?.data) {
     Cookies.remove('password');
     Cookies.remove('token');
+    store.isNotificationChange(true);
+    store.NotificationMessageChange('需先登入')
     router.push('/loginPage');
   }
   store.isloadingChange(false)
@@ -47,13 +49,13 @@ const onSubmit = handleSubmit((e) => {
 <template>
   <div>
     <form @submit.prevent="onSubmit">
-      <goBackPage />
+      <goBackPage :title="'密碼變更'" />
       <div class="memberPage_handPassWord_container">
         <Field name="oldPassWord" v-model="userList.oldPassWord" rules="required" v-slot="{ field }">
           <label class="memberPage_handPassWord_content">
-            <a class="memberPage_handPassWord_label">{{ $t('舊密碼') }}:</a>
+            <a class="memberPage_handPassWord_label">{{ $t('舊密碼') }} :</a>
             <div class="memberPage_handPassWord_input">
-              <input type="text" v-bind="field" />
+              <input type="text" v-bind="field" autocomplete="off" />
               <ErrorMessage name="oldPassWord" v-slot="{ message }">
                 <a class="createMember_errorMessage">{{ $t(message) }}</a>
               </ErrorMessage>
@@ -63,9 +65,9 @@ const onSubmit = handleSubmit((e) => {
         </Field>
         <Field name="newPassWord" v-model="userList.newPassWord" rules="required" v-slot="{ field }">
           <label class="memberPage_handPassWord_content">
-            <a class="memberPage_handPassWord_label">{{ $t('新密碼') }}: </a>
+            <a class="memberPage_handPassWord_label">{{ $t('新密碼') }} :</a>
             <div class="memberPage_handPassWord_input">
-              <input type="text" v-bind="field" />
+              <input type="text" v-bind="field" autocomplete="off" />
               <ErrorMessage name="newPassWord" v-slot="{ message }">
                 <a class="createMember_errorMessage">{{ $t(message) }}</a>
               </ErrorMessage>
@@ -75,9 +77,9 @@ const onSubmit = handleSubmit((e) => {
         <Field name="newPassWordAgain" v-model="userList.newPassWordAgain" rules="required|confirmed:@newPassWord"
           v-slot="{ field }">
           <label class="memberPage_handPassWord_content">
-            <a class="memberPage_handPassWord_label">{{ $t('確認新密碼') }}:</a>
+            <a class="memberPage_handPassWord_label">{{ $t('確認新密碼') }} :</a>
             <div class="memberPage_handPassWord_input">
-              <input type="text" v-bind="field" />
+              <input type="text" v-bind="field" autocomplete="off" />
               <ErrorMessage name="newPassWordAgain" v-slot="{ message }">
                 <a class="createMember_errorMessage">{{ $t(message) }}</a>
               </ErrorMessage>

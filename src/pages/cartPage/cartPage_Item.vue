@@ -17,8 +17,8 @@ const state = reactive({
 });
 
 const increment = async () => {
+  store.isloadingChange(true)
   let token = Cookies.get('token')
-
   let submitData = {
     id: props.data._id,
     token: token,
@@ -30,9 +30,11 @@ const increment = async () => {
     state.count++;
     props.refresh()
   }
+  store.isloadingChange(false)
 }
 
 const decrement = async () => {
+  store.isloadingChange(true)
   let token = Cookies.get('token')
   if ((state.count) <= 1) {
     store.isAlertBoxComfirmChange(true);
@@ -50,9 +52,11 @@ const decrement = async () => {
       props.refresh()
     }
   }
+  store.isloadingChange(false)
 }
 
 const deleteCart = async () => {
+  store.isloadingChange(true)
   let submitData = {
     id: props.data._id,
     token: props.data.token,
@@ -62,12 +66,12 @@ const deleteCart = async () => {
   if (response.status === 'success') {
     props.refresh()
   }
+  store.isloadingChange(false)
 }
 
 const handleClick = () => {
   router.push({ name: 'prodcutPage_Detail', params: { id: props.data._id }, query: props.data });
 }
-
 </script>
 
 <template>

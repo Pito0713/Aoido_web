@@ -93,7 +93,7 @@ onMounted(() => {
             <template v-else>
               <template v-if="currentTime.isBetween(item.startDate, item.endDate)">
                 <button @click="patchUpdateCouponUser(item)">
-                  {{ $t('已領取') }}
+                  {{ $t('可領取') }}
                 </button>
               </template>
               <template v-else>

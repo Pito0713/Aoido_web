@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useStore } from '@STORE/main';
+import getErrorMessage from '../service/errorCode'
 const store = useStore();
 
 const requestInterceptor = (config:any) => {
@@ -16,6 +17,7 @@ const requestInterceptorError = error => {
 };
 
 const responseInterceptorError = error => {
+  console.log(getErrorMessage(error))
   store.isNotificationChange(true);
   store.NotificationMessageChange(error.response.data?.message)
   return Promise.reject(error);

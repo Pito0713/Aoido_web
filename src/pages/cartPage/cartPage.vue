@@ -93,14 +93,12 @@ const handleCheckOut = async () => {
         phone: orderListData.phone
       }
     }
-
     const response = await Service.postCreateOrder(submitData);
     if (response?.status === 'success') {
       store.isAlertBoxComfirmChange(true);
       store.AlertMessageChange('訂單成立')
       isCheckedOut.value = true;
     }
-
     store.isloadingChange(false)
   }
 }
@@ -140,13 +138,11 @@ const postFindPersonalCoupon = async () => {
   let submitData = {
     id: id.value,
   };
-
   store.isloadingChange(true)
   const response = await Service.postFindPersonalCoupon(submitData);
   if (response?.status === 'success' && response?.data) {
     couponList.data = response.data
   }
-
   store.isloadingChange(false)
 }
 
@@ -205,7 +201,11 @@ provide('isChecked', isChecked);
         <div class="cartPage_subInfo_content">
           <div class="cartPage_subInfo_checkbox">
             <input type="checkbox" id="checkbox" v-model="isChecked">
-            <label for="checkbox">{{ $t('同會員資料') }}</label>
+            <label for="checkbox">
+              <a>
+                {{ $t('同會員資料') }}
+              </a>
+            </label>
           </div>
           <cartPage_subInfo />
         </div>
@@ -239,9 +239,9 @@ provide('isChecked', isChecked);
           </template>
         </template>
         <template v-else>
-          <div style="margin: 10px 2px;">
-            <a style="margin: 10px">
-              {{ $t('沒有優惠卷') }}
+          <div style="margin: 10px;">
+            <a>
+              {{ $t('沒有可用的優惠卷') }}
             </a>
           </div>
         </template>
@@ -264,7 +264,7 @@ provide('isChecked', isChecked);
           <a> $ </a>
           <a class="cartPage_total_titel">{{ selectedPriec }}</a>
         </div>
-        <button class="cartPage_total_button" @click="handleCheckOut()">{{ $t('結帳') }}</button>
+        <button class="cartPage_total_button" @click="handleCheckOut()"><a>{{ $t('結帳') }}</a></button>
       </div>
     </div>
   </div>

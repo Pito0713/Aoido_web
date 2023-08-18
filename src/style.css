@@ -46,10 +46,11 @@
 a {
   font-weight: 500;
   text-decoration: inherit;
+  font-size: 14px;
   color: var(--text-color)
 }
 a:visited {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 body {
@@ -88,6 +89,7 @@ input {
   border: 0px;
   border-bottom: 1px #2f312e  solid;
   background-color: transparent;
+  font-size: 14px;
 }
 input:focus {
   outline: none;

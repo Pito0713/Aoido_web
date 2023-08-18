@@ -3,7 +3,7 @@ import { ref, reactive, watch } from 'vue'
 import Service from "@SERVICE/service";
 import Cookies from 'js-cookie';
 import formerrors from '@COM/form-errors/index.vue'
-import { required, minLength, maxLength, helpers } from '@vuelidate/validators';
+import { required, helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core'
 import { useStore } from '@STORE/main';
 import { useRouter } from 'vue-router'
@@ -21,25 +21,9 @@ const infoData = reactive({
 const rules = {
   account: {
     required: helpers.withMessage('必填', required),
-    maxLength: helpers.withMessage(
-      '最大12字數',
-      maxLength(12),
-    ),
-    minLength: helpers.withMessage(
-      '最小3字數',
-      minLength(3),
-    ),
   },
   password: {
     required: helpers.withMessage('必填', required),
-    maxLength: helpers.withMessage(
-      '最大12字數',
-      maxLength(12),
-    ),
-    minLength: helpers.withMessage(
-      '最小3字數',
-      minLength(3),
-    ),
   },
 }
 
@@ -122,23 +106,22 @@ watch(infoData, (newVal, oldVal) => {
   <div class="loginPage">
     <div class="loginPage_button_group">
       <button class="loginPage_button" type="button" @click="createMember()">
-        <a style="font-size: 0.85rem;">
-          {{ $t('創新帳號') }}
+        <a>
+          {{ $t('創建帳號') }}
         </a>
       </button>
       <template v-if="!isShowPassword">
         <button class="loginPage_button_Img" type="button" @click="isCheckPassword()">
           <img src='../../assets/logIn_active.svg' alt="" />
-          <a style="font-size: 0.85rem;">{{ $t('登入') }}</a>
+          <a>{{ $t('登入') }}</a>
         </button>
       </template>
     </div>
-
     <div class="loginPage_content" id="loginPage_account">
-      <a class="loginPage_text">{{ $t('帳號') }}</a>
+      <a class="loginPage_text">{{ $t('帳號') }} :</a>
       <div>
         <div class="loginPage_input_group">
-          <input class="loginPage_input" v-model="v$.account.$model" placeholder='account' />
+          <input class="loginPage_input" v-model="v$.account.$model" />
           <div>
             <img src='' alt="" />
           </div>
@@ -146,15 +129,14 @@ watch(infoData, (newVal, oldVal) => {
         <formerrors :errors="v$.account" />
       </div>
     </div>
-
     <transition name="fade">
       <template v-if="isShowPassword">
         <div class="loginPage_content" id="loginPage_password">
-          <a class="loginPage_text">{{ $t('密碼') }}</a>
+          <a class="loginPage_text">{{ $t('密碼') }} :</a>
           <div>
             <div class="loginPage_input_group">
-              <input :type="showPasswordValue ? 'text' : 'password'" class="loginPage_input" v-model="v$.password.$model"
-                placeholder='password' />
+              <input :type="showPasswordValue ? 'text' : 'password'" class="loginPage_input"
+                v-model="v$.password.$model" />
               <div @click="showPasswordChage()">
                 <template v-if="showPasswordValue">
                   <img src='../../assets/eye.svg' alt="" />
@@ -169,12 +151,12 @@ watch(infoData, (newVal, oldVal) => {
         </div>
       </template>
     </transition>
-
     <template v-if="isShowPassword">
       <div class="loginPage_content" style="margin-top: 4rem;">
         <transition>
-          <button class="loginPage_button" type="button" id="LogInCheckTransform" @click="onLogInCheck()">
-            <a style="font-size: 0.9rem;">{{ $t('登入') }}</a>
+          <button style="width: 100px;" class="loginPage_button" type="button" id="LogInCheckTransform"
+            @click="onLogInCheck()">
+            <a>{{ $t('登入') }}</a>
           </button>
         </transition>
       </div>

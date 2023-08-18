@@ -20,23 +20,29 @@ defineRule('required', (value) => {
 
 defineRule('account', (value) => {
   const accountRegex = /^[a-zA-Z0-9]+$/;
+  const accountLengthRegex = /^.{3,12}$/;
+
   let isValidAccount = accountRegex.test(value);
+  let isValidAccountLength = accountLengthRegex.test(value);
   if (!isValidAccount) {
     return '只能輸入数字或字母。';
+  }
+  if (!isValidAccountLength) {
+    return '最少3個字數, 最多12個。';
   }
   return true;
 });
 
 defineRule('password', (value) => {
   const passwordRegex = /^[a-zA-Z0-9]+$/;
-  const passwordLengthRegex = /^\d{6,12}$/;
+  const passwordLengthRegex = /^.{6,12}$/;
   let isValidPassword = passwordRegex.test(value);
   let isValidPasswordLength = passwordLengthRegex.test(value);
   if (!isValidPassword) {
     return '只能輸入数字或字母。';
   }
   if (!isValidPasswordLength) {
-    return '最少6個字數最多12個。';
+    return '最少6個字數, 最多12個。';
   }
   return true;
 });
@@ -54,7 +60,7 @@ defineRule('phone', (value) => {
   const phoneRegex = /^\d{10}$/;
   let isValidPhone = phoneRegex.test(value);
   if (!isValidPhone) {
-    return '電話格式有誤。';
+    return '電話格式有誤, 需10碼。';
   }
   return true;
 });
