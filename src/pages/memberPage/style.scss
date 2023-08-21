@@ -39,6 +39,11 @@
       @include relative-block;
       text-align: center;
     }
+    .memberPage_img_container_group {
+      flex-direction: row;
+      @include flex-properties(center, center);
+      margin-bottom: 10px;
+    }
 
     .memberPage_img_container_button {
       margin: 5px;

@@ -17,7 +17,7 @@ const logOut = () => {
 
 <template>
   <div class="memberPage_container">
-    <titleDot msg='個人情報' />
+    <titleDot msg='個人資料' />
     <memberPageInfo></memberPageInfo>
     <titleDot msg='優惠卷' />
     <memberPageCoupon></memberPageCoupon>
