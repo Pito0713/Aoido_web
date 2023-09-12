@@ -12,6 +12,7 @@ const page = ref(1)
 const paginationValue = ref(50)
 const category = ref([])
 const isSort = ref('asc')
+const isSearch = ref(false)
 const ProductDataList = reactive({
   data: {}
 });
@@ -74,6 +75,10 @@ const callSearch = () => {
   postProductDatabase(submitData)
 };
 
+const isSearchContainer = () => {
+  isSearch.value = !isSearch.value
+}
+
 onMounted(() => {
   postProductDatabase({
     searchText: '',
@@ -104,27 +109,36 @@ provide('callCategoryFilter', callCategoryFilter);
 <template>
   <div class="prodcutPage_container">
     <div class="prodcutPage_content">
-      <div>
+      <div class="prodcutPage_head">
+        <img class="prodcutPage_themeIcon" src="../../assets/theme.svg" />
         <div class="prodcutPage_category">
-          <prodcutPage_category />
-          <div>
-            <button style="" class="prodcutPage_category_container" @click="callPriceFilter()">
-              <img src="../../assets/filter.svg" />
-              <template v-if="isSort === 'asc'">
-                <a>{{ $t('從價格低排序') }}</a>
-              </template>
-              <template v-else>
-                <a>{{ $t('從價格高排序') }}</a>
-              </template>
-            </button>
-            <div style=" border: 1px black solid;" class="prodcutPage_category_container">
-              <input type="text" v-model="searchText" @keydown.enter="callSearch" />
+          <div class="prodcutPage_category_searchContainer"
+            :class="{ prodcutPage_category_searchContainer_hover: isSearch }">
+            <input type="text" v-model="searchText" @keydown.enter="callSearch" />
+            <template v-if="!isSearch">
+              <button @click="isSearchContainer()">
+                <img class="prodcutPage_category_img" src="../../assets/search.svg" />
+              </button>
+            </template>
+            <template v-else>
               <button @click="callSearch">
                 <img class="prodcutPage_category_img" src="../../assets/search.svg" />
               </button>
-            </div>
+            </template>
           </div>
+          <prodcutPage_category />
+          <button style="" class="prodcutPage_category_container" @click="callPriceFilter()">
+            <img src="../../assets/filter.svg" />
+            <template v-if="isSort === 'asc'">
+              <a>{{ $t('從價格低排序') }}</a>
+            </template>
+            <template v-else>
+              <a>{{ $t('從價格高排序') }}</a>
+            </template>
+          </button>
         </div>
+      </div>
+      <div class="line">
       </div>
       <div class="prodcutPage_Item">
         <template v-if="ProductDataList?.data?.length > 0" v-for="(item, index) in ProductDataList.data">
