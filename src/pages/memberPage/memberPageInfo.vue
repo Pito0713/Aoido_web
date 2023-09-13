@@ -37,6 +37,7 @@ const fileInput = ref(null);
 const fileData = ref(null);
 const imagePreviewUrl = ref(null);
 const infoChangeStatus = ref(true);
+const isUploadFile = ref(true);
 const selectedCityOption = ref('')
 const selectedTownOption = ref('')
 const selectedlanguage = ref(Cookies.get('language'))
@@ -57,6 +58,7 @@ const onFileInputChange = (event) => {
     fileData.value = files[0];
     store.isAlertBoxComfirmChange(true);
     store.AlertMessageChange('圖片確認完成, 需執行圖片變更')
+    isUploadFile.value = false
   } else {
     imagePreviewUrl.value = null;
     fileData.value = null;
@@ -186,8 +188,16 @@ provide('userList', userList);
         <input type="file" ref="fileInput" style="display:none;" @change="onFileInputChange" />
       </label>
       <div class="memberPage_img_container_group">
-        <button class="memberPage_img_container_button" @click="uploadFile">{{ $t('個人圖片變更') }}</button>
-        <button class="memberPage_img_container_button" @click="handleClick()">{{ $t('密碼變更') }}</button>
+        <template v-if="isUploadFile">
+          <label class="memberPage_img_container_button">
+            <a>{{ $t('個人圖片變更') }}</a>
+            <input type="file" ref="fileInput" style="display:none;" @change="onFileInputChange" />
+          </label>
+        </template>
+        <template v-else>
+          <button class="memberPage_img_container_button" @click="uploadFile"><a>{{ $t('個人圖片儲存') }}</a></button>
+        </template>
+        <button class="memberPage_img_container_button" @click="handleClick()"><a>{{ $t('密碼變更') }}</a></button>
       </div>
     </div>
     <div class="memberPage_Item">

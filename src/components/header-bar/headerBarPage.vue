@@ -52,7 +52,7 @@ onUpdated(() => {
       <router-link class="nav_items" to="/cartPage"
         :class="{ nav_items_animation: router.currentRoute.value.fullPath.split('/')[1] === 'cartPage' }">
         <div @click="localCycleChange({ left: '285px' })">
-          <img class="nav_items_img" src='../../assets/package_active.svg' alt="" />
+          <img class="nav_items_img" src='../../assets/shoppingCart_active.svg' alt="" />
         </div>
       </router-link>
       <div class="showCycle" :style="localCycle"></div>
