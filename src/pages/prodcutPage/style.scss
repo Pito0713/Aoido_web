@@ -16,10 +16,10 @@
 }
 .prodcutPage_themeIcon {
   width: 65px;
-  height: 65px;
+  height: 70px;
 }
 .prodcutPage_category{
-  @include flex-properties(flex-end, flex-end);
+  @include flex-properties(flex-start, center);
   margin: 10px 50px;
 
   .prodcutPage_category_container {
@@ -48,7 +48,7 @@
 
   .prodcutPage_category_searchContainer_hover {
     @include flex-properties(end, center);
-    animation: searchContainer 1s cubic-bezier(0.45, 0.000, 0.75, 0.75) both;
+    animation: searchContainer 0.5s cubic-bezier(0.75, 0.000, 0.75, 0.75) both;
     input {
       display: block;
       width: 200px;
@@ -66,7 +66,18 @@
   }
 
   .select_container {
+    @include flex-properties(center, center);
+    flex-direction: 'row';
+    border: 1px var(--border-color) solid;
+    height: 2.75rem;
+    width: 10rem;
+    margin: 5px;
+    padding: 0px 5px;
+    border-radius: 5px;
     background-color: var(--primary-prodcutPageItem-background-color)
+  }
+  .category_container {
+    @include flex-properties(center, center);
   }
   .prodcutPage_category_item {
     margin: 5px 10px;
@@ -115,14 +126,14 @@
   }
 }
 
-@media screen and (min-width:1441px){
+@media screen and (min-width:1880px){
   .prodcutPage_Item {
     display: grid;
-    grid-template-columns: repeat(5, minmax(300px, 1fr));
+    grid-template-columns: repeat(6, minmax(300px, 1fr));
     grid-auto-rows: 310px;
   }
 }
-@media screen and (max-width:1440px){
+@media screen and (max-width:1880px){
   .prodcutPage_Item {
     display: grid;
     grid-template-columns: repeat(4, minmax(300px, 1fr));
@@ -146,8 +157,7 @@
 @media screen and  (max-width:576px){
   .prodcutPage_Item {
     display: grid;
-    grid-template-columns: repeat(1, minmax(300px,1fr));
-    grid-auto-rows: 310px;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
   }
   .prodcutPage_category{
     flex-direction: column
@@ -161,8 +171,11 @@
     width: 100%;
     margin: 0px;
   }
-
+  .category_container {
+    flex-direction: column
+  }
 }
+
 // //////////////////////////////////////////////////////////////
 .prodcutPage_coupon_content {
   @include relative-block;
@@ -312,6 +325,20 @@
     }
   }
 
+
+  .prodcutPage_coupon_button_sellOut {
+    @include relative-block;
+    padding: 5px;
+    width: 75px;
+    background-color: var(--bottom-color);
+    border-radius: 5px;
+    border: 1.5px solid var(--prodcutPage-border-color);
+    z-index: 2;
+    a {
+      color: var(--sellOutbottom-text-color);
+    }
+  }
+
 }
 // //////////////////////////////////////////////////////////////
 .accordion_content {
@@ -396,15 +423,15 @@
   .prodcutPage_Detail_img {
     @include relative-block;
     @include flex-properties(center, center);
-    border: 1px gray solid;
-    width: 300px;
-    height: 300px;
+    border: 1px var(--border-color)  solid;
+    width: 350px;
+    height: 350px;
     border-radius: 5px;
   }
 
   .prodcutPage_Detail_Container {
     @include relative-block;
-    @include flex-properties(space-between, center);
+    @include flex-properties(space-between, flex-start);
     padding-left: 25px;
   }
 
@@ -413,7 +440,7 @@
     @include flex-properties(flex-start, flex-start);
     flex-direction: column;
     margin: 25px;
-    width: 300px;
+    width: 350px;
   }
   .prodcutPage_Detail_count {
     width: 30px;
@@ -425,23 +452,56 @@
     @include flex-properties(center, center);
     padding: 10px;
     margin-left: 15px;
+    margin-top: 15px;
   }
 
   .prodcutPage_Detail_button {
-    border: 1px gray solid;
-    border-radius: 5px;
+    border: 1px var(--border-color) solid;
+    border-radius: px;
     @include relative-block;
     @include flex-properties(center, center);
-    padding: 10px;
+    padding: 5px;
+    background-color: var(--bottom-color);
+    a {
+      color: var(--bottom-text-color);
+    }
   }
   .prodcutPage_Detail_buttonImg {
     width: 20px;
     height: 20px;
-    padding: 5px;
+    padding: 3px;
+    border: 1px var(--border-color) solid;
+  }
+  .prodcutPage_Detail_titleText {
+    @include flex-properties(flex-start, flex-start);
+    border-bottom: 1px solid var(--border-color) ;
+    width: 100%;
+    a {
+      margin: 5px;
+    }
+  }
+  .prodcutPage_Detail_priceText {
+    @include flex-properties(flex-start,center);
+    width: 100%;
+    a {
+      margin: 5px;
+    }
+  }
+  .prodcutPage_Detail_remarkText {
+    @include flex-properties(flex-start, flex-start);
+    width: 100%;
+    margin: 15px 0px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    a {
+      margin: 5px;
+      line-height: 20px
+    }
   }
   .prodcutPage_Detail_Text {
-    display: flex;
-    @include flex-properties(flex-start, center);
+    @include flex-properties(flex-start, flex-start);
+    margin-bottom: 5px;
+    width: 100%;
     a {
       margin: 5px;
     }

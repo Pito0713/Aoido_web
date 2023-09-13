@@ -5,11 +5,13 @@ import prodcutPage_category from './prodcutPage_category.vue';
 import pagination from '@COM/pagination/pagination.vue';
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const store = useStore();
 const searchText = ref('')
 const page = ref(1)
-const paginationValue = ref(50)
+const paginationValue = ref(12)
 const category = ref([])
 const isSort = ref('asc')
 const isSearch = ref(false)
@@ -75,6 +77,10 @@ const callSearch = () => {
   postProductDatabase(submitData)
 };
 
+const handleClick = () => {
+  router.push({ name: 'homePage' });
+}
+
 const isSearchContainer = () => {
   isSearch.value = !isSearch.value
 }
@@ -100,8 +106,13 @@ watch(isSort, (newVal, oldVal) => {
   })
 });
 
+watch(paginationValue, (newVal, oldVal) => {
+  callSearch()
+});
+
 provide('categoryList', categoryList);
 provide('callCategoryFilter', callCategoryFilter);
+provide('paginationValue', paginationValue);
 
 
 </script>
@@ -110,7 +121,10 @@ provide('callCategoryFilter', callCategoryFilter);
   <div class="prodcutPage_container">
     <div class="prodcutPage_content">
       <div class="prodcutPage_head">
-        <img class="prodcutPage_themeIcon" src="../../assets/theme.svg" />
+        <button @click="handleClick()">
+          <img class="prodcutPage_themeIcon" src="../../assets/theme.svg" />
+        </button>
+
         <div class="prodcutPage_category">
           <div class="prodcutPage_category_searchContainer"
             :class="{ prodcutPage_category_searchContainer_hover: isSearch }">
@@ -126,7 +140,6 @@ provide('callCategoryFilter', callCategoryFilter);
               </button>
             </template>
           </div>
-          <prodcutPage_category />
           <button style="" class="prodcutPage_category_container" @click="callPriceFilter()">
             <img src="../../assets/filter.svg" />
             <template v-if="isSort === 'asc'">
@@ -140,19 +153,24 @@ provide('callCategoryFilter', callCategoryFilter);
       </div>
       <div class="line">
       </div>
-      <div class="prodcutPage_Item">
-        <template v-if="ProductDataList?.data?.length > 0" v-for="(item, index) in ProductDataList.data">
-          <prodcutPage_coupon :data=item />
-        </template>
-        <template v-else>
-          <div class="prodcutPage_coupon_content">
-            <div class="prodcutPage_Item_noData">
-              <a>
-                {{ $t('暫無資料') }}
-              </a>
+      <div>
+        <div class="prodcutPage_category">
+          <prodcutPage_category />
+        </div>
+        <div class="prodcutPage_Item">
+          <template v-if="ProductDataList?.data?.length > 0" v-for="(item, index) in ProductDataList.data">
+            <prodcutPage_coupon :data=item />
+          </template>
+          <template v-else>
+            <div class="prodcutPage_coupon_content">
+              <div class="prodcutPage_Item_noData">
+                <a>
+                  {{ $t('暫無資料') }}
+                </a>
+              </div>
             </div>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
       <div class="prodcutPage_pagination">
         <pagination :page="page" @onPageChange="onPageChange" />

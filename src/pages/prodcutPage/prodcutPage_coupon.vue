@@ -50,11 +50,25 @@ const handleClick = () => {
           <div class="prodcutPage_coupon_text">
             <a class="prodcutPage_coupon_describe_text" style="font-size: 1.8rem;"> {{ data.describe }} </a>
             <div>
-              <button class="prodcutPage_coupon_button" @click="addCart(data)">
-                <a>
-                  {{ $t('購買') }}
-                </a>
-              </button>
+              <template v-if="Number(data.quantity) > 0">
+                <div>
+                  <button class="prodcutPage_coupon_button" @click="addCart(data)">
+                    <a>
+                      {{ $t('購買') }}
+                    </a>
+                  </button>
+                </div>
+              </template>
+              <template v-else>
+                <div>
+                  <button disabled class="prodcutPage_coupon_button_sellOut">
+                    <a>
+                      {{ $t('完售') }}
+                    </a>
+                  </button>
+                </div>
+              </template>
+
             </div>
           </div>
         </div>
