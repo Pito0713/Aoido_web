@@ -10,7 +10,7 @@ const { isNotification, NotificationMessage } = storeToRefs(store);
 <template>
   <transition>
     <div class="notificationPage" :class="{ route: isNotification }">
-      <a>{{ NotificationMessage }}</a>
+      <a>{{ $t(NotificationMessage) }}</a>
     </div>
   </transition>
 </template>

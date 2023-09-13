@@ -20,7 +20,7 @@ const decrement = () => {
   if (count.value > 1) count.value--
 }
 
-const addCart = async () => {
+const postCreateCart = async () => {
   let token = Cookies.get('token')
   if (!['', null, undefined].includes(token)) {
 
@@ -33,23 +33,25 @@ const addCart = async () => {
 
     let response = await Service.postCreateCart(submitData);
     store.isloadingChange(false)
-
-    if (response?.status === 'success' && response?.data) {
-      return true
-    }
-
-
+    return response
   } else {
     store.isNotificationChange(true);
     store.NotificationMessageChange('需先登入')
     router.push('/loginPage');
   }
-  return false
+}
+
+const addCart = async () => {
+  let response = await postCreateCart();
+  if (response?.status === 'success' && response?.data) {
+    store.isNotificationChange(true);
+    store.NotificationMessageChange('成功加入購物車')
+  }
 }
 
 const addCartAndCheck = async () => {
-  let isCheck = await addCart()
-  if (isCheck) {
+  let response = await postCreateCart()
+  if (response?.status === 'success' && response?.data) {
     router.push({ name: 'cartPage' });
   }
 }
@@ -103,7 +105,7 @@ const addCartAndCheck = async () => {
               <a>{{ $t('立即購買') }}</a>
             </button>
           </div>
-
+          <a style="font-size: 1.25rem;">{{ $t('庫存剩下') }} {{ expanded.quantity }} {{ $t('件') }}</a>
         </div>
       </div>
     </div>

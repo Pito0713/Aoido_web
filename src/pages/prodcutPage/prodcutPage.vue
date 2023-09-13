@@ -110,6 +110,7 @@ watch(paginationValue, (newVal, oldVal) => {
   callSearch()
 });
 
+provide('callSearch', callSearch);
 provide('categoryList', categoryList);
 provide('callCategoryFilter', callCategoryFilter);
 provide('paginationValue', paginationValue);

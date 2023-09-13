@@ -1,9 +1,11 @@
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, inject } from 'vue'
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router'
+
+const callSearch = inject('callSearch');
 
 const store = useStore();
 const router = useRouter()
@@ -22,6 +24,13 @@ const addCart = async (_value) => {
     }
     let response = await Service.postCreateCart(submitData);
     store.isloadingChange(false)
+    if (response?.status === 'success' && response?.data) {
+      callSearch()
+      store.isNotificationChange(true);
+      store.NotificationMessageChange('成功加入購物車')
+    }
+
+
   } else {
     store.isNotificationChange(true);
     store.NotificationMessageChange('需先登入')
