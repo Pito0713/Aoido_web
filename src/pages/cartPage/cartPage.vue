@@ -7,6 +7,7 @@ import cartPage_subInfo from './cartPage_subInfo.vue'
 import titleDot from '@COM/title-dot/title-dot.vue';
 import { useStore } from '@STORE/main';
 import Service from "@SERVICE/service";
+import headIcon from '@COM/head-icon/headIcon.vue';
 
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia';
@@ -195,6 +196,7 @@ provide('isChecked', isChecked);
 
 <template>
   <div class="cartPage">
+    <headIcon />
     <div class="cartPage_container">
       <div class="cartPage_subInfo">
         <titleDot msg="會員資料" />
