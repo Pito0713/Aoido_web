@@ -104,10 +104,11 @@ watch(infoData, (newVal, oldVal) => {
 
 <template>
   <div class="loginPage">
+    <img class="logPage_themeIcon" src="../../assets/theme.svg" />
     <div class="loginPage_button_group">
-      <button class="loginPage_button" type="button" @click="createMember()">
+      <button class="loginPage_button_Img" type="button" @click="createMember()">
         <a>
-          {{ $t('創建帳號') }}
+          {{ $t('註冊帳號') }}
         </a>
       </button>
       <template v-if="!isShowPassword">
@@ -119,43 +120,42 @@ watch(infoData, (newVal, oldVal) => {
     </div>
     <div class="loginPage_content" id="loginPage_account">
       <a class="loginPage_text">{{ $t('帳號') }} :</a>
-      <div>
+      <div style="border-bottom: 1px black solid;">
         <div class="loginPage_input_group">
           <input class="loginPage_input" v-model="v$.account.$model" />
           <div>
             <img src='' alt="" />
           </div>
         </div>
-        <formerrors :errors="v$.account" />
       </div>
+      <formerrors :errors="v$.account" />
     </div>
     <transition name="fade">
       <template v-if="isShowPassword">
         <div class="loginPage_content" id="loginPage_password">
           <a class="loginPage_text">{{ $t('密碼') }} :</a>
-          <div>
+          <div style="border-bottom: 1px black solid;">
             <div class="loginPage_input_group">
-              <input :type="showPasswordValue ? 'text' : 'password'" class="loginPage_input"
+              <input class="loginPage_input" :type="showPasswordValue ? 'text' : 'password'"
                 v-model="v$.password.$model" />
               <div @click="showPasswordChage()">
                 <template v-if="showPasswordValue">
-                  <img src='../../assets/eye.svg' alt="" />
+                  <img style="width: 25px; height: 25px;" src='../../assets/eye.svg' alt="" />
                 </template>
                 <template v-if="!showPasswordValue">
-                  <img src='../../assets/eye_off.svg' alt="" />
+                  <img style="width: 25px; height: 25px;" src='../../assets/eye_off.svg' alt="" />
                 </template>
               </div>
             </div>
-            <formerrors :errors="v$.password" />
           </div>
+          <formerrors :errors="v$.password" />
         </div>
       </template>
     </transition>
     <template v-if="isShowPassword">
       <div class="loginPage_content" style="margin-top: 4rem;">
         <transition>
-          <button style="width: 100px;" class="loginPage_button" type="button" id="LogInCheckTransform"
-            @click="onLogInCheck()">
+          <button class="loginPage_button_Img" type="button" id="LogInCheckTransform" @click="onLogInCheck()">
             <a>{{ $t('登入') }}</a>
           </button>
         </transition>
