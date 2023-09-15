@@ -198,99 +198,97 @@ provide('isChecked', isChecked);
 <template>
   <div class="cartPage">
     <headIcon />
-    <titleDot msg="購物車" />
-    <div class="cartPage_container">
-      <div class="cartPage_Item">
-        <ul class="cartPage_Item_ul">
-          <template v-if="cartList.data.length > 0">
-            <div>
-              <li class="cartPage_Item_li" v-for=" (item, index) in cartList.data" :key="item._id">
-                <cartPage_Item :data=item :refresh="() => postCartData()" />
-              </li>
-            </div>
+    <div class="cartPage_content">
+      <titleDot msg="購物車" />
+      <div class="cartPage_container">
+        <div class="cartPage_Item">
+          <ul>
+            <template v-if="cartList?.data?.length > 0">
+              <div>
+                <li class="cartPage_Item_li" v-for=" (item, index) in cartList.data" :key="item._id">
+                  <cartPage_Item :data=item :refresh="() => postCartData()" />
+                </li>
+              </div>
+            </template>
+            <template v-else>
+              <div>
+                <li class="cartPage_Item_li">
+                  <a style="font-size: 1.25rem;"> {{ $t('購物車內沒有商品') }} </a>
+                </li>
+              </div>
+            </template>
+          </ul>
+        </div>
+      </div>
+      <titleDot msg="會員資料" />
+      <div class="cartPage_container">
+        <div class="cartPage_subInfo">
+          <div class="cartPage_subInfo_checkbox">
+            <input style="margin-right: 10px;" type="checkbox" id="checkbox" v-model="isChecked">
+            <label for="checkbox">
+              <a style="font-size: 1.5rem;">
+                {{ $t('同會員資料') }}
+              </a>
+            </label>
+          </div>
+          <cartPage_subInfo />
+        </div>
+      </div>
+      <titleDot msg="優惠卷" />
+      <div class="cartPageCoupon">
+        <div class="cartPageCoupon_container">
+          <template v-if='Object.keys(couponList.data).length > 0'>
+            <template v-for="(item, index) in couponList.data" :key="item.id">
+              <div class="cartPage_coupon_item">
+                <input style="margin-right: 10px;" type="radio" :value="item" v-model="selectedOption" />
+                <div>
+                  <a>{{ item.describe }}</a>
+                  <a style="margin-left: 5px;">$ {{ item.discount }}</a>
+                  <a class="cartPage_coupon_item_text">{{ moment(item.startDate).format('L') }} -
+                    {{
+                      moment(item.endDate).format('L')
+                    }}</a>
+                </div>
+              </div>
+            </template>
           </template>
           <template v-else>
-            <div>
-              <li class="cartPage_Item_li">
-                <a style="font-size: 1.25rem;"> {{ $t('購物車內沒有商品') }} </a>
-              </li>
+            <div style="margin: 20px;">
+              <a style="font-size: 1.25rem;">
+                {{ $t('沒有可用的優惠卷') }}
+              </a>
             </div>
           </template>
-
-        </ul>
-      </div>
-    </div>
-    <titleDot msg="會員資料" />
-    <div class="cartPage_container">
-      <div class="cartPage_subInfo">
-
-        <div class="cartPage_subInfo_checkbox">
-          <input type="checkbox" id="checkbox" v-model="isChecked">
-          <label for="checkbox">
-            <a>
-              {{ $t('同會員資料') }}
-            </a>
-          </label>
-        </div>
-        <cartPage_subInfo />
-
-      </div>
-    </div>
-    <titleDot msg="優惠卷" />
-    <div class="cartPageCoupon">
-
-      <div class="cartPageCoupon_container">
-        <template v-if='Object.keys(couponList.data).length > 0'>
-          <template v-for="(item, index) in couponList.data" :key="item.id">
-            <div class="cartPage_coupon_item">
-              <input type="radio" :value="item" v-model="selectedOption" />
-              <div>
-                <a>{{ item.describe }}</a>
-                <a style="margin-left: 5px;">$ {{ item.discount }}</a>
-                <a style="color: gray; font-size: 0.8rem; margin-left: 5px;">{{ moment(item.startDate).format('L') }} - {{
-                  moment(item.endDate).format('L')
-                }}</a>
-              </div>
-            </div>
-          </template>
-        </template>
-        <template v-else>
-          <div style="margin: 10px;">
-            <a>
-              {{ $t('沒有可用的優惠卷') }}
-            </a>
-          </div>
-        </template>
-      </div>
-    </div>
-    <titleDot msg="小計" />
-    <div class="cartPage_total">
-      <div>
-        <div class="cartPage_total_group">
-          <a class="cartPage_total_titel">{{ $t('選的商品') }}</a>
-          <a class="cartPage_total_titel">{{ cartList.data.length }}</a>
-        </div>
-        <div class="cartPage_total_group">
-          <a v-if="selectedOption.describe" class="cartPage_total_titel">{{ $t('使用優惠卷') }}</a>
-          <a class="cartPage_total_titel">{{ selectedOption.describe ? selectedOption.describe : $t('未使用優惠卷') }}</a>
         </div>
       </div>
-      <div class="cartPage_total_groud">
-
+      <titleDot msg="小計" />
+      <div class="cartPage_total">
         <div>
-          <a class="cartPage_total_titel">{{ $t('合計金額') }}</a>
-          <a> $ </a>
-          <a class="cartPage_total_titel">{{ selectedPriec }}</a>
+          <div class="cartPage_total_group">
+            <a>{{ $t('選的商品') }}</a>
+            <a class="cartPage_total_title">{{ cartList.data.length }}</a>
+          </div>
+          <div class="cartPage_total_group">
+            <a>{{ $t('使用優惠卷') }}</a>
+            <a class="cartPage_total_title">{{ selectedOption.describe ? selectedOption.describe : $t('未使用優惠卷') }}</a>
+          </div>
+        </div>
+        <div class="cartPage_total_groud">
+          <div>
+            <a>{{ $t('合計金額') }}</a>
+            <a> $ </a>
+            <a class="cartPage_total_title">{{ selectedPriec }}</a>
+          </div>
+
         </div>
 
       </div>
-
+      <div class="cartPage_checkOut_button">
+        <button @click="handleCheckOut()">
+          <a>{{ $t('結帳') }}</a>
+        </button>
+      </div>
     </div>
-    <div class="cartPage_CheckOut_button">
-      <button @click="handleCheckOut()"><a>{{ $t('結帳') }}</a></button>
-    </div>
-
-
   </div>
 </template>
 
