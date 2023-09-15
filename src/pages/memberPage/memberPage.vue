@@ -1,6 +1,7 @@
 <script setup>
 import memberPageInfo from './memberPageInfo.vue';
 import memberPageCoupon from './memberPageCoupon.vue';
+import headIcon from '@COM/head-icon/headIcon.vue';
 import Cookies from 'js-cookie';
 import titleDot from '@COM/title-dot/title-dot.vue';
 import { useRouter } from 'vue-router'
@@ -16,6 +17,7 @@ const logOut = () => {
 </script>
 
 <template>
+  <headIcon />
   <div class="memberPage_container">
     <titleDot msg='個人資料' />
     <memberPageInfo></memberPageInfo>

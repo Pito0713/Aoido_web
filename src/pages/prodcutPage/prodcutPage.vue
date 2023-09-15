@@ -120,40 +120,41 @@ provide('paginationValue', paginationValue);
 
 <template>
   <div class="prodcutPage_container">
-    <div class="prodcutPage_content">
-      <div class="prodcutPage_head">
-        <button @click="handleClick()">
-          <img class="prodcutPage_themeIcon" src="../../assets/theme.svg" />
-        </button>
+    <div class="prodcutPage_head">
+      <button @click="handleClick()">
+        <img class="prodcutPage_themeIcon" src="../../assets/theme.svg" />
+      </button>
 
-        <div class="prodcutPage_category">
-          <div class="prodcutPage_category_searchContainer"
-            :class="{ prodcutPage_category_searchContainer_hover: isSearch }">
-            <input type="text" v-model="searchText" @keydown.enter="callSearch" />
-            <template v-if="!isSearch">
-              <button @click="isSearchContainer()">
-                <img class="prodcutPage_category_img" src="../../assets/search.svg" />
-              </button>
-            </template>
-            <template v-else>
-              <button @click="callSearch">
-                <img class="prodcutPage_category_img" src="../../assets/search.svg" />
-              </button>
-            </template>
-          </div>
-          <button style="" class="prodcutPage_category_container" @click="callPriceFilter()">
-            <img src="../../assets/filter.svg" />
-            <template v-if="isSort === 'asc'">
-              <a>{{ $t('從價格低排序') }}</a>
-            </template>
-            <template v-else>
-              <a>{{ $t('從價格高排序') }}</a>
-            </template>
-          </button>
+      <div class="prodcutPage_category">
+        <div class="prodcutPage_category_searchContainer"
+          :class="{ prodcutPage_category_searchContainer_hover: isSearch }">
+          <input type="text" v-model="searchText" @keydown.enter="callSearch" />
+          <template v-if="!isSearch">
+            <button @click="isSearchContainer()">
+              <img class="prodcutPage_category_img" src="../../assets/search.svg" />
+            </button>
+          </template>
+          <template v-else>
+            <button @click="callSearch">
+              <img class="prodcutPage_category_img" src="../../assets/search.svg" />
+            </button>
+          </template>
         </div>
+        <button style="" class="prodcutPage_category_container" @click="callPriceFilter()">
+          <img src="../../assets/filter.svg" />
+          <template v-if="isSort === 'asc'">
+            <a>{{ $t('從價格低排序') }}</a>
+          </template>
+          <template v-else>
+            <a>{{ $t('從價格高排序') }}</a>
+          </template>
+        </button>
       </div>
-      <div class="line">
-      </div>
+    </div>
+    <div class="line">
+    </div>
+    <div class="prodcutPage_content">
+
       <div>
         <div class="prodcutPage_category">
           <prodcutPage_category />

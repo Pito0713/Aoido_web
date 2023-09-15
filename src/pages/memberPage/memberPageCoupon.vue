@@ -18,9 +18,8 @@ const couponList = reactive({
 });
 
 const postFindAllCoupon = async () => {
-  let token = Cookies.get('token')
   let submitData = {
-    token: token,
+    id: id.value,
   };
 
   store.isloadingChange(true)
@@ -56,7 +55,7 @@ const patchUpdateCouponUser = async (_value) => {
 const isFilterId = (value) => {
   let target = value.filter((item) => { return item === id.value })
 
-  if (target.length > 0) return true
+  if (target.length > 0) return value[0]
   else return false
 }
 
@@ -79,7 +78,7 @@ onMounted(() => {
           <a>{{ moment(item.startDate).format('L') }} - {{ moment(item.endDate).format('L') }}</a>
         </div>
         <div class="memberPageCoupon_Item_button">
-          <template v-if="Number(item.count) <= 0">
+          <template v-if="isFilterId(item.usered)">
             <button :disabled="true">
               {{ $t('已使用') }}
             </button>

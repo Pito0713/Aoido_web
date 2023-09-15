@@ -1,0 +1,25 @@
+@import "@/configs/share.scss";
+
+.headIcon_themeIcon {
+  width: 65px;
+  height: 70px;
+  margin: 0px 30px;
+}
+.line{
+  width: 100%;
+  height: 1px;
+  border-top: 0.25px var(--border-color) solid;
+  margin: 10px 0px;
+}
+
+.headIcon_head {
+  width: 100%;
+}
+
+@media screen and  (max-width:576px){
+  .headIcon_head {
+    @include flex-properties(center, center);
+    flex-direction: column;
+  }
+  
+}
