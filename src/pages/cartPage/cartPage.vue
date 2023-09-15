@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, reactive, watch, provide } from 'vue'
+import { ref, onMounted, reactive, watch, provide, nextTick } from 'vue'
 import Cookies from 'js-cookie';
 import moment from 'moment';
 import cartPage_Item from './cartPage_Item.vue'
@@ -191,38 +191,52 @@ provide('selectedCityOption', selectedCityOption);
 provide('selectedTownOption', selectedTownOption);
 provide('CityTownData', CityTownData);
 provide('isChecked', isChecked);
+
 </script>
 
 <template>
   <div class="cartPage">
+    <titleDot msg="購物車" />
     <div class="cartPage_container">
-      <div class="cartPage_subInfo">
-        <titleDot msg="會員資料" />
-        <div class="cartPage_subInfo_content">
-          <div class="cartPage_subInfo_checkbox">
-            <input type="checkbox" id="checkbox" v-model="isChecked">
-            <label for="checkbox">
-              <a>
-                {{ $t('同會員資料') }}
-              </a>
-            </label>
-          </div>
-          <cartPage_subInfo />
-        </div>
-      </div>
       <div class="cartPage_Item">
-        <titleDot msg="購物車" />
         <ul class="cartPage_Item_ul">
-          <li class="cartPage_Item_li" v-for=" (item, index) in cartList.data" :key="item._id">
-            <cartPage_Item :data=item :refresh="() => postCartData()" />
-          </li>
+          <template v-if="cartList.data.length > 0">
+            <div>
+              <li class="cartPage_Item_li" v-for=" (item, index) in cartList.data" :key="item._id">
+                <cartPage_Item :data=item :refresh="() => postCartData()" />
+              </li>
+            </div>
+          </template>
+          <template v-else>
+            <div>
+              <li class="cartPage_Item_li">
+                <a style="font-size: 1.25rem;"> {{ $t('購物車內沒有商品') }} </a>
+              </li>
+            </div>
+          </template>
+
         </ul>
       </div>
     </div>
-    <div class="cartPageCoupon">
-      <div style="margin: 10px 2px;">
-        <a style="margin: 10px">{{ $t('優惠卷') }}</a>
+    <titleDot msg="會員資料" />
+    <div class="cartPage_container">
+      <div class="cartPage_subInfo">
+
+        <div class="cartPage_subInfo_checkbox">
+          <input type="checkbox" id="checkbox" v-model="isChecked">
+          <label for="checkbox">
+            <a>
+              {{ $t('同會員資料') }}
+            </a>
+          </label>
+        </div>
+        <cartPage_subInfo />
+
       </div>
+    </div>
+    <titleDot msg="優惠卷" />
+    <div class="cartPageCoupon">
+
       <div class="cartPageCoupon_container">
         <template v-if='Object.keys(couponList.data).length > 0'>
           <template v-for="(item, index) in couponList.data" :key="item.id">
@@ -247,6 +261,7 @@ provide('isChecked', isChecked);
         </template>
       </div>
     </div>
+    <titleDot msg="小計" />
     <div class="cartPage_total">
       <div>
         <div class="cartPage_total_group">
@@ -259,14 +274,21 @@ provide('isChecked', isChecked);
         </div>
       </div>
       <div class="cartPage_total_groud">
+
         <div>
           <a class="cartPage_total_titel">{{ $t('合計金額') }}</a>
           <a> $ </a>
           <a class="cartPage_total_titel">{{ selectedPriec }}</a>
         </div>
-        <button class="cartPage_total_button" @click="handleCheckOut()"><a>{{ $t('結帳') }}</a></button>
+
       </div>
+
     </div>
+    <div class="cartPage_CheckOut_button">
+      <button @click="handleCheckOut()"><a>{{ $t('結帳') }}</a></button>
+    </div>
+
+
   </div>
 </template>
 

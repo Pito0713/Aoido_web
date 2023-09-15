@@ -316,7 +316,7 @@
     @include relative-block;
     padding: 5px;
     width: 75px;
-    background-color: var(--bottom-color);
+    background-color: var(--botton-color);
     border-radius: 5px;
     border: 1.5px solid var(--prodcutPage-border-color);
     z-index: 2;
@@ -330,7 +330,7 @@
     @include relative-block;
     padding: 5px;
     width: 75px;
-    background-color: var(--bottom-color);
+    background-color: var(--botton-color);
     border-radius: 5px;
     border: 1.5px solid var(--prodcutPage-border-color);
     z-index: 2;
@@ -374,7 +374,7 @@
     padding: 5px;
     height: 30px;
     width: 100px;
-    background-color: var(--bottom-color);
+    background-color: var(--botton-color);
     border-radius: 5px;
     border: 1px solid var(--prodcutPage-border-color);
     z-index: 2;
@@ -461,7 +461,7 @@
     @include relative-block;
     @include flex-properties(center, center);
     padding: 5px;
-    background-color: var(--bottom-color);
+    background-color: var(--botton-color);
     a {
       color: var(--bottom-text-color);
     }

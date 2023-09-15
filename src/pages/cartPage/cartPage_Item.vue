@@ -76,16 +76,17 @@ const handleClick = () => {
 
 <template>
   <div class="cartPage_Item_contaner" @click="handleClick(data)">
+    <img class="cartPage_Item_img" :src="props.data.imageUrl" />
     <div class="cartPage_Item_content">
       <div class="cartPage_Item_describe">
         <div class="cartPage_Item_text">
-          <a>
+          <a style="font-size: 1.5rem;">
             {{ data.describe }}
           </a>
         </div>
-        <button @click.stop="deleteCart">
-          <img class="cartPage_Item_img" src="../../assets/trash.svg" />
-        </button>
+        <div class="cartPage_Item_text" style="margin-right: 10px;">
+          <a> {{ $t('小計') }} $ {{ data.price * state.count }}</a>
+        </div>
       </div>
       <div class="cartPage_Item_describe">
         <div class="cartPage_Item_text">
@@ -96,7 +97,7 @@ const handleClick = () => {
         </div>
         <div class="cartPage_Item_store">
           <button @click.stop="increment">
-            <img class="cartPage_Item_img" src="../../assets/plus.svg" />
+            <img class="cartPage_Item_icon" src="../../assets/plus.svg" />
           </button>
           <div class="cartPage_Item_Data">
             <a>
@@ -104,11 +105,14 @@ const handleClick = () => {
             </a>
           </div>
           <button @click.stop="decrement">
-            <img class="cartPage_Item_img" src="../../assets/minus.svg">
+            <img class="cartPage_Item_icon" src="../../assets/minus.svg">
           </button>
         </div>
       </div>
     </div>
+    <button @click.stop="deleteCart">
+      <img style="border: none; margin: 00px 10px;" class="cartPage_Item_icon" src="../../assets/trash.svg" />
+    </button>
   </div>
 </template>
 

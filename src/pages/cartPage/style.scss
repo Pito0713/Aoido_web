@@ -3,64 +3,70 @@
   @include flex-properties(center,center);
   @include relative-block;
   flex-direction: column;
+
   .cartPage_container{
-    @include flex-properties(center,center);
     flex-direction: row;
     flex: 1;
-  }
-  @media (max-width:576px){
-    .cartPage_container {
-      @include relative-block;
-    }
+    margin-bottom: 30px;
+    padding: 15px 5px;
   }
 }
 
 .cartPage_Item {
-  @include flex-properties(center,center);
+  @include flex-properties(flex-start,center);
   @include relative-block;
   flex-direction: column;
-  border: 2px gray solid;
   border-radius: 5px;
-  flex: 5;
   margin: 5px;
   text-align: center;
+
   // animation: shadow-pop-br 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
   .cartPage_Item_contaner {
-    width:100%
+    width:100%;
+    height: 65px;
+    border: 1px gray solid;
+    border-radius: 2.5px;
+    @include flex-properties(flex-start,center);
   }
   .cartPage_Item_title {
     margin: 10px;
   }
   .cartPage_Item_ul {
-    overflow: scroll;
-    height: 300px;
+    height: 450px;
     margin-bottom: 10px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
   }
   .cartPage_Item_li {
     @include flex-properties(center,center);
     @include relative-block;
     margin: 5px 15px;
+    background-color: var( --primary-cartPageItem-background-color);
   }
   .cartPage_Item_content {
     @include relative-block;
-    border: 2px gray solid;
+    width:100%;
     border-radius: 5px;
   }
   .cartPage_Item_text {
-    margin: 3.5px;
+    margin: 3px 0px
   }
   .cartPage_Item_describe {
     @include flex-properties(space-between,center);
-    margin: 3.5px;
   }
   .cartPage_Item_store {
     @include flex-properties(center,center);
   }
-  .cartPage_Item_img {
+  .cartPage_Item_icon {
     width: 20px;
     height: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
+    border: 1px gray solid;
+    margin: 1px;
+  }
+  .cartPage_Item_img {
+    width: 50px;
+    height: 50px;
+    margin:  0px 10px;
   }
   .cartPage_Item_Data {
     width: 25px;
@@ -72,46 +78,33 @@
 }
 
 .cartPage_subInfo {
-  @include flex-properties( flex-start,center);
-  flex: 5;
-  flex-direction: column;
-  border: 2px gray solid;
+  flex: 1;
   border-radius: 5px;
   margin: 5px;
-  background-color: var(--primary-chartPage-background-color);
-  // animation: shadow-pop-br 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-
-  .cartPage_subInfo_content {
-    height: 300px;
-    margin-bottom: 10px;
-  }
-
   .cartPage_subInfo_container {
     @include flex-properties(center,center);
-    width: 100%;
-    margin: 5px;
-  }
-
-  .cartPage_subInfo_container {
-    @include flex-properties( flex-start,center);
-    width: 100%;
-    margin: 7.5px;
+    margin: 20px;
   }
 
   .cartPage_subInfo_title {
     margin: 10px;
   }
   .cartPage_subInfo_label {
-    width: 100px;
+    margin: 10px 20px;
+    width: 50px;
   }
   .cartPage_subInfo_input {
-    height: 2.5rem;
-    width: 150px;
+    height: 3rem;
+    width: 80%;
+    font-size: 1.25rem;
   }
   .cartPage_subInfo_select {
-    @include flex-properties(center,center);
-    width: 150px;
-    height: 2.5rem;
+    height: 3rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 80%;
+    font-size: 1.25rem;
   }
   .cartPage_subInfo_button {
     margin-top: 10px;
@@ -129,21 +122,23 @@
 
 .cartPage_total {
   @include flex-properties(space-between,center);
-  border: 2px gray solid;
   border-radius: 5px;
   margin: 10px 5px 5px 5px;
   .cartPage_total_titel {
     margin: 10px;
   }
-  .cartPage_total_button {
-    @include flex-properties(center,center);
-    border: 1px gray solid;
-    border-radius: 5px;
-    padding: 5px;
-  }
+
   .cartPage_total_group {
     margin: 10px 2px;
   }
+}
+.cartPage_CheckOut_button {
+  @include flex-properties(center,center);
+  background-color: var(--botton-color);
+  border: 1px var(--border-color) solid;
+  margin: 10px;
+  padding: 10px 0px;
+  border-radius: 2.5px;
 }
 
 @media (max-width:576px){
@@ -167,7 +162,6 @@
 }
 
 .cartPageCoupon {
-  border: 2px gray solid;
   border-radius: 5px;
   margin: 5px;
 }

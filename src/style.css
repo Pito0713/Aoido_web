@@ -9,8 +9,7 @@
 
   --text-color:#2f312e;
   --primary-color:#b3b3b3;
-  --title-color:#d08c60;
-  --bottom-color:#b4b4b4;
+  --title-color:#e5e5e5;
   --sellOutbottom-text-color:#686868;
   --bottom-text-color:#2d2d2d;
   --background-color:#fbfbfb;
@@ -20,14 +19,15 @@
   --active-border-color:#ffffff;
 
 
-  --botton-color:#f0f0f0;
+  --botton-color:#b3b3b3;
   --active-botton-color: #f9f9f9;
   --botton-text-color:#fafafa;
 
   --background-color:#fbfbfb;
   --header-background-color: #d0d0d0;
 
-  --primary-chartPage-background-color:#fbfbfb;
+  --primary-cartPage-background-color:#ebebeb;
+  --primary-cartPageItem-background-color:#ffffff;
 
 
   --primary-prodcutPageItem-background-color:#ffffff;
