@@ -1,12 +1,12 @@
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 import Service from "@SERVICE/service";
-
 
 const mainPhoto = reactive({
   data: {},
 });
 
+// animation for view show
 const changeView = (e) => {
   for (let i = 0; i < mainPhoto.data.length; i++) {
     mainPhoto.data[i].isView = false
@@ -28,6 +28,7 @@ const getFindActiveAboutImg = async () => {
     }
   }
 }
+
 onMounted(() => {
   getFindActiveAboutImg()
 })

@@ -11,22 +11,21 @@
   width: calc(100% - 40px);
 }
 
-
 .homePage_main_prouduct_describe {
   .homePage_main_prouduct_describe_container {
     @include flex-properties(center, center);
     flex-wrap: wrap;
   }
   .homePage_main_prouduct_describe_container_item {
-    border: 2px gray solid;
-    border-radius: 10px;
+    border: 1px var(--border-color) solid;
+    border-radius: 5px;
     height: 200px;
     width: 200px;
     margin: 10px;
     overflow: hidden;
     > div {
       margin: 0;
-      border-bottom: 1px gray solid;
+      border-bottom: 1px var(--border-color) solid;
       img{
         height: 100%;
         width: 100%;
@@ -41,12 +40,12 @@
   width: calc(100% - 100px);
   margin: 20px;
   height: 350px;
-  border: 1px gray solid;
+  border: 1px var(--border-color) solid;
   border-radius: 20px;
   overflow: hidden;
   div {
     @include flex-properties(center, center);
-    border: 1px gray solid;
+    border: 1px var(--border-color) solid;
     border-radius: 10px;
     margin: 10px;
   }
@@ -66,7 +65,7 @@
     width: 100%;
     div {
       @include flex-properties(center, center);
-      border: 1px gray solid;
+      border: 1px var(--border-color) solid;
       height: 120px;
       border-radius: 10px;
       margin: 10px;
@@ -83,7 +82,7 @@
     height: 700px;
 
     .homePage_main_about_info_container {
-      border: 1px gray solid;
+      border: 1px var(--border-color) solid;
       margin: 10px;
       height: 65px;
       border-radius: 50px;

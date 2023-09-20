@@ -20,7 +20,7 @@ const getFindActiveCarouselImg = async () => {
   }
 }
 
-
+// timer
 let intervalId
 onMounted(() => {
   getFindActiveCarouselImg()
@@ -29,6 +29,7 @@ onMounted(() => {
   }, 5000)
 })
 
+// clear timer
 onUnmounted(() => clearInterval(intervalId))
 
 const handChange = () => {

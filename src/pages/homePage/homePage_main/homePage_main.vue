@@ -6,6 +6,7 @@ import titleDot from '@COM/title-dot/title-dot.vue';
 
 <template>
   <div class="homePage_main">
+    <titleDot msg='網頁介紹' />
     <homePage_main_about />
     <titleDot msg='推薦商品' />
     <homePage_main_prouduct />

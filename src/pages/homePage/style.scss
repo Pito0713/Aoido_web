@@ -1,7 +1,6 @@
 @import "@/configs/share.scss";
 .homePage_carousel_container {
   @include flex-properties(center, center);
-  position: relative;
   height: 450px;
   transition: all 1s ease;
   overflow: hidden;
@@ -13,11 +12,10 @@
   }
 
   .homePage_carousel_img {
-    border: 1px gray solid;
     @include flex-properties(center, center);
     height: calc(100% - 40px);
-    border-radius: 15px;
-    border-width: 2px;
+    border-radius: 5px;
+    border: 1px var(--border-color) solid;
     margin: 20px;
     overflow: hidden;
   }
@@ -29,7 +27,7 @@
 
 @media(min-width:1441px){
   .homePage_carousel_itemContainer {
-    width: 1440px;
+    width: 1024px;
   }
 }
 @media (max-width:1440px){

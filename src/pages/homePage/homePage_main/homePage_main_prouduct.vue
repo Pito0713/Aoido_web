@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 import Service from "@SERVICE/service";
 
 const mainPhoto = reactive({
