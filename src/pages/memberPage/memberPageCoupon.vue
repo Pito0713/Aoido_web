@@ -1,14 +1,12 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue'
 import moment from 'moment';
-import Service from "@SERVICE/service";
 import Cookies from 'js-cookie';
+
+import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
 const store = useStore();
-
 const currentTime = moment();
 
 const id = ref(Cookies.get('id'))
@@ -17,6 +15,7 @@ const couponList = reactive({
   data: {},
 });
 
+// coupon function
 const postFindAllCoupon = async () => {
   let submitData = {
     id: id.value,
@@ -48,15 +47,9 @@ const patchUpdateCouponUser = async (_value) => {
     }
     store.isloadingChange(false)
   } else {
-    router.push('/homePage');
+    store.isAlertBoxComfirmChange(true);
+    store.AlertMessageChange('領取失敗')
   }
-}
-
-const isFilterId = (value) => {
-  let target = value.filter((item) => { return item === id.value })
-
-  if (target.length > 0) return value[0]
-  else return false
 }
 
 onMounted(() => {
@@ -69,22 +62,21 @@ onMounted(() => {
   <div class="memberPageCoupon_container">
     <template v-for="(item, index) in couponList.data">
       <div class="memberPageCoupon_Item">
-        <template v-if="isFilterId(item.user)">
+        <template v-if="item.user[0]">
           <img class="memberPageCoupon_container_img" src='../../assets/pin.svg'>
         </template>
-
         <div class=" memberPageCoupon_Item_description">
           <a>{{ item.describe }}</a>
-          <a>{{ moment(item.startDate).format('L') }} - {{ moment(item.endDate).format('L') }}</a>
         </div>
         <div class="memberPageCoupon_Item_button">
-          <template v-if="isFilterId(item.usered)">
+          <a>{{ moment(item.startDate).format('YYYY / MM /DD') }} - {{ moment(item.endDate).format('YYYY / MM /DD') }}</a>
+          <template v-if="item.usered[0]">
             <button :disabled="true">
               {{ $t('已使用') }}
             </button>
           </template>
           <template v-else>
-            <template v-if="isFilterId(item.user)">
+            <template v-if="item.user[0]">
               <button :disabled="true">
                 {{ $t('已領取') }}
               </button>
@@ -100,7 +92,8 @@ onMounted(() => {
                   {{ $t('過期') }}
                 </button>
               </template>
-            </template></template>
+            </template>
+          </template>
         </div>
       </div>
     </template>

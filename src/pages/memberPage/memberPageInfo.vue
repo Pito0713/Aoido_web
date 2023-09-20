@@ -1,17 +1,15 @@
 <script setup>
 import { ref, onMounted, reactive, watch, provide } from 'vue'
-import { useRouter } from 'vue-router'
 import { useForm } from 'vee-validate';
 import DatePicker from 'vue3-datepicker';
 import Cookies from 'js-cookie';
+import moment from 'moment';
 
 import Service from "@SERVICE/service";
 import { useStore } from '@STORE/main';
-import { LANGUAGE_LIST } from '../../configs/site'
 
-const { handleSubmit, form, errors } = useForm()
+const { form } = useForm()
 const store = useStore();
-const router = useRouter()
 
 const userList = reactive({
   uesrName: '',
@@ -19,36 +17,33 @@ const userList = reactive({
   phone: '',
   addres: '',
   mail: '',
-  City: '',
-  Town: '',
+  city: '',
+  town: '',
   photo: '',
 })
 
-const CountyData = reactive({
+const countyData = reactive({
   data: {}
 });
 
-const CityTownData = reactive({
-  City: '',
-  Town: '',
+const cityTownData = reactive({
+  city: '',
+  town: '',
 });
 
 const fileInput = ref(null);
 const fileData = ref(null);
 const imagePreviewUrl = ref(null);
-const infoChangeStatus = ref(true);
+const infoStatus = ref(true);
 const isUploadFile = ref(true);
 const selectedCityOption = ref('')
 const selectedTownOption = ref('')
 const selectedlanguage = ref(Cookies.get('language'))
 
-const onSubmit = handleSubmit((e) => {
-  postUploadUser()
-  infoChangeStatus.value = true
-});
-
+// Img upload
 const onFileInputChange = (event) => {
   const files = event.target.files;
+  // file type & size 
   if (files && ['image/jpg', 'image/jpeg', 'image/png'].includes(files[0].type) && files[0].size < 1 * 1024 * 1024) {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -66,7 +61,6 @@ const onFileInputChange = (event) => {
     store.AlertMessageChange('圖像不支援')
   }
 };
-
 const uploadFile = async () => {
   if (!fileData.value) return;
   const formData = new FormData();
@@ -82,6 +76,7 @@ const uploadFile = async () => {
 
 };
 
+// memeber info
 const postUploadUser = async () => {
   let token = Cookies.get('token')
 
@@ -121,6 +116,7 @@ const postUserinfo = async () => {
   store.isloadingChange(true)
   if (response?.status === 'success' && response?.data) {
     userList.uesrName = response?.data[0].uesrName
+    userList.birth = new Date(response?.data[0].birth)
     userList.phone = response?.data[0].phone
     userList.addres = response?.data[0].addres
     userList.mail = response?.data[0].mail
@@ -131,26 +127,20 @@ const postUserinfo = async () => {
   store.isloadingChange(false)
 }
 
+// county
 const getCountyItems = async () => {
   const response = await Service.getCountyItems();
   if (response?.status === 'success' && response?.data) {
-    CountyData.data = response.data
-    const City = Object.keys(response.data);
-    CityTownData.City = City.filter((item) => { return item !== "_id" })
-    CityTownData.Town = CountyData.data[selectedCityOption.value]
+    countyData.data = response.data
+    const city = Object.keys(response.data);
+    cityTownData.city = city.filter((item) => { return item !== "_id" })
+    cityTownData.town = countyData.data[selectedCityOption.value]
   }
 }
 
-const handleClick = () => {
-  router.push({ name: 'memberPage_handPassWord' });
-}
-
-const handleinfoChange = () => {
-  infoChangeStatus.value = false
-}
-
+// watch for changes
 watch(selectedCityOption, (newValue, oldValue) => {
-  CityTownData.Town = CountyData.data[selectedCityOption.value]
+  cityTownData.town = countyData.data[selectedCityOption.value]
   if (!['', null, undefined].includes(oldValue) && newValue !== oldValue) selectedTownOption.value = ''
 });
 
@@ -165,6 +155,7 @@ onMounted(() => {
   getCountyItems()
 });
 
+// props update
 provide('userList', userList);
 </script>
 
@@ -197,94 +188,75 @@ provide('userList', userList);
         <template v-else>
           <button class="memberPage_img_container_button" @click="uploadFile"><a>{{ $t('個人圖片儲存') }}</a></button>
         </template>
-        <button class="memberPage_img_container_button" @click="handleClick()"><a>{{ $t('密碼變更') }}</a></button>
       </div>
     </div>
     <div class="memberPage_Item">
-      <form @submit.prevent="onSubmit" class="memberPage_Item_container">
-        <div class="memberPage_Item_button_title">
-          <img class="memberPage_Item_button_title_img" src="../../assets/info.svg" />
-          <template v-if="infoChangeStatus">
-            <button class="memberPage_Item_button" @click="handleinfoChange()">{{ $t('變更') }}</button>
-          </template>
-          <template v-else>
-            <button class="memberPage_Item_button" type="submit">{{ $t('儲存') }}</button>
-          </template>
-        </div>
-
+      <form class="memberPage_Item_container">
         <Field name="uesrName" v-model="userList.uesrName" rules="required" v-slot="{ field }">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">{{ $t('名字') }}:</a>
+            <a class="memberPage_Item_label">{{ $t('名字') }}</a>
             <div class="memberPage_Item_input">
-              <input type="text" v-bind="field" :disabled="infoChangeStatus" />
-              <ErrorMessage name="uesrName" v-slot="{ message }">
-                <a class="createMember_errorMessage">{{ $t(message) }}</a>
-              </ErrorMessage>
+              <input type="text" v-bind="field" :disabled="infoStatus" />
             </div>
           </label>
         </Field>
-
         <Field name="birth" label="birth">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">{{ $t('生日') }}:</a>
+            <a class="memberPage_Item_label">{{ $t('生日') }}</a>
             <div class="memberPage_Item_input">
-              <DatePicker :disabled="infoChangeStatus" v-model="userList.birth"
-                style="width: 170px; height: 2rem; padding-left: 7.5px;"></DatePicker>
+              <DatePicker class="DatePicker" :disabled="infoStatus"
+                style="width: 200px; border: 1px solid var(--border-color); height: 3rem; padding-left: 10px;"
+                v-model="userList.birth" :value="moment(userList.birth).format('YYYY / MM / DD')">
+              </DatePicker>
             </div>
           </label>
         </Field>
-
-        <Field name="phone" label="phone" v-model="userList.phone" v-slot="{ field }">
+        <Field name="city" label="city">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">{{ $t('縣市/鄉鎮') }}:</a>
+            <a class="memberPage_Item_label">{{ $t('縣市') }}</a>
             <div class="memberPage_Item_input">
-              <div class="memberPage_Item_select">
-                <select style="width: 65px; height: 2rem; margin: 0px 10px;" v-model="selectedCityOption"
-                  :disabled="infoChangeStatus">
-                  <option v-for="(option, index) in CityTownData.City" :key="index" :value="option">
-                    {{ option }}
-                  </option>
-                </select>
-                <a> / </a>
-                <select style="width: 65px; height: 2rem; margin: 0px 10px;" v-model="selectedTownOption"
-                  :disabled="infoChangeStatus">
-                  <option v-for="(option, index) in CityTownData.Town" :key="index" :value="option">
-                    {{ option }}
-                  </option>
-                </select>
-              </div>
+              <select v-model="selectedCityOption" :disabled="infoStatus">
+                <option v-for="(option, index) in cityTownData.city" :key="index" :value="option">
+                  {{ option }}
+                </option>
+              </select>
             </div>
           </label>
         </Field>
-
+        <Field name="town" label="town">
+          <label class="memberPage_Item_content">
+            <a class="memberPage_Item_label">{{ $t('鄉鎮') }}</a>
+            <div class="memberPage_Item_input">
+              <select v-model="selectedTownOption" :disabled="infoStatus">
+                <option v-for="(option, index) in cityTownData.town" :key="index" :value="option">
+                  {{ option }}
+                </option>
+              </select>
+            </div>
+          </label>
+        </Field>
         <Field name="addres" label="addres" v-model="userList.addres" v-slot="{ field }">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">{{ $t('地址') }}:</a>
+            <a class="memberPage_Item_label">{{ $t('地址') }}</a>
             <div class="memberPage_Item_input">
-              <input type="text" v-bind="field" :disabled="infoChangeStatus" />
+              <input type="text" v-bind="field" :disabled="infoStatus" />
+            </div>
+          </label>
+        </Field>
+        <Field name="phone" v-model="userList.phone" rules="phone" v-slot="{ field }">
+          <label class="memberPage_Item_content">
+            <a class="memberPage_Item_label">{{ $t('電話') }}</a>
+            <div class="memberPage_Item_input">
+              <input type="text" v-bind="field" autocomplete="off" :disabled="infoStatus" />
             </div>
           </label>
         </Field>
         <Field name="mail" label="mail" v-model="userList.mail" rules="required|mail" v-slot="{ field }">
           <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">{{ $t('郵箱') }}:</a>
+            <a class="memberPage_Item_label">{{ $t('郵箱') }}</a>
             <div class="memberPage_Item_input">
-              <input class="memberPage_Item_input" type="text" v-bind="field" :disabled="infoChangeStatus" />
-              <ErrorMessage name="mail" v-slot="{ message }">
-                <a class="createMember_errorMessage">{{ $t(message) }}</a>
-              </ErrorMessage>
+              <input class="memberPage_Item_input" type="text" v-bind="field" :disabled="infoStatus" />
             </div>
-          </label>
-        </Field>
-
-        <Field name="language" label="language">
-          <label class="memberPage_Item_content">
-            <a class="memberPage_Item_label">{{ $t('語言') }}:</a>
-            <select class="memberPage_Item_container_select" v-model="selectedlanguage">
-              <option v-for="(item, index) in LANGUAGE_LIST" :key="index" :value="item.value">
-                {{ item.lang }}
-              </option>
-            </select>
           </label>
         </Field>
       </form>
