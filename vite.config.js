@@ -13,6 +13,7 @@ export default defineConfig({
       '@ROUTER': '/src/router',
       '@SERVICE': '/src/service',
       '@STORE': '/src/store',
+      '@CONFIGS': '/src/configs',
     },
   },
 });
