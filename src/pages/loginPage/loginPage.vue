@@ -1,12 +1,13 @@
 <script setup>
 import { ref, reactive, watch } from 'vue'
-import Service from "@SERVICE/service";
 import Cookies from 'js-cookie';
+import { useRouter } from 'vue-router'
 import formerrors from '@COM/form-errors/index.vue'
 import { required, helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core'
 import { useStore } from '@STORE/main';
-import { useRouter } from 'vue-router'
+import Service from "@SERVICE/service";
+
 
 const store = useStore();
 const router = useRouter()
@@ -18,6 +19,7 @@ const infoData = reactive({
   password: '',
 });
 
+// validate rules
 const rules = {
   account: {
     required: helpers.withMessage('必填', required),
@@ -26,9 +28,10 @@ const rules = {
     required: helpers.withMessage('必填', required),
   },
 }
-
 const v$ = useVuelidate(rules, infoData)
 
+
+// keyframe animations for input fields
 const keyframe = (e) => {
   document.getElementById(e).animate([
     { transform: `translate3d(-1px, 0, 0)` },
@@ -45,17 +48,17 @@ const keyframe = (e) => {
 }
 
 const onLogInCheck = async () => {
-
   v$.value.$touch();
-
   if (v$.value.$error) {
+
+    // keyframe animations for login button
     let mathX = Math.random() * 100
     let mathY = Math.random() * 100
     let mathZ = Math.random() * 50
-
     const LogInCheckTransform = document.getElementById('LogInCheckTransform');
     LogInCheckTransform.style.transform = `translate3d(${mathX}px, ${mathY}px, ${mathZ}px)`
 
+    // keyframe animations for input fields
     if (v$.value.account.$error) keyframe('loginPage_account')
     if (v$.value.password.$error) keyframe('loginPage_password')
   } else {
@@ -81,9 +84,9 @@ const createMember = async () => {
   router.push('/createMember');
 }
 
+//  account inValue update passwordfiled show
 const isCheckPassword = async () => {
   v$.value.$touch();
-
   if (v$.value.account.$error) keyframe('loginPage_account')
   else {
     isShowPassword.value = true
@@ -95,6 +98,7 @@ const showPasswordChage = async () => {
 }
 
 
+// watch for changes
 watch(infoData, (newVal, oldVal) => {
   if (isShowPassword && ['', null, undefined].includes(newVal.account)) {
     isShowPassword.value = false
@@ -106,26 +110,27 @@ watch(infoData, (newVal, oldVal) => {
   <div class="loginPage">
     <img class="logPage_themeIcon" src="../../assets/theme.svg" />
     <div class="loginPage_button_group">
-      <button class="loginPage_button_Img" type="button" @click="createMember()">
+      <button class="loginPage_createMember_button" type="button" @click="createMember()">
         <a>
           {{ $t('註冊帳號') }}
         </a>
       </button>
-      <template v-if="!isShowPassword">
-        <button class="loginPage_button_Img" type="button" @click="isCheckPassword()">
-          <img src='../../assets/logIn_active.svg' alt="" />
-          <a>{{ $t('登入') }}</a>
-        </button>
-      </template>
     </div>
     <div class="loginPage_content" id="loginPage_account">
-      <a class="loginPage_text">{{ $t('帳號') }} :</a>
-      <div style="border-bottom: 1px black solid;">
+      <a class="loginPage_text">{{ $t('帳號') }}</a>
+      <div style="border-bottom: 1px var(--border-color) solid;">
         <div class="loginPage_input_group">
           <input class="loginPage_input" v-model="v$.account.$model" />
-          <div>
-            <img src='' alt="" />
-          </div>
+          <button type="button" @click="isCheckPassword()">
+            <template v-if="!isShowPassword">
+              <div class="loginPage_accout_img">
+                <img src='../../assets/logIn_arrow.svg' alt="logIn_arrow" />
+              </div>
+            </template>
+            <template v-else>
+              <div style="width: 37.5px; height: 25px;" />
+            </template>
+          </button>
         </div>
       </div>
       <formerrors :errors="v$.account" />
@@ -133,17 +138,17 @@ watch(infoData, (newVal, oldVal) => {
     <transition name="fade">
       <template v-if="isShowPassword">
         <div class="loginPage_content" id="loginPage_password">
-          <a class="loginPage_text">{{ $t('密碼') }} :</a>
-          <div style="border-bottom: 1px black solid;">
+          <a class="loginPage_text">{{ $t('密碼') }}</a>
+          <div style="border-bottom: 1px var(--border-color) solid;">
             <div class="loginPage_input_group">
               <input class="loginPage_input" :type="showPasswordValue ? 'text' : 'password'"
                 v-model="v$.password.$model" />
               <div @click="showPasswordChage()">
                 <template v-if="showPasswordValue">
-                  <img style="width: 25px; height: 25px;" src='../../assets/eye.svg' alt="" />
+                  <img style="width: 25px; height: 25px;" src='../../assets/eye.svg' alt="eye" />
                 </template>
                 <template v-if="!showPasswordValue">
-                  <img style="width: 25px; height: 25px;" src='../../assets/eye_off.svg' alt="" />
+                  <img style="width: 25px; height: 25px;" src='../../assets/eye_off.svg' alt="eye_off" />
                 </template>
               </div>
             </div>
